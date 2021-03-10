@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "456616618150",
+    "project_id": "yshop-ea344",
+    "storage_bucket": "yshop-ea344.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456616618150:android:7f8447b0b8908398096c67",
+        "android_client_info": {
+          "package_name": "com.example.yshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456616618150-r4jnih4vucm4gaj99pooodeoc5fc2pvd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yshop",
+            "certificate_hash": "80057cc9e4787aada9eb599c1a6b81234ea0db6a"
+          }
+        },
+        {
+          "client_id": "456616618150-odj2qpsf3lrg63icnhaim1c2462n9enn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv8Us6kh9jG0iFkw_96LHZhT3HxbV6MKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456616618150-odj2qpsf3lrg63icnhaim1c2462n9enn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
