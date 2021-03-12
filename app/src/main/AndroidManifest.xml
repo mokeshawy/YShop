@@ -21,7 +21,7 @@
         </activity>
 
         <activity android:name=".activites.MainActivity"
-                android:screenOrientation="portrait">
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

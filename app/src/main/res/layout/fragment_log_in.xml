@@ -138,7 +138,7 @@
              android:layout_width="300dp"
              android:layout_height="40dp"
              android:layout_marginTop="52dp"
-             android:background="@drawable/button_background_round"
+             android:background="@drawable/button_background"
              android:foreground="?attr/selectableItemBackground"
              android:gravity="center"
              android:padding="@dimen/btn_padding"
@@ -172,7 +172,7 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/lbl_text_view_textSize" />
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.utils.MSPTextViewBold
                 android:id="@+id/tv_registerId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
              android:layout_width="39dp"
              android:layout_height="28dp"
              android:indeterminate="true"
-             android:indeterminateTint="@color/colorPrimary"
+             android:indeterminateTint="#3C4758"
              app:layout_constraintBottom_toBottomOf="parent"
              app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
              app:layout_constraintStart_toStartOf="@+id/linearLayout2"

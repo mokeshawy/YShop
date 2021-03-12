@@ -7,8 +7,8 @@
     <color name="colorAccent">#51c2d5</color>
 
 
-    <color name="colorThemePink">#FFFFFFFF</color>
-    <color name="colorThemeOrange">#222934</color>
+    <color name="colorThemeGreen">#5e7974</color>
+    <color name="colorThemeDark">#222934</color>
 
     <color name="colorPrimaryText">#222934</color>
     <color name="colorSecondaryText">#989898</color>

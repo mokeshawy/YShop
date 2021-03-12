@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentLogInBinding
 
@@ -25,6 +26,11 @@ class LogInFragment : Fragment() {
         // connect whit view model
         binding.lifecycleOwner      = this
         binding.logInVarViewModel   = logInViewModel
+
+        binding.tvRegisterId.setOnClickListener {
+            findNavController().navigate(R.id.action_logInFragment_to_registerFragment)
+
+        }
 
     }
 
