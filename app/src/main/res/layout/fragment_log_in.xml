@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+   <data>
+      <variable
+          name="logInVarViewModel"
+          type="com.example.yshop.loginfragment.LogInViewModel" />
+   </data>
+
+   <ScrollView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:context=".loginfragment.LogInFragment"
+       android:fillViewport="true">
+
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+         <FrameLayout
+             android:id="@+id/f1_header_image"
+             android:layout_width="wrap_content"
+             android:layout_height="@dimen/auth_header_image_height"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/content_description"
+                android:scaleType="fitXY"
+                android:src="@drawable/auth_screens_background" />
+
+            <ImageView
+                android:layout_width="@dimen/auth_logo_width_size"
+                android:layout_height="@dimen/auth_logo_height_size"
+                android:layout_gravity="center"
+                android:contentDescription="@string/app_name"
+                android:scaleType="center"
+                android:src="@drawable/y_shop_logo" />
+
+            <com.example.yshop.utils.MSPTextViewRegular
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/lbl_text_view_textSize"
+                android:text="@string/app_name"
+                android:layout_gravity="center"
+                android:layout_marginTop="65dp" />
+
+         </FrameLayout>
+
+         <com.example.yshop.utils.MSPTextViewRegular
+             android:id="@+id/tv_title"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="232dp"
+             android:text="@string/title_login"
+             android:textColor="@color/colorPrimary"
+             android:textSize="@dimen/title_textSize"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="@+id/f1_header_image"></com.example.yshop.utils.MSPTextViewRegular>
+
+
+         <!-- input text email -->
+         <com.google.android.material.textfield.TextInputLayout
+             android:id="@+id/til_emailId"
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="35dp"
+             android:layout_marginEnd="16dp"
+             android:hint="@string/et_hint_email_id"
+             android:textColorHint="@color/colorSecondaryText"
+             app:endIconMode="clear_text"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/tv_title">
+
+            <com.example.yshop.utils.MSPEditText
+                android:id="@+id/et_emailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/et_textSize" />
+         </com.google.android.material.textfield.TextInputLayout>
+
+
+         <com.google.android.material.textfield.TextInputLayout
+             android:id="@+id/til_passwordId"
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="16dp"
+             android:layout_marginTop="10dp"
+             android:layout_marginEnd="16dp"
+             android:hint="@string/et_hint_password"
+             android:textColorHint="@color/colorSecondaryText"
+             app:endIconMode="password_toggle"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/til_emailId">
+
+            <com.example.yshop.utils.MSPEditText
+                android:id="@+id/et_passwordId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:padding="@dimen/et_padding"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="@dimen/et_textSize" />
+         </com.google.android.material.textfield.TextInputLayout>
+
+         <com.example.yshop.utils.MSPTextViewRegular
+             android:id="@+id/tv_forget_passwordId"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="16dp"
+             android:foreground="?attr/selectableItemBackground"
+             android:padding="@dimen/clickable_text_view_padding"
+             android:text="@string/lbl_forget_password"
+             android:textColor="@color/colorSecondaryText"
+             android:textSize="@dimen/forget_password_textSize"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toBottomOf="@id/til_passwordId" />
+
+
+         <com.example.yshop.utils.MSPButton
+             android:id="@+id/btn_loginId"
+             android:layout_width="300dp"
+             android:layout_height="40dp"
+             android:layout_marginTop="52dp"
+             android:background="@drawable/button_background_round"
+             android:foreground="?attr/selectableItemBackground"
+             android:gravity="center"
+             android:padding="@dimen/btn_padding"
+             android:paddingBottom="@dimen/btn_padding"
+             android:text="@string/btn_lbl_login"
+             android:textColor="@color/colorWhite"
+             android:textSize="@dimen/btn_textSize"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintHorizontal_bias="0.495"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/tv_forget_passwordId" />
+
+         <LinearLayout
+             android:id="@+id/linearLayout2"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="5dp"
+             android:gravity="center_vertical"
+             android:orientation="horizontal"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/btn_loginId">
+
+            <com.example.yshop.utils.MSPTextViewRegular
+                android:id="@+id/tv_don_t_have_an_accountId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="@dimen/clickable_text_view_padding"
+                android:text="@string/don_t_have_an_account"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/lbl_text_view_textSize" />
+
+            <com.example.yshop.utils.MSPTextViewRegular
+                android:id="@+id/tv_registerId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/clickable_text_view_padding"
+                android:text="@string/register"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/lbl_text_view_textSize" />
+
+
+         </LinearLayout>
+
+         <ProgressBar
+             android:id="@+id/pro_bar_loginId"
+             android:layout_width="39dp"
+             android:layout_height="28dp"
+             android:indeterminate="true"
+             android:indeterminateTint="@color/colorPrimary"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+             app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+   </ScrollView>
+</layout>
