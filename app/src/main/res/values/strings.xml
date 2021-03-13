@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">YShop</string>
 
+
     <string name="content_description">image</string>
     <string name="title_login">LOGIN</string>
     <string name="et_hint_email_id">Email ID</string>
@@ -19,6 +20,16 @@
     <string name="btn_lbl_register">Register</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login"><u>Login</u></string>
+
+
+    <string name="err_msg_enter_first_name">Please enter first name</string>
+    <string name="err_msg_enter_last_name">Please enter last name</string>
+    <string name="err_msg_enter_email">Please enter email</string>
+    <string name="err_msg_enter_Password">Please enter password</string>
+    <string name="err_msg_enter_confirm_Password">Please enter confirm password</string>
+    <string name="err_msg_password_and_confirm_Password_mismatch">Password and confirm password not mismatch</string>
+    <string name="err_msg_terms_and_condition">Please agree terms and condition</string>
+    <string name="registery_successful">Thanks for registering!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

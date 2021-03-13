@@ -54,7 +54,7 @@
 
          </FrameLayout>
 
-         <com.example.yshop.utils.MSPTextViewRegular
+         <com.example.yshop.utils.MSPTextViewBold
              android:id="@+id/tv_title"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
              android:textSize="@dimen/title_textSize"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="@+id/f1_header_image"></com.example.yshop.utils.MSPTextViewRegular>
+             app:layout_constraintTop_toTopOf="@+id/f1_header_image"></com.example.yshop.utils.MSPTextViewBold>
 
 
          <!-- input text email -->

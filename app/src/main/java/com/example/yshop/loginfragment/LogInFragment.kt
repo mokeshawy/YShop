@@ -27,10 +27,16 @@ class LogInFragment : Fragment() {
         binding.lifecycleOwner      = this
         binding.logInVarViewModel   = logInViewModel
 
-        binding.tvRegisterId.setOnClickListener {
-            findNavController().navigate(R.id.action_logInFragment_to_registerFragment)
+        // ProgressBar INVISIBLE
+        binding.proBarLoginId.visibility = View.INVISIBLE
 
+        // go register page
+        binding.tvRegisterId.setOnClickListener {
+            // launch the login screen when the user clicks on the text Login
+            findNavController().navigate(R.id.action_logInFragment_to_registerFragment)
         }
+
+
 
     }
 

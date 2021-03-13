@@ -44,7 +44,5 @@ class SplashActivity : AppCompatActivity() {
         )
 
 
-        //val typeface : Typeface = Typeface.createFromAsset(assets,"Montserrat-Bold.ttf")
-        //binding.tvAppName.typeface = typeface
     }
 }

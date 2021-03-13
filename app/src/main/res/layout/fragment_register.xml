@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".registerfragment.RegisterFragment">
+        tools:context=".registerfragment.RegisterFragment"
+        android:id="@+id/constraintId">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_register_fragmentId"
@@ -22,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.utils.MSPTextViewBold
                 android:id="@+id/tv_titleId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -30,7 +31,7 @@
                 android:paddingStart="@dimen/toolbar_title_paddingStart"
                 android:paddingEnd="0dp"
                 android:text="@string/create_an_account"
-                android:textColor="@color/colorSecondaryText"
+                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/toolbar_title_text_size" />
 
         </androidx.appcompat.widget.Toolbar>
@@ -69,6 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:text="@={registerVarViewModel.etFirstName}"
                         android:padding="@dimen/et_padding"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/et_textSize" />
@@ -94,6 +96,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:text="@={registerVarViewModel.etLastName}"
                         android:padding="@dimen/et_padding"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/et_textSize" />
@@ -120,6 +123,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:text="@={registerVarViewModel.etEmail}"
                         android:padding="@dimen/et_padding"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/et_textSize" />
@@ -146,6 +150,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:text="@={registerVarViewModel.etPassword}"
                         android:padding="@dimen/et_padding"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/et_textSize" />
@@ -171,6 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:text="@={registerVarViewModel.etConfirmPassword}"
                         android:padding="@dimen/et_padding"
                         android:textColor="@color/colorPrimaryText"
                         android:textSize="@dimen/et_textSize" />
@@ -190,8 +196,7 @@
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/cb_terms_and_conditionId"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"/>
+                        android:layout_height="wrap_content"/>
 
                     <com.example.yshop.utils.MSPTextViewRegular
                         android:layout_width="wrap_content"
@@ -254,7 +259,7 @@
                 </LinearLayout>
 
                 <ProgressBar
-                    android:id="@+id/pro_bar_loginId"
+                    android:id="@+id/pro_bar_registerId"
                     android:layout_width="39dp"
                     android:layout_height="28dp"
                     android:indeterminate="true"

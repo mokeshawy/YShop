@@ -2,13 +2,16 @@ package com.example.yshop.activites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,7 +25,10 @@ class MainActivity : AppCompatActivity() {
         val navController   : NavController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.logInFragment,
-                                                            R.id.registerFragment))
+                R.id.registerFragment,
+                R.id.forgetPasswordFragment))
+
         setupActionBarWithNavController(navController , appBarConfiguration)
+
     }
 }
