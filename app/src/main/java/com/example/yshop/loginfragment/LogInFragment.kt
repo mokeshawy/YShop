@@ -36,8 +36,10 @@ class LogInFragment : Fragment() {
             findNavController().navigate(R.id.action_logInFragment_to_registerFragment)
         }
 
-
-
+        // button log in
+        binding.btnLoginId.setOnClickListener {
+            logInViewModel.validateRegisterDetails(requireActivity(), view)
+        }
     }
 
 }

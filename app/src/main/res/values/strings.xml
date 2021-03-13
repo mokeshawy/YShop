@@ -26,10 +26,12 @@
     <string name="err_msg_enter_last_name">Please enter last name</string>
     <string name="err_msg_enter_email">Please enter email</string>
     <string name="err_msg_enter_Password">Please enter password</string>
+    <string name="err_msg_length_Password">The password is not less than 6 number</string>
     <string name="err_msg_enter_confirm_Password">Please enter confirm password</string>
     <string name="err_msg_password_and_confirm_Password_mismatch">Password and confirm password not mismatch</string>
     <string name="err_msg_terms_and_condition">Please agree terms and condition</string>
     <string name="registery_successful">Thanks for registering!</string>
+    <string name="login_successful">Welcome</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

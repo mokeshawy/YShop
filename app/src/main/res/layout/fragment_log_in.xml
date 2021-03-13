@@ -88,6 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:text="@={logInVarViewModel.etEmail}"
                 android:padding="@dimen/et_padding"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/et_textSize" />
@@ -114,6 +115,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:text="@={logInVarViewModel.etPassword}"
                 android:padding="@dimen/et_padding"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/et_textSize" />
@@ -182,8 +184,6 @@
                 android:text="@string/register"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/lbl_text_view_textSize" />
-
-
          </LinearLayout>
 
          <ProgressBar

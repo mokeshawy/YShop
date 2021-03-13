@@ -57,7 +57,11 @@ class RegisterViewModel : ViewModel() {
                 showErrorSnackBar(context.getString(R.string.err_msg_enter_Password),true , context, view )
                 false
             }
+            etPassword.value.toString().length < 6 ->{
 
+                showErrorSnackBar(context.getString(R.string.err_msg_length_Password),true , context, view )
+                false
+            }
             TextUtils.isEmpty(etConfirmPassword.value.toString().trim { it <=' ' }) ->{
                 showErrorSnackBar(context.getString(R.string.err_msg_enter_confirm_Password),true , context, view )
                 false
