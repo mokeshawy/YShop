@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/forgetPasswordFragment"
         android:name="com.example.yshop.forgetpasswordfragment.ForgetPasswordFragment"
-        android:label="fragment_forget_password"
+        android:label="Forget Password"
         tools:layout="@layout/fragment_forget_password" />
 
 </navigation>

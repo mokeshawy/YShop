@@ -27,17 +27,21 @@ class LogInFragment : Fragment() {
         binding.lifecycleOwner      = this
         binding.logInVarViewModel   = logInViewModel
 
+        // user go login
+        binding.btnLoginId.setOnClickListener {
+            logInViewModel.userLogIn( requireActivity() , view)
+        }
+
+        // go forget password page
+        binding.tvForgetPasswordId.setOnClickListener {
+            logInViewModel.goForgetPassPage(view)
+        }
 
         // go register page
         binding.tvRegisterId.setOnClickListener {
-            // launch the login screen when the user clicks on the text Login
-            findNavController().navigate(R.id.action_logInFragment_to_registerFragment)
+            logInViewModel.goRegisterPage(view)
         }
 
-        // button log in
-        binding.btnLoginId.setOnClickListener {
-            logInViewModel.validateRegisterDetails(requireActivity(), view)
-        }
+
     }
-
 }

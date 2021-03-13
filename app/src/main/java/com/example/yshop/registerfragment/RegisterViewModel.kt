@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.CheckBox
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import com.example.yshop.optionbuilder.OptionBuilder
 import com.example.yshop.R
 import com.google.android.gms.tasks.OnCompleteListener
@@ -76,22 +77,30 @@ class RegisterViewModel : ViewModel() {
 
         // check validate function if the entries are valid or no
         if(validateRegisterDetails(context , view , checkBox)){
+
+            // show the progressDialog
             OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait) , context)
+
+            // Get the text from editText and trim space
             var email       = etEmail.value.toString().trim { it <= ' ' }
             var password    = etPassword.value.toString().trim { it <= ' ' }
 
+            // Create a new account by firebase authentication
             firebaseAuth.createUserWithEmailAndPassword(email , password).addOnCompleteListener(
                 OnCompleteListener<AuthResult>{task ->
                     if(task.isSuccessful){
 
+                        // hide the progressDialog
                         OptionBuilder.hideProgressDialog()
 
                         firebaseAuth.currentUser?.sendEmailVerification()
 
                         val firebaseUser : FirebaseUser = task.result!!.user!!
                         OptionBuilder.showErrorSnackBar("You are registered successfully. Your user id is ${firebaseUser.uid} ",false , context , view)
-                        true
+                        Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_logInFragment)
                     }else{
+                        // Hide the progressDialog
+                        OptionBuilder.hideProgressDialog()
                         OptionBuilder.showErrorSnackBar(task.exception!!.message.toString(), true , context, view)
                         false
                     }

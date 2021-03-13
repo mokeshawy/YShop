@@ -16,7 +16,7 @@
     <color name="colorWhite">#FFFFFFFF</color>
 
 
-    <color name="colorSnackBarSuccess">@android:color/holo_green_dark</color>
-    <color name="colorSnackBarError">@color/design_default_color_error</color>
+    <color name="colorSnackBarSuccess">@color/design_default_color_secondary_variant</color>
+    <color name="colorSnackBarError">#7A0016</color>
 
 </resources>

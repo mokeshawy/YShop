@@ -13,7 +13,8 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        tools:context=".loginfragment.LogInFragment"
-       android:fillViewport="true">
+       android:fillViewport="true"
+       android:id="@+id/sc_viewId">
 
 
       <androidx.constraintlayout.widget.ConstraintLayout
@@ -137,8 +138,8 @@
 
          <com.example.yshop.utils.MSPButton
              android:id="@+id/btn_loginId"
-             android:layout_width="300dp"
-             android:layout_height="40dp"
+             android:layout_width="@dimen/button_width_size"
+             android:layout_height="@dimen/button_height_size"
              android:layout_marginTop="52dp"
              android:background="@drawable/button_background"
              android:foreground="?attr/selectableItemBackground"

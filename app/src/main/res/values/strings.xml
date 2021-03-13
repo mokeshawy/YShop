@@ -32,6 +32,7 @@
     <string name="err_msg_terms_and_condition">Please agree terms and condition</string>
     <string name="registery_successful">Thanks for registering!</string>
     <string name="login_successful">Welcome</string>
+    <string name="err_email_not_confirm">Please confirm your email</string>
 
     <string name="please_wait">Please wait&#8230;</string>
 

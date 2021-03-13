@@ -41,18 +41,20 @@
             </androidx.appcompat.widget.Toolbar>
 
             <!-- First name input -->
+            <!-- last name input -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_first_nameId"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="45dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/hint_first_name"
                 android:textColorHint="@color/colorSecondaryText"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar_register_fragmentId">
 
@@ -66,14 +68,14 @@
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
-            <!-- last name input -->
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_last_nameId"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/hint_last_name"
                 android:textColorHint="@color/colorSecondaryText"
@@ -99,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/et_hint_email_id"
                 android:textColorHint="@color/colorSecondaryText"
@@ -126,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/et_hint_password"
                 android:textColorHint="@color/colorSecondaryText"
@@ -152,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:hint="@string/et_hint_confirm_password"
                 android:textColorHint="@color/colorSecondaryText"
@@ -176,7 +178,7 @@
                 android:id="@+id/ll_terms_and_conditionId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="64dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -185,8 +187,8 @@
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cb_terms_and_conditionId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="33dp"
+                    android:layout_height="32dp" />
 
                 <com.example.yshop.utils.MSPTextViewRegular
                     android:layout_width="wrap_content"
@@ -194,33 +196,34 @@
                     android:layout_marginStart="@dimen/txt_terms_condition_marginStart"
                     android:text="@string/i_agree_to_the_terms_and_condition"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/txt_terms_and_condition_textSize"/>
+                    android:textSize="@dimen/txt_terms_and_condition_textSize" />
             </LinearLayout>
 
-                <com.example.yshop.utils.MSPButton
-                    android:id="@+id/btn_registerId"
-                    android:layout_width="300dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/button_background"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:gravity="center"
-                    android:paddingTop="@dimen/btn_padding"
-                    android:text="@string/btn_lbl_register"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/btn_textSize"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ll_terms_and_conditionId"/>
+            <com.example.yshop.utils.MSPButton
+                android:id="@+id/btn_registerId"
+                android:layout_width="@dimen/button_width_size"
+                android:layout_height="@dimen/button_height_size"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_background"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingTop="@dimen/button_paddingTop_Bottom"
+                android:text="@string/btn_lbl_register"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/btn_textSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_terms_and_conditionId" />
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/linearLayout3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_registerId">

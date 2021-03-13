@@ -3,10 +3,13 @@ package com.example.yshop.loginfragment
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import com.example.yshop.optionbuilder.OptionBuilder
 import com.example.yshop.R
+import com.google.firebase.auth.FirebaseAuth
 
 class LogInViewModel : ViewModel() {
 
@@ -34,9 +37,57 @@ class LogInViewModel : ViewModel() {
                 false
             }
             else -> {
-                OptionBuilder.showErrorSnackBar(context.getString(R.string.login_successful),false , context, view )
+                //OptionBuilder.showErrorSnackBar(context.getString(R.string.login_successful),false , context, view )
                 true
             }
         }
+    }
+
+    // fun user login
+    var firebaseAuth = FirebaseAuth.getInstance()
+    fun userLogIn(context: Context , view: View){
+
+        if(validateRegisterDetails(context , view)){
+            // Show the progressDialog
+            OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait),context)
+
+            // Get the text from editText and trim space
+            var email       = etEmail.value.toString().trim { it <=' ' }
+            var password    = etPassword.value.toString().trim { it <=' ' }
+
+            // Log-In using firebase authentication
+            firebaseAuth.signInWithEmailAndPassword(email , password).addOnCompleteListener {
+                if(it.isSuccessful){
+                    if(firebaseAuth.currentUser?.isEmailVerified!!){
+
+                        // Hide the progressDialog
+                        OptionBuilder.hideProgressDialog()
+
+                        OptionBuilder.showErrorSnackBar(context.getString(R.string.login_successful),false , context, view )
+                    }else{
+                        // Hide the progressDialog
+                        OptionBuilder.hideProgressDialog()
+                        OptionBuilder.showErrorSnackBar(context.getString(R.string.err_email_not_confirm) , true , context, view )
+                        false
+                    }
+                }else{
+                    // Hide the progressDialog
+                    OptionBuilder.hideProgressDialog()
+                    OptionBuilder.showErrorSnackBar(it.exception!!.message.toString(), true , context, view)
+                    false
+                }
+            }
+        }
+    }
+
+
+    // go forget password page
+    fun goForgetPassPage(view: View){
+        Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_forgetPasswordFragment)
+    }
+
+    // go to register new user page
+    fun goRegisterPage(view: View){
+        Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_registerFragment)
     }
 }
