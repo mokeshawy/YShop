@@ -1,7 +1,10 @@
 package com.example.yshop.activites
 
+import android.app.Dialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController

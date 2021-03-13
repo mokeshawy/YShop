@@ -31,8 +31,6 @@ class RegisterFragment : Fragment() {
         binding.lifecycleOwner              = this
         binding.registerVarViewModel        = registerViewModel
 
-        // ProgressBar INVISIBLE
-        binding.proBarRegisterId.visibility = View.INVISIBLE
 
         // go login page
         binding.tvLoginId.setOnClickListener {
@@ -48,7 +46,7 @@ class RegisterFragment : Fragment() {
 
         // btn register
         binding.btnRegisterId.setOnClickListener {
-           registerViewModel.validateRegisterDetails(requireActivity() , binding.constraintId , binding.cbTermsAndConditionId)
+           registerViewModel.registerUser(requireActivity() , view , binding.cbTermsAndConditionId)
         }
     }
 

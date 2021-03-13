@@ -27,8 +27,6 @@ class LogInFragment : Fragment() {
         binding.lifecycleOwner      = this
         binding.logInVarViewModel   = logInViewModel
 
-        // ProgressBar INVISIBLE
-        binding.proBarLoginId.visibility = View.INVISIBLE
 
         // go register page
         binding.tvRegisterId.setOnClickListener {

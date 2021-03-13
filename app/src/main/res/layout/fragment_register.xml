@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".registerfragment.RegisterFragment"
-        android:fillViewport="true"
-        android:id="@+id/constraintId">
+        android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -248,18 +247,6 @@
                         android:textSize="@dimen/lbl_text_view_textSize" />
 
             </LinearLayout>
-
-            <ProgressBar
-                android:id="@+id/pro_bar_registerId"
-                android:layout_width="39dp"
-                android:layout_height="28dp"
-                android:indeterminate="true"
-                android:indeterminateTint="#3C4758"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout3"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
