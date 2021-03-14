@@ -36,6 +36,11 @@
 
     <string name="please_wait">Please wait&#8230;</string>
 
+
+    <string name="title_forget_password">Forget Password?</string>
+    <string name="forget_password_title_description">Enter your user name and e-mail address we\'ll send you a email to reset your password</string>
+    <string name="btn_lbl_submit">Submit</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

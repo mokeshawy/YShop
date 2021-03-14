@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentForgetPasswordBinding
 
@@ -26,5 +27,16 @@ class ForgetPasswordFragment : Fragment() {
         // connect whit viewModel
         binding.lifecycleOwner          = this
         binding.forgetPasswordVarModel  = forgetPasswordViewModel
+
+
+        // set icon button press back to login page in toolBar
+        binding.toolbarForgetPasswordFragmentId.setNavigationIcon(R.drawable.ic_white_color_back__24)
+        binding.toolbarForgetPasswordFragmentId.setNavigationOnClickListener { view ->
+            findNavController().navigate(R.id.action_forgetPasswordFragment_to_logInFragment)
+        }
+
+        binding.btnSubmitId.setOnClickListener {
+            forgetPasswordViewModel.forgetPassword(requireActivity() , view)
+        }
     }
 }

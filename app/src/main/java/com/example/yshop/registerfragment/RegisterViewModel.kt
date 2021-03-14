@@ -71,6 +71,7 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
+    // Connect whit authentication firebase
     var firebaseAuth = FirebaseAuth.getInstance()
     // fun register user
     fun registerUser(context: Context , view : View , checkBox: CheckBox){

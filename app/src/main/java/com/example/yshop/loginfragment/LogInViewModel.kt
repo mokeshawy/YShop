@@ -43,10 +43,12 @@ class LogInViewModel : ViewModel() {
         }
     }
 
-    // fun user login
+    // Connect whit authentication firebase
     var firebaseAuth = FirebaseAuth.getInstance()
+    // Fun logIn
     fun userLogIn(context: Context , view: View){
 
+        // check validate function if the entries are valid or no
         if(validateRegisterDetails(context , view)){
             // Show the progressDialog
             OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait),context)
@@ -63,18 +65,26 @@ class LogInViewModel : ViewModel() {
                         // Hide the progressDialog
                         OptionBuilder.hideProgressDialog()
 
+                        // Show snackBar for success message
                         OptionBuilder.showErrorSnackBar(context.getString(R.string.login_successful),false , context, view )
+
                     }else{
+
                         // Hide the progressDialog
                         OptionBuilder.hideProgressDialog()
+
+                        // if user not emailVerified   show error message
                         OptionBuilder.showErrorSnackBar(context.getString(R.string.err_email_not_confirm) , true , context, view )
-                        false
+
                     }
                 }else{
+
                     // Hide the progressDialog
                     OptionBuilder.hideProgressDialog()
+
+                    // if operation for reset password not successful show error message
                     OptionBuilder.showErrorSnackBar(it.exception!!.message.toString(), true , context, view)
-                    false
+
                 }
             }
         }

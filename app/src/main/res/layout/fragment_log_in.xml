@@ -65,7 +65,9 @@
              android:textSize="@dimen/title_textSize"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="@+id/f1_header_image"></com.example.yshop.utils.MSPTextViewBold>
+             app:layout_constraintTop_toTopOf="@+id/f1_header_image">
+
+         </com.example.yshop.utils.MSPTextViewBold>
 
 
          <!-- input text email -->
