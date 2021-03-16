@@ -4,7 +4,7 @@
     <!-- Bar -->
     <color name="colorPrimary">#222934</color>
     <color name="colorPrimaryDark">#222934</color>
-    <color name="colorAccent">#51c2d5</color>
+    <color name="colorAccent">#222934</color>
 
 
     <color name="colorThemeGreen">#5e7974</color>
@@ -18,5 +18,7 @@
 
     <color name="colorSnackBarSuccess">@color/design_default_color_secondary_variant</color>
     <color name="colorSnackBarError">#7A0016</color>
+
+    <color name="colorLightGray">#F1F1F1</color>
 
 </resources>

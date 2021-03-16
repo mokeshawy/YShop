@@ -18,20 +18,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,
-            R.layout.activity_splash
-        )
+            R.layout.activity_splash )
 
+        // hide the action bar
+        supportActionBar?.hide()
 
-        // open activity whit out Action Bar
-        @Suppress("DEPRECATION")
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.insetsController?.hide(WindowInsets.Type.statusBars())
-        } else {
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
-            )
-        }
 
         // open the main activity after splash activity
         @Suppress("DEPRECATION")

@@ -3,15 +3,18 @@ import android.content.Context
 import android.text.TextUtils
 import android.view.View
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
-import com.example.yshop.optionbuilder.OptionBuilder
+import com.example.yshop.utils.OptionBuilder
 import com.example.yshop.R
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import com.example.yshop.model.UserModel
+import com.example.yshop.utils.Constants
+import com.example.yshop.utils.FireStoreOperation
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class RegisterViewModel : ViewModel() {
 
@@ -23,7 +26,7 @@ class RegisterViewModel : ViewModel() {
 
 
     // fun validate data entry from user register
-    fun validateRegisterDetails(context: Context , view : View , checkBox: CheckBox) : Boolean {
+    fun validateInput(context: Context , view : View , checkBox: CheckBox) : Boolean {
 
         return when {
             TextUtils.isEmpty(etFirstName.value.toString().trim { it <=' ' }) ->{
@@ -73,11 +76,12 @@ class RegisterViewModel : ViewModel() {
 
     // Connect whit authentication firebase
     var firebaseAuth = FirebaseAuth.getInstance()
+
     // fun register user
     fun registerUser(context: Context , view : View , checkBox: CheckBox){
 
         // check validate function if the entries are valid or no
-        if(validateRegisterDetails(context , view , checkBox)){
+        if(validateInput(context , view , checkBox)){
 
             // show the progressDialog
             OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait) , context)
@@ -87,26 +91,30 @@ class RegisterViewModel : ViewModel() {
             var password    = etPassword.value.toString().trim { it <= ' ' }
 
             // Create a new account by firebase authentication
-            firebaseAuth.createUserWithEmailAndPassword(email , password).addOnCompleteListener(
-                OnCompleteListener<AuthResult>{task ->
+            firebaseAuth.createUserWithEmailAndPassword(email , password).addOnCompleteListener{ task ->
+
                     if(task.isSuccessful){
 
-                        // hide the progressDialog
-                        OptionBuilder.hideProgressDialog()
+                        // Send email verification
+                        //firebaseAuth.currentUser?.sendEmailVerification()
 
-                        firebaseAuth.currentUser?.sendEmailVerification()
+                        val userInfo = firebaseAuth.currentUser?.uid
 
-                        val firebaseUser : FirebaseUser = task.result!!.user!!
-                        OptionBuilder.showErrorSnackBar("You are registered successfully. Your user id is ${firebaseUser.uid} ",false , context , view)
+                        val user = UserModel(
+                            userInfo.toString(),
+                            etFirstName.value.toString().trim { it <= ' ' },
+                            etLastName.value.toString().trim { it <= ' ' },
+                            etEmail.value.toString().trim { it <= ' ' }
+                        )
+
+                        FireStoreOperation.registerUser(context , user)
                         Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_logInFragment)
-                    }else{
-                        // Hide the progressDialog
-                        OptionBuilder.hideProgressDialog()
-                        OptionBuilder.showErrorSnackBar(task.exception!!.message.toString(), true , context, view)
-                        false
-                    }
+                }else{
+                    // Hide the progressDialog
+                    OptionBuilder.hideProgressDialog()
+                    OptionBuilder.showErrorSnackBar(task.exception!!.message.toString(), true , context, view)
                 }
-            )
+            }
         }
     }
 }

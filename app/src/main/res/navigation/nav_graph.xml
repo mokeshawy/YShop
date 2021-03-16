@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.example.yshop.loginfragment.LogInFragment"
-        android:label=""
+        android:label="Login"
         tools:layout="@layout/fragment_log_in" >
         <action
             android:id="@+id/action_logInFragment_to_registerFragment"
@@ -16,11 +16,14 @@
         <action
             android:id="@+id/action_logInFragment_to_forgetPasswordFragment"
             app:destination="@id/forgetPasswordFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_userCompleteProfileFragment"
+            app:destination="@id/userCompleteProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.example.yshop.registerfragment.RegisterFragment"
-        android:label=""
+        android:label="Register"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_logInFragment"
@@ -30,12 +33,17 @@
     <fragment
         android:id="@+id/forgetPasswordFragment"
         android:name="com.example.yshop.forgetpasswordfragment.ForgetPasswordFragment"
-        android:label=""
+        android:label="Forget Password"
         tools:layout="@layout/fragment_forget_password" >
         <action
             android:id="@+id/action_forgetPasswordFragment_to_logInFragment"
             app:destination="@id/logInFragment"
             app:popUpTo="@id/logInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userCompleteProfileFragment"
+        android:name="com.example.yshop.userprofile.UserCompleteProfileFragment"
+        android:label="fragment_user_complete_profile"
+        tools:layout="@layout/fragment_user_complete_profile" />
 
 </navigation>

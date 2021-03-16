@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentLogInBinding
+import com.example.yshop.model.UserModel
 
 class LogInFragment : Fragment() {
 
@@ -26,6 +28,9 @@ class LogInFragment : Fragment() {
         // connect whit view model
         binding.lifecycleOwner      = this
         binding.logInVarViewModel   = logInViewModel
+
+        // hide the action bar
+        (activity as AppCompatActivity).supportActionBar?.hide()
 
         // user go login
         binding.btnLoginId.setOnClickListener {
