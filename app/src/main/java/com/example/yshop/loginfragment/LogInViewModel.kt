@@ -2,6 +2,8 @@ package com.example.yshop.loginfragment
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.createDataStore
@@ -21,13 +23,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class LogInViewModel : ViewModel() {
 
     // Connect whit dataStore
     lateinit var dataStore  : DataStore<Preferences>
-
 
 
     var etEmail     = MutableLiveData<String>("")
@@ -59,6 +61,14 @@ class LogInViewModel : ViewModel() {
         }
     }
 
+    // Show data for user from fireStore by save into dataStore
+    fun showData(context: Context, etUserEmail : EditText){
+        dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
+
+        viewModelScope.launch {
+            etUserEmail.setText(showUserEmail(Constants.USER_EMAIL_KEY))
+        }
+    }
 
     // Connect whit authentication firebase
     var firebaseAuth = FirebaseAuth.getInstance()
@@ -86,7 +96,7 @@ class LogInViewModel : ViewModel() {
             // Log-In using firebase authentication
             firebaseAuth.signInWithEmailAndPassword(email , password).addOnCompleteListener {
                 if(it.isSuccessful){
-                    //if(firebaseAuth.currentUser?.isEmailVerified!!){
+                    if(firebaseAuth.currentUser?.isEmailVerified!!){
 
                         // Hide the progressDialog
                         OptionBuilder.hideProgressDialog()
@@ -100,38 +110,39 @@ class LogInViewModel : ViewModel() {
                                 var firstName   = snapshot.child("firstName").value.toString()
                                 var lastName    = snapshot.child("lastName").value.toString()
                                 var userEmail   = snapshot.child("email").value.toString()
+                                var profileComplete = snapshot.child("profileCompleted").value.toString()
 
                                 dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
                                 viewModelScope.launch {
-                                    saveDataStoreDetails(firstName, lastName, userEmail)
+                                    saveDataStoreDetails(firstName, lastName, userEmail )
                                 }
 
+                            if(profileComplete.toInt() == 0){
+                                Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_userCompleteProfileFragment)
+                            }else if(profileComplete.toInt() == 1){
+                                try{
+                                    Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_homeFragment)
+                                }catch (e:Exception){
+
+                                }
+
+                            }
                         }
 
                         override fun onCancelled(error: DatabaseError) {
                             TODO("Not yet implemented")
                         }
-
                     })
 
+                    }else{
 
-                        if(user.profileCompleted == 0){
-                            // If the user profile is incomplete then launch the userCompleteProfileFragment
-                            Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_userCompleteProfileFragment)
-                        }else{
-                            // Redirect to home page
+                        // Hide the progressDialog
+                        OptionBuilder.hideProgressDialog()
 
-                        }
+                        // if user not emailVerified   show error message
+                        OptionBuilder.showErrorSnackBar(context.getString(R.string.err_email_not_confirm) , true , context, view )
 
-//                    }else{
-//
-//                        // Hide the progressDialog
-//                        OptionBuilder.hideProgressDialog()
-//
-//                        // if user not emailVerified   show error message
-//                        OptionBuilder.showErrorSnackBar(context.getString(R.string.err_email_not_confirm) , true , context, view )
-//
-//                    }
+                    }
 
                 }else{
 
@@ -155,6 +166,13 @@ class LogInViewModel : ViewModel() {
     // go to register new user page
     fun goRegisterPage(view: View){
         Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_registerFragment)
+    }
+
+    // Get userEmail from dataStore
+    suspend fun showUserEmail( key : String ) : String?{
+        var dataStoreKey = preferencesKey<String>(key)
+        var preferences = dataStore.data.first()
+        return preferences[dataStoreKey]
     }
 
     suspend fun saveDataStoreDetails( firstName : String , lastName : String , userEmail : String){

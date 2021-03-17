@@ -11,15 +11,17 @@ object Constants {
     const val LAST_NAME_KEY : String  = "lastName"
     const val USER_EMAIL_KEY : String = "userEmail"
     const val USER_IMAGE_KEY : String = "image"
+    const val PROF_KEY = "prof"
     const val PICK_IMAGE_REQUEST_CODE = 1
 
-    const val MALE : String = "Male"
-    const val FEMALE : String = "Female"
+    const val MALE : String     = "Male"
+    const val FEMALE : String   = "Female"
 
-    const val MOBILE : String = "mobile"
-    const val GENDER : String = "gender"
+    const val MOBILE : String   = "mobile"
+    const val GENDER : String   = "gender"
 
-    const val USER_PROFILE_IMAGE = "user_profile_image"
+    const val USER_PROFILE_IMAGE    = "user_profile_image"
+    const val COMPLETE_PROFILE      = "profileCompleted"
 
 
     // getUserID function

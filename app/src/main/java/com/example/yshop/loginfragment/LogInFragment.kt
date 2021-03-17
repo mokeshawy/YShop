@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.preferences.preferencesKey
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentLogInBinding
 import com.example.yshop.model.UserModel
+import kotlinx.coroutines.flow.first
 
 class LogInFragment : Fragment() {
 
@@ -30,12 +32,13 @@ class LogInFragment : Fragment() {
         binding.logInVarViewModel   = logInViewModel
 
         // hide the action bar
-        (activity as AppCompatActivity).supportActionBar?.hide()
+        //(activity as AppCompatActivity).supportActionBar?.hide()
 
         // user go login
         binding.btnLoginId.setOnClickListener {
             logInViewModel.userLogIn( requireActivity() , view)
         }
+
 
         // go forget password page
         binding.tvForgetPasswordId.setOnClickListener {
@@ -47,6 +50,7 @@ class LogInFragment : Fragment() {
             logInViewModel.goRegisterPage(view)
         }
 
-
+        // Show data for user logIn automatic in input logIn
+        logInViewModel.showData(requireActivity() , binding.etEmailId)
     }
 }

@@ -94,7 +94,7 @@ class RegisterViewModel : ViewModel() {
                     if(task.isSuccessful){
 
                         // Send email verification
-                        //firebaseAuth.currentUser?.sendEmailVerification()
+                        firebaseAuth.currentUser?.sendEmailVerification()
 
                         val userInfo = firebaseAuth.currentUser?.uid
 
@@ -105,11 +105,16 @@ class RegisterViewModel : ViewModel() {
                             etEmail.value.toString().trim { it <= ' ' }
                         )
 
-
+                        // Insert value from userModel to real time data base
                         userReference.child(Constants.getCurrentUser()).setValue(user)
+
                         // Hide the progressDialog
                         OptionBuilder.hideProgressDialog()
 
+                        // Show snack bar for register success
+                        OptionBuilder.showErrorSnackBar(context.resources.getString(R.string.registery_successful),false,context,view)
+
+                        //After success register transfer to logIn page
                         Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_logInFragment)
                 }else{
                     // Hide the progressDialog

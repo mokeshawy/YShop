@@ -30,7 +30,7 @@ class RegisterFragment : Fragment() {
         binding.registerVarViewModel        = registerViewModel
 
         // hide the action bar
-        (activity as AppCompatActivity).supportActionBar?.hide()
+        //(activity as AppCompatActivity).supportActionBar?.hide()
 
 
         // go login page

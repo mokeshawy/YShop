@@ -21,11 +21,12 @@ import com.example.yshop.utils.OptionBuilder
 import java.io.IOException
 
 class UserCompleteProfileFragment : Fragment() {
+
     lateinit var binding            : FragmentUserCompleteProfileBinding
     val userCompleteProfileViewMode : UserCompleteProfileViewMode by viewModels()
     lateinit var imageUri           : Uri
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
         // Inflate the layout for this fragment
         binding = FragmentUserCompleteProfileBinding.inflate(inflater)
         return binding.root
@@ -39,10 +40,10 @@ class UserCompleteProfileFragment : Fragment() {
         binding.userCompleteProfileVarMode = userCompleteProfileViewMode
 
         // hide the action bar
-        (activity as AppCompatActivity).supportActionBar?.hide()
+        //(activity as AppCompatActivity).supportActionBar?.hide()
 
 
-
+        // Show details for user because not change this details
         binding.etFirstNameId.isEnabled = false
         binding.etLastNameId.isEnabled  = false
         binding.etEmailId.isEnabled     = false
@@ -60,13 +61,19 @@ class UserCompleteProfileFragment : Fragment() {
                 var intent = Intent(Intent.ACTION_PICK)
                 intent.type = "image/*"
                 startActivityForResult(intent,Constants.PICK_IMAGE_REQUEST_CODE)
-
             }
         }
 
 
+        // button save update profile
         binding.btnSubmitId.setOnClickListener {
-            userCompleteProfileViewMode.completeProfile(requireActivity() , view , imageUri , binding.rbMaleId )
+            // using try if user not selected image show error message
+            try {
+                // Call function for update profile from viewModel
+                userCompleteProfileViewMode.completeProfile(requireActivity() , view , imageUri , binding.rbMaleId )
+            }catch (e: Exception){
+                OptionBuilder.showErrorSnackBar(resources.getString(R.string.image_selection_failed),true, requireActivity() , view)
+            }
         }
     }
 
@@ -77,8 +84,7 @@ class UserCompleteProfileFragment : Fragment() {
             if( data !=null){
                 try {
                     imageUri = data?.data!!
-                    //binding.ivUserPhotoId.setImageURI(imageUri)
-                    OptionBuilder.loadUserPicture(imageUri , binding.ivUserPhotoId)
+                    binding.ivUserPhotoId.setImageURI(imageUri)
                 }catch (e: IOException){
                     e.printStackTrace()
                     Toast.makeText(requireActivity(),resources.getString(R.string.image_selection_failed),Toast.LENGTH_SHORT).show()

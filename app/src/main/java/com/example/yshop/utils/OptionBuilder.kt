@@ -49,13 +49,4 @@ object OptionBuilder {
     fun hideProgressDialog(){
         mProgressDialog.dismiss()
     }
-
-
-    fun loadUserPicture(imageUri : Uri, imageView: ImageView){
-        try{
-            Picasso.get().load(imageUri).placeholder(R.drawable.ic_user_profile).into(imageView)
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
-    }
 }
