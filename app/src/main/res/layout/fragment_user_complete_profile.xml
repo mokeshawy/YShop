@@ -41,28 +41,47 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <FrameLayout
-                android:id="@+id/fl_user_imageId"
-                android:layout_width="@dimen/profile_user_image_size"
-                android:layout_height="@dimen/profile_user_image_size"
-                android:layout_marginTop="45dp"
+            <!--            <FrameLayout-->
+<!--                android:id="@+id/fl_user_imageId"-->
+<!--                android:layout_width="@dimen/profile_user_image_size"-->
+<!--                android:layout_height="@dimen/profile_user_image_size"-->
+<!--                android:layout_marginTop="45dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/toolbar_user_profile_fragmentId">-->
+
+<!--                -->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_user_photoId"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_margin="@dimen/profile_user_photo_margin"-->
+<!--                    android:background="@drawable/user_image_background"-->
+<!--                    android:contentDescription="@string/content_description"-->
+<!--                    android:scaleType="fitXY"-->
+<!--                    android:src="@drawable/ic_user_placeholder"/>-->
+
+<!--            </FrameLayout>-->
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_user_photoId"
+                android:layout_width="163dp"
+                android:layout_height="152dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:clickable="true"
+                android:elevation="5dp"
+                android:padding="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_user_profile"
+                app:civ_border_color="#384253"
+                app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar_user_profile_fragmentId">
-
-
-                <ImageView
-                    android:id="@+id/iv_user_photoId"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="@dimen/profile_user_photo_margin"
-                    android:background="@drawable/user_image_background"
-                    android:contentDescription="@string/content_description"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_user_placeholder"
-                    tools:ignore="MissingConstraints" />
-
-            </FrameLayout>
+                app:layout_constraintTop_toBottomOf="@+id/toolbar_user_profile_fragmentId" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_first_nameId"
@@ -74,11 +93,10 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/hint_first_name"
                 android:textColorHint="@color/colorSecondaryText"
-                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fl_user_imageId">
+                app:layout_constraintTop_toBottomOf="@+id/iv_user_photoId">
 
                 <com.example.yshop.utils.MSPEditText
                     android:id="@+id/et_first_nameId"
@@ -86,7 +104,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +117,6 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/hint_last_name"
                 android:textColorHint="@color/colorSecondaryText"
-                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_first_nameId">
@@ -111,7 +127,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +140,6 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/et_hint_email_id"
                 android:textColorHint="@color/colorSecondaryText"
-                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_last_nameId">
@@ -136,7 +150,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/et_padding"
-                    android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,6 +173,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
+                    android:text="@={userCompleteProfileVarMode.mobileNumber}"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />

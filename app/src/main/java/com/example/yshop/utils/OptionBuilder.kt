@@ -2,11 +2,14 @@ package com.example.yshop.utils
 
 import android.app.Dialog
 import android.content.Context
+import android.net.Uri
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.yshop.R
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 
 object OptionBuilder {
 
@@ -47,4 +50,12 @@ object OptionBuilder {
         mProgressDialog.dismiss()
     }
 
+
+    fun loadUserPicture(imageUri : Uri, imageView: ImageView){
+        try{
+            Picasso.get().load(imageUri).placeholder(R.drawable.ic_user_profile).into(imageView)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
 }

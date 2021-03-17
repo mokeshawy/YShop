@@ -3,7 +3,7 @@ package com.example.yshop.forgetpasswordfragment
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
-import android.widget.TextView
+import android.widget.*
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.createDataStore
@@ -19,8 +19,7 @@ import kotlinx.coroutines.launch
 
 class ForgetPasswordViewModel : ViewModel() {
 
-    // Connect whit dataStore
-    lateinit var dataStore : DataStore<Preferences>
+
 
     var etEmail = MutableLiveData<String>("")
 
@@ -75,32 +74,4 @@ class ForgetPasswordViewModel : ViewModel() {
 
         }
     }
-
-    fun showData( context: Context , textView: TextView){
-
-         dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
-
-        viewModelScope.launch {
-            textView.text = showFirstName(Constants.FIRST_NAME_KEY)
-        }
-    }
-
-    suspend fun showFirstName( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
-    }
-
-    suspend fun showLastName( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
-    }
-
-    suspend fun showUserEmail( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
-    }
-
 }

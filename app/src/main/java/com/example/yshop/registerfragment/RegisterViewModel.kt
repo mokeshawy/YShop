@@ -3,7 +3,6 @@ import android.content.Context
 import android.text.TextUtils
 import android.view.View
 import android.widget.CheckBox
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
@@ -11,10 +10,8 @@ import com.example.yshop.utils.OptionBuilder
 import com.example.yshop.R
 import com.example.yshop.model.UserModel
 import com.example.yshop.utils.Constants
-import com.example.yshop.utils.FireStoreOperation
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
+import com.google.firebase.database.FirebaseDatabase
 
 class RegisterViewModel : ViewModel() {
 
@@ -68,14 +65,15 @@ class RegisterViewModel : ViewModel() {
                 false
             }
             else -> {
-//              showErrorSnackBar(context.getString(R.string.registery_successful),false , context, view )
                 true
             }
         }
     }
 
     // Connect whit authentication firebase
-    var firebaseAuth = FirebaseAuth.getInstance()
+    var firebaseAuth        = FirebaseAuth.getInstance()
+    var firebaseDatabase    = FirebaseDatabase.getInstance()
+    var userReference       = firebaseDatabase.getReference(Constants.USERS)
 
     // fun register user
     fun registerUser(context: Context , view : View , checkBox: CheckBox){
@@ -107,7 +105,11 @@ class RegisterViewModel : ViewModel() {
                             etEmail.value.toString().trim { it <= ' ' }
                         )
 
-                        FireStoreOperation.registerUser(context , user)
+
+                        userReference.child(Constants.getCurrentUser()).setValue(user)
+                        // Hide the progressDialog
+                        OptionBuilder.hideProgressDialog()
+
                         Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_logInFragment)
                 }else{
                     // Hide the progressDialog

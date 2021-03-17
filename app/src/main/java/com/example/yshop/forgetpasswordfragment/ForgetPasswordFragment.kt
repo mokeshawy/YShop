@@ -45,7 +45,6 @@ class ForgetPasswordFragment : Fragment() {
         }
 
 
-        forgetPasswordViewModel.showData(requireActivity() , binding.textView2)
     }
 
 }

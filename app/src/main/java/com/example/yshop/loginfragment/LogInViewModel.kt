@@ -1,10 +1,7 @@
 package com.example.yshop.loginfragment
-
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.createDataStore
@@ -18,8 +15,11 @@ import com.example.yshop.utils.OptionBuilder
 import com.example.yshop.R
 import com.example.yshop.model.UserModel
 import com.example.yshop.utils.Constants
-import com.example.yshop.utils.FireStoreOperation
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 
@@ -27,14 +27,11 @@ class LogInViewModel : ViewModel() {
 
     // Connect whit dataStore
     lateinit var dataStore  : DataStore<Preferences>
-    // get object form UserModel
-    lateinit var userModel: UserModel
 
 
 
     var etEmail     = MutableLiveData<String>("")
     var etPassword  = MutableLiveData<String>("")
-    //var userModel = MutableLiveData<UserModel>()
 
     // fun validate data entry from user login
     fun validateInput(context: Context , view : View ) : Boolean {
@@ -67,10 +64,16 @@ class LogInViewModel : ViewModel() {
     var firebaseAuth = FirebaseAuth.getInstance()
     // Connect whit fireStore
      val mFireStore = FirebaseFirestore.getInstance()
+
+    var firebaseDatabase = FirebaseDatabase.getInstance()
+    var userReference = firebaseDatabase.getReference(Constants.USERS)
+
     // Fun logIn
     fun userLogIn(context: Context , view: View ){
-        // init userModel
-        userModel = UserModel()
+
+        // get object form UserModel
+        var user = UserModel()
+
         // check validate function if the entries are valid or no
         if(validateInput(context , view)){
             // Show the progressDialog
@@ -91,20 +94,28 @@ class LogInViewModel : ViewModel() {
                         // Show snackBar for success message
                         OptionBuilder.showErrorSnackBar(context.getString(R.string.login_successful),false , context, view )
 
-                    mFireStore.collection(Constants.USERS).document(FireStoreOperation.getCurrentUser()).get().addOnSuccessListener { result ->
-                        var firstName   = result["firstName"].toString()
-                        var lastName    = result["lastName"].toString()
-                        var userEmail       = result["email"].toString()
+                    userReference.child(firebaseAuth.currentUser?.uid.toString()).addValueEventListener( object : ValueEventListener{
+                        override fun onDataChange(snapshot: DataSnapshot) {
 
+                                var firstName   = snapshot.child("firstName").value.toString()
+                                var lastName    = snapshot.child("lastName").value.toString()
+                                var userEmail   = snapshot.child("email").value.toString()
 
-                        dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
-                        viewModelScope.launch {
-                            saveDataStoreDetails(firstName, lastName, userEmail)
+                                dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
+                                viewModelScope.launch {
+                                    saveDataStoreDetails(firstName, lastName, userEmail)
+                                }
+
                         }
 
-                    }
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
 
-                        if(userModel.profileCompleted == 0){
+                    })
+
+
+                        if(user.profileCompleted == 0){
                             // If the user profile is incomplete then launch the userCompleteProfileFragment
                             Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_userCompleteProfileFragment)
                         }else{
