@@ -23,7 +23,8 @@
 
          <FrameLayout
              android:id="@+id/f1_header_image"
-             android:layout_width="wrap_content"
+             android:layout_width="match_parent"
+             android:background="@drawable/app_gradinet_color_background"
              android:layout_height="@dimen/auth_header_image_height"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/content_description"
                 android:scaleType="fitXY"
-                android:src="@drawable/auth_screens_background" />
+                 />
 
             <ImageView
                 android:layout_width="@dimen/auth_logo_width_size"
@@ -59,10 +60,10 @@
          <!-- input text email -->
          <com.example.yshop.utils.MSPTextViewBold
              android:id="@+id/tv_title"
-             android:layout_width="wrap_content"
+             android:layout_width="match_parent"
              android:layout_height="45dp"
              android:layout_marginTop="200dp"
-             android:background="@drawable/auth_screens_background"
+             android:background="@drawable/app_gradinet_color_background"
              android:gravity="center"
              android:padding="10dp"
              android:text="@string/title_login"

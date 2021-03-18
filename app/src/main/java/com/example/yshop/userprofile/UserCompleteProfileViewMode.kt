@@ -97,7 +97,7 @@ class UserCompleteProfileViewMode : ViewModel() {
                     // Show snack bar for update successful
                     OptionBuilder.showErrorSnackBar(context.resources.getString(R.string.msg_profile_updated),false,context,view)
                     // going to home page =>
-                    Navigation.findNavController(view).navigate(R.id.action_userCompleteProfileFragment_to_homeFragment)
+                    Navigation.findNavController(view).navigate(R.id.action_userCompleteProfileFragment_to_dashBoardFragment)
                 }
             }
         }

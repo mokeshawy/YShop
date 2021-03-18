@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso
 
 object OptionBuilder {
 
+
     // fun snack bar show error and successful
     fun showErrorSnackBar(message : String, errorMessage : Boolean, context: Context, view : View){
 

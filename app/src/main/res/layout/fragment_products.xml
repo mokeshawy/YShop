@@ -4,14 +4,14 @@
 
     <data>
         <variable
-            name="homeVarModel"
-            type="com.example.yshop.homefragment.HomeFragmentViewModel" />
+            name="productsVarModel"
+            type="com.example.yshop.productsfargment.ProductsFragmentViewModel"/>
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".homefragment.HomeFragment"
+        tools:context=".productsFragment.ProductsFragment"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout

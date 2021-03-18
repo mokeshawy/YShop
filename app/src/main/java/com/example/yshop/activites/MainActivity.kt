@@ -5,11 +5,14 @@ import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -19,6 +22,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.ActivityMainBinding
+import com.example.yshop.utils.OptionBuilder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.grpc.InternalChannelz.id
 
@@ -34,12 +38,15 @@ class MainActivity : AppCompatActivity() {
         val navController   : NavController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setupWithNavController(navController)
 
+        supportActionBar!!.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.app_gradinet_color_background))
+
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.logInFragment,
             R.id.registerFragment,
             R.id.forgetPasswordFragment,
-            R.id.homeFragment,
             R.id.dashBoardFragment,
-            R.id.notificationsFragment))
+            R.id.productsFragment,
+            R.id.ordersFragment,
+            R.id.settingsFragment))
 
         setupActionBarWithNavController(navController , appBarConfiguration)
 
@@ -47,9 +54,10 @@ class MainActivity : AppCompatActivity() {
         // Set bottom navigation when fragment needed visibility
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id){
-                R.id.homeFragment           -> binding.bottomNavigation.visibility = View.VISIBLE
-                R.id.dashBoardFragment      -> binding.bottomNavigation.visibility = View.VISIBLE
-                R.id.notificationsFragment  -> binding.bottomNavigation.visibility = View.VISIBLE
+
+                R.id.dashBoardFragment  -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.productsFragment   -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.ordersFragment     -> binding.bottomNavigation.visibility = View.VISIBLE
 
                 else -> binding.bottomNavigation.visibility = View.INVISIBLE
             }
@@ -62,11 +70,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.logInFragment              -> supportActionBar?.hide()
                 R.id.registerFragment           -> supportActionBar?.hide()
                 R.id.forgetPasswordFragment     -> supportActionBar?.hide()
+                R.id.settingsFragment           -> supportActionBar?.hide()
 
                 else -> supportActionBar?.show()
 
             }
         }
+
+
+
 
     }
 }

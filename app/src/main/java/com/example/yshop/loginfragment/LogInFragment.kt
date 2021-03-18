@@ -10,6 +10,7 @@ import androidx.datastore.preferences.preferencesKey
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
+import com.example.yshop.activites.MainActivity
 import com.example.yshop.databinding.FragmentLogInBinding
 import com.example.yshop.model.UserModel
 import kotlinx.coroutines.flow.first
@@ -18,6 +19,7 @@ class LogInFragment : Fragment() {
 
     lateinit var binding    : FragmentLogInBinding
     val logInViewModel      : LogInViewModel by viewModels()
+
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -52,5 +54,6 @@ class LogInFragment : Fragment() {
 
         // Show data for user logIn automatic in input logIn
         logInViewModel.showData(requireActivity() , binding.etEmailId)
+
     }
 }

@@ -4,14 +4,14 @@
 
     <data>
         <variable
-            name="notificationVarModel"
-            type="com.example.yshop.notificationfragment.NotificationFragmentViewModel" />
+            name="ordersVarModel"
+            type="com.example.yshop.ordersfragment.OrdersFragmentViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".notificationfragment.NotificationsFragment"
+        tools:context=".notificationfragment.OrdersFragment"
         android:fillViewport="true">
 
 

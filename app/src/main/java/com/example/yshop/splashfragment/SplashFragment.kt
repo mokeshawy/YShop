@@ -1,6 +1,5 @@
-package com.example.yshop
+package com.example.yshop.splashfragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -8,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.yshop.activites.MainActivity
+import com.example.yshop.R
 
 class SplashFragment : Fragment() {
 
@@ -29,7 +28,11 @@ class SplashFragment : Fragment() {
         Handler().postDelayed(
                 {
                     // Launch the main activity
-                    findNavController().navigate(R.id.action_splashFragment_to_logInFragment)
+                    try{
+                        findNavController().navigate(R.id.action_splashFragment_to_dashBoardFragment)
+                    }catch (e:Exception){
+
+                    }
                     // Call this when your activity is done and should be closed
                 },2500
         )

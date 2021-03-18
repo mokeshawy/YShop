@@ -121,7 +121,7 @@ class LogInViewModel : ViewModel() {
                                 Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_userCompleteProfileFragment)
                             }else if(profileComplete.toInt() == 1){
                                 try{
-                                    Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_homeFragment)
+                                    Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_dashBoardFragment)
                                 }catch (e:Exception){
 
                                 }
