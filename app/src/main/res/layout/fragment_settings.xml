@@ -34,7 +34,7 @@
                     android:scaleType="fitXY" />
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar_settings_activity"
+                    android:id="@+id/toolbar_settings_fragment"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize">
 
@@ -79,6 +79,7 @@
             </FrameLayout>
 
             <com.example.yshop.utils.MSPTextViewRegular
+                android:id="@+id/tv_edit_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/fl_header_bg"

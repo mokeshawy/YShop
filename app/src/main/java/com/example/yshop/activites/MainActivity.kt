@@ -71,14 +71,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.registerFragment           -> supportActionBar?.hide()
                 R.id.forgetPasswordFragment     -> supportActionBar?.hide()
                 R.id.settingsFragment           -> supportActionBar?.hide()
+                R.id.userCompleteProfileFragment -> supportActionBar?.hide()
 
                 else -> supportActionBar?.show()
 
             }
         }
-
-
-
 
     }
 }

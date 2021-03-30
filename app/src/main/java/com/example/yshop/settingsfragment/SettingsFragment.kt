@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.yshop.R
 import com.example.yshop.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
@@ -25,6 +27,21 @@ class SettingsFragment : Fragment() {
         // Connect whit viewModel
         binding.lifecycleOwner      = this
         binding.settingsVarModel    = settingsViewModel
+
+
+        // set icon button press back to login page in toolBar
+        binding.toolbarSettingsFragment.setNavigationIcon(R.drawable.ic_white_color_back__24)
+        binding.toolbarSettingsFragment.setNavigationOnClickListener { view ->
+            findNavController().navigate(R.id.action_settingsFragment_to_dashBoardFragment)
+        }
+        
+        // Show details for user logIn
+        settingsViewModel.showData(requireActivity() , binding.tvName , binding.tvGender , binding.tvEmail , binding.tvMobileNumber , binding.ivUserPhotoId)
+
+        binding.tvEditProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_userCompleteProfileFragment)
+        }
+
 
     }
 }

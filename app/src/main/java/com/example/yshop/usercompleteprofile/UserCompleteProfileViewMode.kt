@@ -1,4 +1,4 @@
-package com.example.yshop.userprofile
+package com.example.yshop.usercompleteprofile
 
 import android.content.Context
 import android.net.Uri
@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.yshop.R
+import com.example.yshop.datastoreoperetion.DataStoreRepository
 import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
 import com.google.firebase.database.FirebaseDatabase
@@ -25,20 +26,16 @@ import kotlinx.coroutines.launch
 
 class UserCompleteProfileViewMode : ViewModel() {
 
-    // Connect whit dataStore
-    lateinit var dataStore : DataStore<Preferences>
-
     var mobileNumber = MutableLiveData<String>("")
 
 
     // Show data for user from fireStore by save into dataStore
     fun showData(context: Context, etFirstNameName: EditText , etLastName : EditText , etUserEmail : EditText){
-        dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
 
         viewModelScope.launch {
-            etFirstNameName.setText(showFirstName(Constants.FIRST_NAME_KEY))
-            etLastName.setText(showLastName(Constants.LAST_NAME_KEY))
-            etUserEmail.setText(showUserEmail(Constants.USER_EMAIL_KEY))
+            etFirstNameName.setText(DataStoreRepository(context).showFirstName(Constants.FIRST_NAME_KEY))
+            etLastName.setText(DataStoreRepository(context).showLastName(Constants.LAST_NAME_KEY))
+            etUserEmail.setText(DataStoreRepository(context).showUserEmail(Constants.USER_EMAIL_KEY))
         }
     }
 
@@ -101,27 +98,5 @@ class UserCompleteProfileViewMode : ViewModel() {
                 }
             }
         }
-    }
-
-
-    // Get firstName from dataStore
-    suspend fun showFirstName( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
-    }
-
-    // Get lastName from dataStore
-    suspend fun showLastName( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
-    }
-
-    // Get userEmail from dataStore
-    suspend fun showUserEmail( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
     }
 }

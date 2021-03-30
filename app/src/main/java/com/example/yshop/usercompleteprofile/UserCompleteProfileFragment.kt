@@ -1,4 +1,4 @@
-package com.example.yshop.userprofile
+package com.example.yshop.usercompleteprofile
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,16 +8,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.datastore.DataStore
+import androidx.datastore.preferences.Preferences
+import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.preferencesKey
 import androidx.fragment.app.viewModels
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentUserCompleteProfileBinding
+import com.example.yshop.datastoreoperetion.DataStoreRepository
 import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.first
 import java.io.IOException
 
 class UserCompleteProfileFragment : Fragment() {
@@ -39,13 +47,8 @@ class UserCompleteProfileFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.userCompleteProfileVarMode = userCompleteProfileViewMode
 
-        // hide the action bar
-        //(activity as AppCompatActivity).supportActionBar?.hide()
-
 
         // Show details for user because not change this details
-        binding.etFirstNameId.isEnabled = false
-        binding.etLastNameId.isEnabled  = false
         binding.etEmailId.isEnabled     = false
         userCompleteProfileViewMode.showData(requireActivity() , binding.etFirstNameId , binding.etLastNameId , binding.etEmailId)
 
@@ -75,6 +78,27 @@ class UserCompleteProfileFragment : Fragment() {
                 OptionBuilder.showErrorSnackBar(resources.getString(R.string.image_selection_failed),true, requireActivity() , view)
             }
         }
+
+        // Check user entry from new user needed profile complete or entry from setting to edit profile
+        CoroutineScope(Dispatchers.Main).async {
+
+            var profileComplete = DataStoreRepository(requireActivity()).showProfileComplete(Constants.COMPLETE_PROFILE).toString()
+
+            if( profileComplete.toInt() == 0 ){
+                binding.tvTitleId.text = resources.getString(R.string.title_complete_profile)
+
+                binding.etFirstNameId.isEnabled = false
+                binding.etLastNameId.isEnabled  = false
+
+            }else{
+                Picasso.get().load(DataStoreRepository(requireActivity()).showUserImage(Constants.USER_IMAGE_KEY)).into(binding.ivUserPhotoId)
+                binding.tvTitleId.text = resources.getString(R.string.title_edit_profile)
+
+                binding.etFirstNameId.isEnabled = true
+                binding.etLastNameId.isEnabled  = true
+            }
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -92,5 +116,4 @@ class UserCompleteProfileFragment : Fragment() {
             }
         }
     }
-
 }

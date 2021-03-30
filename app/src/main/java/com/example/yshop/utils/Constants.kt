@@ -4,14 +4,16 @@ import com.google.firebase.auth.FirebaseAuth
 
 object Constants {
 
-    // for "users" collection
+    // for "users" Reference
     const val USERS : String = "users"
-    const val DATA_STORE_NAME : String = "UsersPreference"
-    const val FIRST_NAME_KEY : String = "firstName"
-    const val LAST_NAME_KEY : String  = "lastName"
-    const val USER_EMAIL_KEY : String = "userEmail"
-    const val USER_IMAGE_KEY : String = "image"
-    const val PROF_KEY = "prof"
+    const val DATA_STORE_NAME   : String  = "UsersPreference"
+    const val FIRST_NAME_KEY    : String  = "firstName"
+    const val LAST_NAME_KEY     : String  = "lastName"
+    const val USER_EMAIL_KEY    : String  = "userEmail"
+    const val USER_IMAGE_KEY    : String  = "image"
+    const val USER_MOBILE_KEY   : String  = "mobile"
+    const val USER_GENDER_KEY   : String  = "gender"
+
     const val PICK_IMAGE_REQUEST_CODE = 1
 
     const val MALE : String     = "Male"

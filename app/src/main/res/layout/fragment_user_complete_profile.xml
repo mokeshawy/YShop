@@ -6,13 +6,13 @@
     <data>
         <variable
             name="userCompleteProfileVarMode"
-            type="com.example.yshop.userprofile.UserCompleteProfileViewMode" />
+            type="com.example.yshop.usercompleteprofile.UserCompleteProfileViewMode" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".userprofile.UserCompleteProfileFragment">
+        tools:context=".usercompleteprofile.UserCompleteProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -238,6 +238,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rg_genderId"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -21,15 +21,14 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //findNavController().navigate(R.id.action_splashFragment_to_logInFragment)
 
-        // open the main activity after splash activity
+        // open the main activity after splash fragment
         @Suppress("DEPRECATION")
         Handler().postDelayed(
                 {
                     // Launch the main activity
                     try{
-                        findNavController().navigate(R.id.action_splashFragment_to_dashBoardFragment)
+                        findNavController().navigate(R.id.action_splashFragment_to_logInFragment)
                     }catch (e:Exception){
 
                     }

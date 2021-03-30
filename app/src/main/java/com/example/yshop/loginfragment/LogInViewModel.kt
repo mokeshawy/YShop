@@ -107,14 +107,17 @@ class LogInViewModel : ViewModel() {
                     userReference.child(firebaseAuth.currentUser?.uid.toString()).addValueEventListener( object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
 
-                                var firstName   = snapshot.child("firstName").value.toString()
-                                var lastName    = snapshot.child("lastName").value.toString()
-                                var userEmail   = snapshot.child("email").value.toString()
-                                var profileComplete = snapshot.child("profileCompleted").value.toString()
+                            var firstName       = snapshot.child("firstName").value.toString()
+                            var lastName        = snapshot.child("lastName").value.toString()
+                            var gender          = snapshot.child("gender").value.toString()
+                            var userEmail       = snapshot.child("email").value.toString()
+                            var mobile          = snapshot.child("mobile").value.toString()
+                            var image           = snapshot.child("image").value.toString()
+                            var profileComplete = snapshot.child("profileCompleted").value.toString()
 
                                 dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
                                 viewModelScope.launch {
-                                    saveDataStoreDetails(firstName, lastName, userEmail )
+                                    saveDataStoreDetails(firstName, lastName,  gender , userEmail , mobile , image , profileComplete.toInt())
                                 }
 
                             if(profileComplete.toInt() == 0){
@@ -175,11 +178,15 @@ class LogInViewModel : ViewModel() {
         return preferences[dataStoreKey]
     }
 
-    suspend fun saveDataStoreDetails( firstName : String , lastName : String , userEmail : String){
+    suspend fun saveDataStoreDetails( firstName : String , lastName : String , gender : String , userEmail : String , mobile : String , image : String , profileComplete : Int){
         dataStore.edit { dataPref ->
-            dataPref[preferencesKey<String>(Constants.FIRST_NAME_KEY)]  = firstName
-            dataPref[preferencesKey<String>(Constants.LAST_NAME_KEY)]   = lastName
-            dataPref[preferencesKey<String>(Constants.USER_EMAIL_KEY)]  = userEmail
+            dataPref[preferencesKey<String>(Constants.FIRST_NAME_KEY)]      = firstName
+            dataPref[preferencesKey<String>(Constants.LAST_NAME_KEY)]       = lastName
+            dataPref[preferencesKey<String>(Constants.USER_GENDER_KEY)]     = gender
+            dataPref[preferencesKey<String>(Constants.USER_EMAIL_KEY)]      = userEmail
+            dataPref[preferencesKey<String>(Constants.USER_MOBILE_KEY)]     = mobile
+            dataPref[preferencesKey<String>(Constants.USER_IMAGE_KEY)]      = image
+            dataPref[preferencesKey<String>(Constants.COMPLETE_PROFILE)]    = profileComplete.toString()
         }
     }
 }
