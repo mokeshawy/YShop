@@ -93,6 +93,7 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/hint_first_name"
                 android:textColorHint="@color/colorSecondaryText"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:text="@={userCompleteProfileVarMode.etFirstName}"
                     android:padding="@dimen/et_padding"
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -117,6 +119,7 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/hint_last_name"
                 android:textColorHint="@color/colorSecondaryText"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_first_nameId">
@@ -126,6 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:text="@={userCompleteProfileVarMode.etLastName}"
                     android:padding="@dimen/et_padding"
                     android:textSize="@dimen/et_textSize" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,6 +144,7 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/et_hint_email_id"
                 android:textColorHint="@color/colorSecondaryText"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_last_nameId">
@@ -163,7 +168,6 @@
                 android:layout_marginEnd="16dp"
                 android:hint="@string/et_hint_mobile_number"
                 android:textColorHint="@color/colorSecondaryText"
-                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_emailId">
@@ -172,8 +176,8 @@
                     android:id="@+id/et_mobile_numberId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:text="@={userCompleteProfileVarMode.mobileNumber}"
+                    android:inputType="number"
+                    android:text="@={userCompleteProfileVarMode.etMobileNumber}"
                     android:padding="@dimen/et_padding"
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="@dimen/et_textSize" />
@@ -238,7 +242,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rg_genderId"/>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

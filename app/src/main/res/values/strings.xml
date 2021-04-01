@@ -69,7 +69,7 @@
 
     <string name="action_add_product">Add Product</string>
 
-    <string name="title_add_product">ADD PRODUCT</string>
+    <string name="title_add_product">Add Product</string>
     <string name="et_hint_product_title">Product Title</string>
     <string name="et_hint_product_price">Product Price ($)</string>
     <string name="et_hint_product_description">Product Description</string>

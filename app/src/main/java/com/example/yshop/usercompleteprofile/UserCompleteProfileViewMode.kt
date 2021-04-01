@@ -6,11 +6,8 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.createDataStore
-import androidx.datastore.preferences.preferencesKey
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
@@ -21,19 +18,21 @@ import com.example.yshop.utils.OptionBuilder
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class UserCompleteProfileViewMode : ViewModel() {
 
-    var mobileNumber = MutableLiveData<String>("")
+
+    var etFirstName     = MutableLiveData<String>("")
+    var etLastName      = MutableLiveData<String>("")
+    var etMobileNumber  = MutableLiveData<String>("")
 
 
     // Show data for user from fireStore by save into dataStore
-    fun showData(context: Context, etFirstNameName: EditText , etLastName : EditText , etUserEmail : EditText){
+    fun showData(context: Context, etFirstName: EditText , etLastName : EditText , etUserEmail : EditText){
 
         viewModelScope.launch {
-            etFirstNameName.setText(DataStoreRepository(context).showFirstName(Constants.FIRST_NAME_KEY))
+            etFirstName.setText(DataStoreRepository(context).showFirstName(Constants.FIRST_NAME_KEY))
             etLastName.setText(DataStoreRepository(context).showLastName(Constants.LAST_NAME_KEY))
             etUserEmail.setText(DataStoreRepository(context).showUserEmail(Constants.USER_EMAIL_KEY))
         }
@@ -43,7 +42,15 @@ class UserCompleteProfileViewMode : ViewModel() {
     fun validateInput(context: Context, view : View) : Boolean {
         return when {
 
-            TextUtils.isEmpty(mobileNumber.value.toString().trim { it <=' ' }) ->{
+            TextUtils.isEmpty(etFirstName.value!!.trim { it <=' ' }) ->{
+                OptionBuilder.showErrorSnackBar(context.getString(R.string.err_msg_enter_first_name),true , context, view )
+                false
+            }
+            TextUtils.isEmpty(etLastName.value!!.trim { it <=' ' }) ->{
+                OptionBuilder.showErrorSnackBar(context.getString(R.string.err_msg_enter_last_name),true , context, view )
+                false
+            }
+            TextUtils.isEmpty(etMobileNumber.value!!.trim { it <=' ' }) ->{
                 OptionBuilder.showErrorSnackBar(context.getString(R.string.err_msg_enter_mobile_number),true , context, view )
                 false
             }
@@ -76,25 +83,34 @@ class UserCompleteProfileViewMode : ViewModel() {
                         }else{
                             Constants.FEMALE
                         }
-
-                        // Check mobileNumber is not empty
-                        if(mobileNumber.value!!.isNotEmpty()){
-                            map[Constants.MOBILE] = mobileNumber.value.toString()
+                        if(etFirstName.value!!.isNotEmpty()){
+                            map[Constants.FIRST_NAME_KEY] = etFirstName.value!!
                         }
-                        map[Constants.GENDER]           = gender
+                        if(etLastName.value!!.isNotEmpty()){
+                            map[Constants.LAST_NAME_KEY] = etLastName.value!!
+                        }
+                        viewModelScope.launch {
+                            if(etMobileNumber.value!!.isNotEmpty() && etMobileNumber.value!! != DataStoreRepository(context).showMobile(Constants.USER_MOBILE_KEY)){
+                                map[Constants.MOBILE] = etMobileNumber.value!!
+                            }
+
+                            if( gender.isNotEmpty() && gender != DataStoreRepository(context).showGender(Constants.USER_GENDER_KEY) ){
+
+                                map[Constants.GENDER]   = gender
+                            }
+                        }
                         map[Constants.USER_IMAGE_KEY]   = downloadImage.toString()
+
                         // After complete profile will change number 0 to 1 because when user needed log in entry to home page direct
                         map[Constants.COMPLETE_PROFILE] = 1
 
                         // update to data for real time data base
                         userReference.child(Constants.getCurrentUser()).updateChildren(map)
-
-
                     }
                     // Show snack bar for update successful
                     OptionBuilder.showErrorSnackBar(context.resources.getString(R.string.msg_profile_updated),false,context,view)
                     // going to home page =>
-                    Navigation.findNavController(view).navigate(R.id.action_userCompleteProfileFragment_to_dashBoardFragment)
+                    Navigation.findNavController(view).navigate(R.id.action_userCompleteProfileFragment_to_logInFragment)
                 }
             }
         }

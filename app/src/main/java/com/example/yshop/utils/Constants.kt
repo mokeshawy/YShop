@@ -15,6 +15,7 @@ object Constants {
     const val USER_GENDER_KEY   : String  = "gender"
 
     const val PICK_IMAGE_REQUEST_CODE = 1
+    const val PICK_IMAGE_REQUEST_CODE2 = 2
 
     const val MALE : String     = "Male"
     const val FEMALE : String   = "Female"

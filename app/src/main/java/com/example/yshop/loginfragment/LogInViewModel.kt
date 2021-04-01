@@ -15,6 +15,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
 import com.example.yshop.utils.OptionBuilder
 import com.example.yshop.R
+import com.example.yshop.datastoreoperetion.DataStoreRepository
 import com.example.yshop.model.UserModel
 import com.example.yshop.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -66,7 +67,7 @@ class LogInViewModel : ViewModel() {
         dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
 
         viewModelScope.launch {
-            etUserEmail.setText(showUserEmail(Constants.USER_EMAIL_KEY))
+            etUserEmail.setText(DataStoreRepository(context).showUserEmail(Constants.USER_EMAIL_KEY))
         }
     }
 
@@ -171,12 +172,6 @@ class LogInViewModel : ViewModel() {
         Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_registerFragment)
     }
 
-    // Get userEmail from dataStore
-    suspend fun showUserEmail( key : String ) : String?{
-        var dataStoreKey = preferencesKey<String>(key)
-        var preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
-    }
 
     suspend fun saveDataStoreDetails( firstName : String , lastName : String , gender : String , userEmail : String , mobile : String , image : String , profileComplete : Int){
         dataStore.edit { dataPref ->

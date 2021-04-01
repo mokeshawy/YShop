@@ -1,11 +1,11 @@
 package com.example.yshop.productsfargment
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.yshop.R
 import com.example.yshop.databinding.FragmentProductsBinding
 
 
@@ -25,5 +25,26 @@ class ProductsFragment : Fragment() {
         binding.lifecycleOwner  = this
         binding.productsVarModel    = productsViewModel
 
+        // If we want to use the option menu in fragment we need to add it.
+        setHasOptionsMenu(true)
+
     }
+
+    // Create the icon menu in the action bar
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.add_product_menu,menu)
+    }
+
+    // SelectItem for menu we want create the page for it
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when(id){
+            R.id.action_add_product ->{
+                findNavController().navigate(R.id.action_productsFragment_to_addProductFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

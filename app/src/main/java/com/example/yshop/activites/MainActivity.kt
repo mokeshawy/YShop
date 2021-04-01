@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             R.id.dashBoardFragment,
             R.id.productsFragment,
             R.id.ordersFragment,
-            R.id.settingsFragment))
+            R.id.settingsFragment,
+            R.id.addProductFragment))
 
         setupActionBarWithNavController(navController , appBarConfiguration)
 
@@ -66,12 +67,13 @@ class MainActivity : AppCompatActivity() {
         // Show actionBar in some fragment
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id){
-                R.id.splashFragment             -> supportActionBar?.hide()
-                R.id.logInFragment              -> supportActionBar?.hide()
-                R.id.registerFragment           -> supportActionBar?.hide()
-                R.id.forgetPasswordFragment     -> supportActionBar?.hide()
-                R.id.settingsFragment           -> supportActionBar?.hide()
-                R.id.userCompleteProfileFragment -> supportActionBar?.hide()
+                R.id.splashFragment                 -> supportActionBar?.hide()
+                R.id.logInFragment                  -> supportActionBar?.hide()
+                R.id.registerFragment               -> supportActionBar?.hide()
+                R.id.forgetPasswordFragment         -> supportActionBar?.hide()
+                R.id.settingsFragment               -> supportActionBar?.hide()
+                R.id.userCompleteProfileFragment    -> supportActionBar?.hide()
+                R.id.addProductFragment             -> supportActionBar?.hide()
 
                 else -> supportActionBar?.show()
 

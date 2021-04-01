@@ -7,7 +7,7 @@ data class UserModel (
     var lastName            : String    = "",
     var email               : String    = "",
     var image               : String    = "",
-    var mobile              : Long      = 0,
+    var mobile              : Int       = 0,
     var gender              : String    = "",
     var profileCompleted    : Int       = 0
 

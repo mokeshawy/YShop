@@ -73,13 +73,13 @@ class UserCompleteProfileFragment : Fragment() {
             // using try if user not selected image show error message
             try {
                 // Call function for update profile from viewModel
-                userCompleteProfileViewMode.completeProfile(requireActivity() , view , imageUri , binding.rbMaleId )
+                userCompleteProfileViewMode.completeProfile(requireActivity() , view , imageUri , binding.rbMaleId)
             }catch (e: Exception){
                 OptionBuilder.showErrorSnackBar(resources.getString(R.string.image_selection_failed),true, requireActivity() , view)
             }
         }
 
-        // Check user entry from new user needed profile complete or entry from setting to edit profile
+        // If the profile is incomplete then user is from login screen and wants to complete the profile.
         CoroutineScope(Dispatchers.Main).async {
 
             var profileComplete = DataStoreRepository(requireActivity()).showProfileComplete(Constants.COMPLETE_PROFILE).toString()
@@ -87,6 +87,7 @@ class UserCompleteProfileFragment : Fragment() {
             if( profileComplete.toInt() == 0 ){
                 binding.tvTitleId.text = resources.getString(R.string.title_complete_profile)
 
+                // Here, the some of the editText components are disabled because it is added at a time of Registration.
                 binding.etFirstNameId.isEnabled = false
                 binding.etLastNameId.isEnabled  = false
 
@@ -96,6 +97,15 @@ class UserCompleteProfileFragment : Fragment() {
 
                 binding.etFirstNameId.isEnabled = true
                 binding.etLastNameId.isEnabled  = true
+
+                if( DataStoreRepository(requireActivity()).showMobile(Constants.USER_MOBILE_KEY) != null){
+                    binding.etMobileNumberId.setText(DataStoreRepository(requireActivity()).showMobile(Constants.USER_MOBILE_KEY))
+                }
+                if(DataStoreRepository(requireActivity()).showGender(Constants.USER_GENDER_KEY) == Constants.MALE){
+                    binding.rbMaleId.isChecked = true
+                }else{
+                    binding.rbFemaleId.isChecked = false
+                }
             }
         }
 
