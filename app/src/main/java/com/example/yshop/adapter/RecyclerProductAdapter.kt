@@ -8,7 +8,7 @@ import com.example.yshop.databinding.ItemListProductBinding
 import com.example.yshop.model.ProductModel
 import com.squareup.picasso.Picasso
 
-class RecyclerProductAdapter  (private val dataSet: ArrayList<ProductModel> , var onClick : OnClickProduct) : RecyclerView.Adapter<RecyclerProductAdapter.ViewHolder>() {
+class RecyclerProductAdapter(private val dataSet: ArrayList<ProductModel> , var onClick : OnClickProduct) : RecyclerView.Adapter<RecyclerProductAdapter.ViewHolder>() {
 
     class ViewHolder(var binding : ItemListProductBinding) : RecyclerView.ViewHolder(binding.root) {
 

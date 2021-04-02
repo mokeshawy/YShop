@@ -1,7 +1,9 @@
 package com.example.yshop.productsfargment
 
+import android.content.Context
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +17,12 @@ import com.google.firebase.database.ValueEventListener
 class ProductsViewModel : ViewModel() {
 
 
-    var getProductDetails = MutableLiveData<ArrayList<ProductModel>>()
+    var getProductDetails   = MutableLiveData<ArrayList<ProductModel>>()
     var firebaseDataBase    = FirebaseDatabase.getInstance()
     var productReference    = firebaseDataBase.getReference(Constants.PRODUCT)
     var array = ArrayList<ProductModel>()
 
-    fun getProductDetails( rv_product_items : RecyclerView , tv_no_products_found : TextView ){
+    fun getProductDetailsById( rv_product_items : RecyclerView , tv_no_products_found : TextView ){
      array = ArrayList()
         productReference.orderByChild(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -36,6 +38,8 @@ class ProductsViewModel : ViewModel() {
                     rv_product_items.visibility     = View.VISIBLE
                     tv_no_products_found.visibility = View.GONE
 
+                    rv_product_items.setHasFixedSize(true)
+
                 }else{
                     rv_product_items.visibility     = View.GONE
                     tv_no_products_found.visibility = View.VISIBLE
@@ -47,7 +51,7 @@ class ProductsViewModel : ViewModel() {
         })
     }
 
-    fun deleteProduct( productId : String){
+    fun deleteProduct( productId : String ){
 
         productReference.child(productId).removeValue()
     }

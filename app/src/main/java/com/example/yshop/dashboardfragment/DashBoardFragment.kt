@@ -2,13 +2,18 @@ package com.example.yshop.dashboardfragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
+import com.example.yshop.adapter.RecyclerDashBoardAdapter
 import com.example.yshop.databinding.FragmentDashBoardBinding
+import com.example.yshop.model.ProductModel
+import com.example.yshop.utils.OptionBuilder
 
-class DashBoardFragment : Fragment() {
+class DashBoardFragment : Fragment() , RecyclerDashBoardAdapter.OnClickProduct{
 
     lateinit var binding    : FragmentDashBoardBinding
     val dashBoardViewModel  : DashBoardFragmentViewModel by viewModels()
@@ -28,6 +33,15 @@ class DashBoardFragment : Fragment() {
         // Connect whit viewModel
         binding.lifecycleOwner = this
         binding.dashBoardVarModel = dashBoardViewModel
+
+        // Show progress dialog
+        OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
+        // Call function get details all product in firebase to view dashboard
+        dashBoardViewModel.getProductDetails( binding.rvDashboardItems , binding.tvNoDashboardItemsFound)
+        dashBoardViewModel.getProductDetails.observe(viewLifecycleOwner, Observer {
+            binding.rvDashboardItems.adapter = RecyclerDashBoardAdapter(it , this)
+            OptionBuilder.hideProgressDialog()
+        })
     }
 
     // Create the icon menu in the action bar
@@ -45,5 +59,12 @@ class DashBoardFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick(viewHolder: RecyclerDashBoardAdapter.ViewHolder, dataSet: ProductModel, position: Int) {
+
+        viewHolder.binding.ivDashboardItemImage.setOnClickListener {
+            Toast.makeText(requireActivity(), dataSet.title, Toast.LENGTH_SHORT).show()
+        }
     }
 }

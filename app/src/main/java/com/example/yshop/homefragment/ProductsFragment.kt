@@ -11,6 +11,7 @@ import com.example.yshop.R
 import com.example.yshop.adapter.RecyclerProductAdapter
 import com.example.yshop.databinding.FragmentProductsBinding
 import com.example.yshop.model.ProductModel
+import com.example.yshop.utils.OptionBuilder
 
 
 class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
@@ -33,10 +34,12 @@ class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
         // If we want to use the option menu in fragment we need to add it.
         setHasOptionsMenu(true)
 
+        OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait), requireActivity() )
         // Call function for operation get product details from firebase and view im recycler view
-        productsViewModel.getProductDetails( binding.rvMyProductItems , binding.tvNoProductsFound )
+        productsViewModel.getProductDetailsById( binding.rvMyProductItems , binding.tvNoProductsFound )
         productsViewModel.getProductDetails.observe(viewLifecycleOwner, Observer {
             binding.rvMyProductItems.adapter = RecyclerProductAdapter(it , this)
+            OptionBuilder.hideProgressDialog()
         })
 
 
@@ -59,12 +62,11 @@ class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
         return super.onOptionsItemSelected(item)
     }
 
+
     override fun onClick( viewHolder: RecyclerProductAdapter.ViewHolder  , dataSet: ProductModel, position: Int) {
 
         viewHolder.binding.ibDeleteProduct.setOnClickListener {
-
-            productsViewModel.deleteProduct(dataSet.productId)
-            Toast.makeText(requireActivity() , dataSet.productId , Toast.LENGTH_SHORT).show()
+            productsViewModel.deleteProduct(dataSet.productId )
         }
 
 
