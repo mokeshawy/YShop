@@ -66,6 +66,7 @@ class UserCompleteProfileViewMode : ViewModel() {
     fun completeProfile(context: Context, view: View, imageUri: Uri , radioButton : RadioButton ){
 
         if(validateInput(context , view)){
+
             // Show progressDialog
             OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait),context)
 

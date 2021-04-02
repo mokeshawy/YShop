@@ -4,8 +4,13 @@ import com.google.firebase.auth.FirebaseAuth
 
 object Constants {
 
-    // for "users" Reference
+    // for "users" reference
     const val USERS : String = "users"
+
+    // for product reference
+    const val PRODUCT : String ="product"
+
+
     const val DATA_STORE_NAME   : String  = "UsersPreference"
     const val FIRST_NAME_KEY    : String  = "firstName"
     const val LAST_NAME_KEY     : String  = "lastName"
@@ -15,7 +20,6 @@ object Constants {
     const val USER_GENDER_KEY   : String  = "gender"
 
     const val PICK_IMAGE_REQUEST_CODE = 1
-    const val PICK_IMAGE_REQUEST_CODE2 = 2
 
     const val MALE : String     = "Male"
     const val FEMALE : String   = "Female"
@@ -23,8 +27,13 @@ object Constants {
     const val MOBILE : String   = "mobile"
     const val GENDER : String   = "gender"
 
-    const val USER_PROFILE_IMAGE    = "user_profile_image"
-    const val COMPLETE_PROFILE      = "profileCompleted"
+    const val PRODUCT_IMAGE : String = "product_image"
+
+    const val USER_PROFILE_IMAGE : String = "user_profile_image"
+
+    const val COMPLETE_PROFILE : String = "profileCompleted"
+
+    const val USER_ID : String = "userId"
 
 
     // getUserID function

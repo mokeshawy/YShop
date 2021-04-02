@@ -24,5 +24,7 @@ class OrdersFragment : Fragment() {
         // Connect whit viewModel
         binding.lifecycleOwner    = this
         binding.ordersVarModel    = ordersViewModel
+
+
     }
 }

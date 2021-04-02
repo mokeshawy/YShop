@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
+import com.example.yshop.adapter.RecyclerProductAdapter
 import com.example.yshop.databinding.FragmentProductsBinding
+import com.example.yshop.model.ProductModel
 
 
 class ProductsFragment : Fragment() {
 
     lateinit var binding    : FragmentProductsBinding
-    val productsViewModel   : ProductsFragmentViewModel by viewModels()
+    val productsViewModel   : ProductsViewModel by viewModels()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentProductsBinding.inflate(inflater)
@@ -27,6 +31,13 @@ class ProductsFragment : Fragment() {
 
         // If we want to use the option menu in fragment we need to add it.
         setHasOptionsMenu(true)
+
+        // Call function for operation get product details from firebase and view im recycler view
+        productsViewModel.getProductDetails( binding.rvMyProductItems , binding.tvNoProductsFound )
+        productsViewModel.getProductDetails.observe(viewLifecycleOwner, Observer {
+            binding.rvMyProductItems.adapter = RecyclerProductAdapter(it)
+        })
+
 
     }
 

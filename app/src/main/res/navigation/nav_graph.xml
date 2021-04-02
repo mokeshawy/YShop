@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/dashBoardFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -111,7 +111,12 @@
         android:id="@+id/addProductFragment"
         android:name="com.example.yshop.addproductfragment.AddProductFragment"
         android:label="fragment_add_product"
-        tools:layout="@layout/fragment_add_product" />
+        tools:layout="@layout/fragment_add_product" >
+        <action
+            android:id="@+id/action_addProductFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
 
 
 </navigation>
