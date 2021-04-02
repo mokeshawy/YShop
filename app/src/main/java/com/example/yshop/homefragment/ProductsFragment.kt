@@ -2,6 +2,7 @@ package com.example.yshop.productsfargment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -12,7 +13,7 @@ import com.example.yshop.databinding.FragmentProductsBinding
 import com.example.yshop.model.ProductModel
 
 
-class ProductsFragment : Fragment() {
+class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
 
     lateinit var binding    : FragmentProductsBinding
     val productsViewModel   : ProductsViewModel by viewModels()
@@ -35,7 +36,7 @@ class ProductsFragment : Fragment() {
         // Call function for operation get product details from firebase and view im recycler view
         productsViewModel.getProductDetails( binding.rvMyProductItems , binding.tvNoProductsFound )
         productsViewModel.getProductDetails.observe(viewLifecycleOwner, Observer {
-            binding.rvMyProductItems.adapter = RecyclerProductAdapter(it)
+            binding.rvMyProductItems.adapter = RecyclerProductAdapter(it , this)
         })
 
 
@@ -56,6 +57,22 @@ class ProductsFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onClick( viewHolder: RecyclerProductAdapter.ViewHolder  , dataSet: ProductModel, position: Int) {
+
+        viewHolder.binding.ibDeleteProduct.setOnClickListener {
+
+            productsViewModel.deleteProduct(dataSet.productId)
+            Toast.makeText(requireActivity() , dataSet.productId , Toast.LENGTH_SHORT).show()
+        }
+
+
+        viewHolder.itemView.setOnClickListener {
+            Toast.makeText(requireActivity() , dataSet.title , Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
 }

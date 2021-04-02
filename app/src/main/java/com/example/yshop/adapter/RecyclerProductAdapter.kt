@@ -3,13 +3,18 @@ package com.example.yshop.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yshop.R
 import com.example.yshop.databinding.ItemListProductBinding
 import com.example.yshop.model.ProductModel
 import com.squareup.picasso.Picasso
 
-class RecyclerProductAdapter  (private val dataSet: ArrayList<ProductModel>) : RecyclerView.Adapter<RecyclerProductAdapter.ViewHolder>() {
+class RecyclerProductAdapter  (private val dataSet: ArrayList<ProductModel> , var onClick : OnClickProduct) : RecyclerView.Adapter<RecyclerProductAdapter.ViewHolder>() {
 
     class ViewHolder(var binding : ItemListProductBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun initialize( viewHolder: RecyclerView.ViewHolder , dataSet : ProductModel, action: OnClickProduct ){
+                action.onClick(viewHolder as ViewHolder, dataSet , adapterPosition)
+        }
 
     }
     // Create new views (invoked by the layout manager)
@@ -28,12 +33,13 @@ class RecyclerProductAdapter  (private val dataSet: ArrayList<ProductModel>) : R
         viewHolder.binding.tvItemPrice.text = "$ ${dataSet[position].price}"
         Picasso.get().load(dataSet[position].productImage).into(viewHolder.binding.ivItemImage)
 
+        viewHolder.initialize( viewHolder , dataSet.get(position) , onClick)
 
     }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
-    interface OnClickDeleteProduct{
-        fun deleteProductClick( dataSet: ArrayList<ProductModel> , position: Int)
+    interface OnClickProduct{
+        fun onClick( viewHolder: ViewHolder , dataSet: ProductModel , position: Int)
     }
 }

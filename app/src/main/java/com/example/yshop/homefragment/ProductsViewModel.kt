@@ -35,7 +35,6 @@ class ProductsViewModel : ViewModel() {
                 if(array.size > 0){
                     rv_product_items.visibility     = View.VISIBLE
                     tv_no_products_found.visibility = View.GONE
-                    rv_product_items.setHasFixedSize(true)
 
                 }else{
                     rv_product_items.visibility     = View.GONE
@@ -48,9 +47,9 @@ class ProductsViewModel : ViewModel() {
         })
     }
 
-    fun deleteProduct(){
+    fun deleteProduct( productId : String){
 
-        productReference.child(Constants.getCurrentUser()).removeValue()
+        productReference.child(productId).removeValue()
     }
 
 

@@ -84,7 +84,7 @@ class AddProductViewModel : ViewModel() {
                                     etProductDescription.value!!.trim { it <=' ' },
                                     etProductQuantity.value!!.trim { it <=' ' },
                                     imageUri.toString() )
-                            productReference.child(Constants.getCurrentUser()).setValue(product)
+                            productReference.child(Constants.getCurrentUser()+System.currentTimeMillis()).setValue(product)
                             Toast.makeText(context , context.getString(R.string.product_uploaded_success_message),Toast.LENGTH_SHORT).show()
                         }
                     }
