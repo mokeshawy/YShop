@@ -90,15 +90,15 @@ class UserCompleteProfileViewMode : ViewModel() {
                         if(etLastName.value!!.isNotEmpty()){
                             map[Constants.LAST_NAME_KEY] = etLastName.value!!
                         }
-                        viewModelScope.launch {
-                            if(etMobileNumber.value!!.isNotEmpty() && etMobileNumber.value!! != DataStoreRepository(context).showMobile(Constants.USER_MOBILE_KEY)){
-                                map[Constants.MOBILE] = etMobileNumber.value!!
-                            }
 
-                            if( gender.isNotEmpty() && gender != DataStoreRepository(context).showGender(Constants.USER_GENDER_KEY) ){
+                        if(etMobileNumber.value!!.isNotEmpty()){
+                            map[Constants.MOBILE] = etMobileNumber.value!!
+                        }
 
-                                map[Constants.GENDER]   = gender
-                            }
+                        if( gender.isNotEmpty()){
+
+                            map[Constants.GENDER]   = gender
+
                         }
                         map[Constants.USER_IMAGE_KEY]   = downloadImage.toString()
 

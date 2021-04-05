@@ -34,6 +34,7 @@ class RecyclerDashBoardAdapter (private val dataSet: ArrayList<ProductModel>, va
 
         viewHolder.initialize( viewHolder , dataSet.get(position) , onClick)
 
+
     }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size

@@ -1,9 +1,11 @@
 package com.example.yshop.dashboardfragment
 
 import android.view.View
+import android.widget.GridLayout
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yshop.model.ProductModel
 import com.example.yshop.utils.Constants
@@ -32,11 +34,13 @@ class DashBoardFragmentViewModel : ViewModel() {
                     array.add(product)
                 }
                 getProductDetails.value = array
+
                 if(array.size > 0){
                     rv_dashboard_items.visibility     = View.VISIBLE
                     tv_no_dashboard_items_found.visibility = View.GONE
 
                     rv_dashboard_items.setHasFixedSize(true)
+
 
                 }else{
                     rv_dashboard_items.visibility     = View.GONE

@@ -3,6 +3,10 @@ package com.example.yshop.productsfargment
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.datastore.DataStore
+import androidx.datastore.createDataStore
+import androidx.datastore.preferences.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -11,7 +15,10 @@ import com.example.yshop.R
 import com.example.yshop.adapter.RecyclerProductAdapter
 import com.example.yshop.databinding.FragmentProductsBinding
 import com.example.yshop.model.ProductModel
+import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
@@ -28,7 +35,7 @@ class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Connect whit viewModel
-        binding.lifecycleOwner  = this
+        binding.lifecycleOwner      = this
         binding.productsVarModel    = productsViewModel
 
         // If we want to use the option menu in fragment we need to add it.
@@ -66,15 +73,16 @@ class ProductsFragment : Fragment() , RecyclerProductAdapter.OnClickProduct{
     override fun onClick( viewHolder: RecyclerProductAdapter.ViewHolder  , dataSet: ProductModel, position: Int) {
 
         viewHolder.binding.ibDeleteProduct.setOnClickListener {
-            productsViewModel.deleteProduct(dataSet.productId )
+            productsViewModel.deleteProduct(dataSet.productId , dataSet.title , requireActivity())
         }
 
-
         viewHolder.itemView.setOnClickListener {
-            Toast.makeText(requireActivity() , dataSet.title , Toast.LENGTH_SHORT).show()
+
+            var bundle = bundleOf(Constants.EXTRA_PRODUCT_OWNER_ID to dataSet.userId , Constants.EXTRA_PRODUCT_ID to dataSet.productId )
+            findNavController().navigate(R.id.action_productsFragment_to_productDetailsFragment ,bundle)
+
         }
 
 
     }
-
 }

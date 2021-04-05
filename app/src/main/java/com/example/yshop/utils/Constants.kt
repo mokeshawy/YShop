@@ -6,7 +6,6 @@ object Constants {
 
     // for "users" reference
     const val USERS : String = "users"
-
     // for product reference
     const val PRODUCT : String ="product"
 
@@ -34,7 +33,11 @@ object Constants {
     const val COMPLETE_PROFILE : String = "profileCompleted"
 
     const val USER_ID : String = "userId"
+    const val PRODUCT_ID: String = "productId"
 
+    // Product
+    const val EXTRA_PRODUCT_ID : String = "extra_product_id"
+    const val EXTRA_PRODUCT_OWNER_ID: String = "extra_product_owner_id"
 
     // getUserID function
     fun getCurrentUser() : String{

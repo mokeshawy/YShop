@@ -63,8 +63,9 @@ class DashBoardFragment : Fragment() , RecyclerDashBoardAdapter.OnClickProduct{
 
     override fun onClick(viewHolder: RecyclerDashBoardAdapter.ViewHolder, dataSet: ProductModel, position: Int) {
 
-        viewHolder.binding.ivDashboardItemImage.setOnClickListener {
-            Toast.makeText(requireActivity(), dataSet.title, Toast.LENGTH_SHORT).show()
+        viewHolder.itemView.setOnClickListener {
+            var action = DashBoardFragmentDirections.actionDashBoardFragmentToProductDetailsFragment(dataSet)
+            findNavController().navigate(action)
         }
     }
 }

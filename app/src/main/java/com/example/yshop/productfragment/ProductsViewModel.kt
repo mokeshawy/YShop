@@ -1,5 +1,6 @@
 package com.example.yshop.productsfargment
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.TextView
@@ -7,8 +8,10 @@ import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yshop.R
 import com.example.yshop.model.ProductModel
 import com.example.yshop.utils.Constants
+import com.example.yshop.utils.OptionBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -24,7 +27,7 @@ class ProductsViewModel : ViewModel() {
 
     fun getProductDetailsById( rv_product_items : RecyclerView , tv_no_products_found : TextView ){
      array = ArrayList()
-        productReference.orderByChild(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
+        productReference.orderByChild(Constants.USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (ds in snapshot.children){
 
@@ -51,10 +54,18 @@ class ProductsViewModel : ViewModel() {
         })
     }
 
-    fun deleteProduct( productId : String ){
+    fun deleteProduct( productId : String , productTitle : String ,  context: Context ){
+        var alert = AlertDialog.Builder(context)
+        alert.setTitle(context.resources.getString(R.string.delete_dialog_title))
+        alert.setMessage("${context.resources.getString(R.string.delete_dialog_message)}${productTitle}")
+        alert.setPositiveButton(context.resources.getString(R.string.yes)){dialog, which ->
 
-        productReference.child(productId).removeValue()
+            OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait),context)
+            productReference.child(productId).removeValue()
+            Toast.makeText(context , "${context.resources.getString(R.string.err_your_address_deleted_successfully)}${productTitle}",Toast.LENGTH_SHORT).show()
+            OptionBuilder.hideProgressDialog()
+        }
+        alert.setNegativeButton(context.resources.getString(R.string.no),null)
+        alert.create().show()
     }
-
-
 }

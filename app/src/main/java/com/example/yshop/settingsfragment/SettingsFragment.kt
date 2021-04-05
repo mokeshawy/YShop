@@ -42,6 +42,10 @@ class SettingsFragment : Fragment() {
             findNavController().navigate(R.id.action_settingsFragment_to_userCompleteProfileFragment)
         }
 
+        // user log out
+        binding.btnLogout.setOnClickListener {
+            settingsViewModel.signOut(requireActivity() , view)
+        }
 
     }
 }

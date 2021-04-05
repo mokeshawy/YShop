@@ -184,7 +184,7 @@
                 android:paddingBottom="@dimen/btn_padding"
                 android:text="@string/btn_lbl_logout"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/btn_textSize" />
+                android:textSize="@dimen/btn_textSize"/>
 
         </RelativeLayout>
 

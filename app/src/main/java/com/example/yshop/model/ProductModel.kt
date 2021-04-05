@@ -1,5 +1,7 @@
 package com.example.yshop.model
 
+import java.io.Serializable
+
 data class ProductModel (
 
       var userId        : String = "",
@@ -11,4 +13,4 @@ data class ProductModel (
       var productImage  : String = "",
       var productId     : String = ""
 
-)
+) : Serializable

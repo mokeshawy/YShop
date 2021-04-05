@@ -64,8 +64,6 @@ class LogInViewModel : ViewModel() {
 
     // Show data for user from fireStore by save into dataStore
     fun showData(context: Context, etUserEmail : EditText){
-        dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
-
         viewModelScope.launch {
             etUserEmail.setText(DataStoreRepository(context).showUserEmail(Constants.USER_EMAIL_KEY))
         }

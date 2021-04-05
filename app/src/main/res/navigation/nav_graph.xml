@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -13,6 +14,7 @@
         <action
             android:id="@+id/action_splashFragment_to_logInFragment"
             app:destination="@id/logInFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/nav_graph" />
     </fragment>
 
@@ -24,16 +26,20 @@
         <action
             android:id="@+id/action_logInFragment_to_registerFragment"
             app:destination="@id/registerFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_logInFragment_to_forgetPasswordFragment"
-            app:destination="@id/forgetPasswordFragment" />
+            app:destination="@id/forgetPasswordFragment"
+            app:enterAnim="@anim/from_right" />
         <action
             android:id="@+id/action_logInFragment_to_userCompleteProfileFragment"
-            app:destination="@id/userCompleteProfileFragment" />
+            app:destination="@id/userCompleteProfileFragment"
+            app:enterAnim="@anim/from_right" />
         <action
             android:id="@+id/action_logInFragment_to_dashBoardFragment"
             app:destination="@id/dashBoardFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
@@ -44,6 +50,7 @@
         <action
             android:id="@+id/action_registerFragment_to_logInFragment"
             app:destination="@id/logInFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
@@ -54,6 +61,7 @@
         <action
             android:id="@+id/action_forgetPasswordFragment_to_logInFragment"
             app:destination="@id/logInFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
@@ -63,7 +71,8 @@
         tools:layout="@layout/fragment_user_complete_profile" >
         <action
             android:id="@+id/action_userCompleteProfileFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            app:destination="@id/logInFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
 
 
@@ -75,7 +84,12 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/dashBoardFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
 
     <fragment
@@ -86,7 +100,12 @@
         <action
             android:id="@+id/action_productsFragment_to_addProductFragment"
             app:destination="@id/addProductFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/productsFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
 
     <fragment
@@ -102,10 +121,17 @@
         <action
             android:id="@+id/action_settingsFragment_to_dashBoardFragment"
             app:destination="@id/dashBoardFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/nav_graph" />
         <action
             android:id="@+id/action_settingsFragment_to_userCompleteProfileFragment"
-            app:destination="@id/userCompleteProfileFragment" />
+            app:destination="@id/userCompleteProfileFragment"
+            app:enterAnim="@anim/from_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_logInFragment"
+            app:destination="@id/logInFragment"
+            app:enterAnim="@anim/from_right"
+            app:popUpTo="@id/logInFragment" />
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
@@ -115,7 +141,17 @@
         <action
             android:id="@+id/action_addProductFragment_to_productsFragment"
             app:destination="@id/productsFragment"
+            app:enterAnim="@anim/from_right"
             app:popUpTo="@id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.yshop.productdetailsfragment.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="peoductItem"
+            app:argType="com.example.yshop.model.ProductModel" />
     </fragment>
 
 

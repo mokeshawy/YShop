@@ -14,6 +14,7 @@ import com.example.yshop.model.ProductModel
 import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.coroutines.launch
@@ -84,7 +85,7 @@ class AddProductViewModel : ViewModel() {
                                     etProductDescription.value!!.trim { it <=' ' },
                                     etProductQuantity.value!!.trim { it <=' ' },
                                     imageUri.toString() )
-                            productReference.child(Constants.getCurrentUser()+System.currentTimeMillis()).setValue(product)
+                            productReference.push().setValue(product)
                             Toast.makeText(context , context.getString(R.string.product_uploaded_success_message),Toast.LENGTH_SHORT).show()
                         }
                     }
