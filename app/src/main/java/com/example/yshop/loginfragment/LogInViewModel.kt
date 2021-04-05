@@ -106,13 +106,13 @@ class LogInViewModel : ViewModel() {
                     userReference.child(firebaseAuth.currentUser?.uid.toString()).addValueEventListener( object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
 
-                            var firstName       = snapshot.child("firstName").value.toString()
-                            var lastName        = snapshot.child("lastName").value.toString()
-                            var gender          = snapshot.child("gender").value.toString()
-                            var userEmail       = snapshot.child("email").value.toString()
-                            var mobile          = snapshot.child("mobile").value.toString()
-                            var image           = snapshot.child("image").value.toString()
-                            var profileComplete = snapshot.child("profileCompleted").value.toString()
+                            var firstName       = snapshot.child(Constants.FIRST_NAME_KEY).value.toString()
+                            var lastName        = snapshot.child(Constants.LAST_NAME_KEY).value.toString()
+                            var gender          = snapshot.child(Constants.USER_GENDER_KEY).value.toString()
+                            var userEmail       = snapshot.child(Constants.USER_EMAIL_KEY).value.toString()
+                            var mobile          = snapshot.child(Constants.USER_MOBILE_KEY).value.toString()
+                            var image           = snapshot.child(Constants.USER_IMAGE_KEY).value.toString()
+                            var profileComplete = snapshot.child(Constants.USER_COMPLETE_PROFILE).value.toString()
 
                                 dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
                                 viewModelScope.launch {
@@ -179,7 +179,7 @@ class LogInViewModel : ViewModel() {
             dataPref[preferencesKey<String>(Constants.USER_EMAIL_KEY)]      = userEmail
             dataPref[preferencesKey<String>(Constants.USER_MOBILE_KEY)]     = mobile
             dataPref[preferencesKey<String>(Constants.USER_IMAGE_KEY)]      = image
-            dataPref[preferencesKey<String>(Constants.COMPLETE_PROFILE)]    = profileComplete.toString()
+            dataPref[preferencesKey<String>(Constants.USER_COMPLETE_PROFILE)]    = profileComplete.toString()
         }
     }
 }

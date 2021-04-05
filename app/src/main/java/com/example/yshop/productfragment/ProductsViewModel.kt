@@ -27,7 +27,7 @@ class ProductsViewModel : ViewModel() {
 
     fun getProductDetailsById( rv_product_items : RecyclerView , tv_no_products_found : TextView ){
      array = ArrayList()
-        productReference.orderByChild(Constants.USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
+        productReference.orderByChild(Constants.PRODUCT_USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (ds in snapshot.children){
 

@@ -150,8 +150,16 @@
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" >
         <argument
-            android:name="peoductItem"
+            android:name="productItem"
             app:argType="com.example.yshop.model.ProductModel" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpTo="@id/dashBoardFragment" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment"
+            app:popUpTo="@id/dashBoardFragment" />
     </fragment>
 
 

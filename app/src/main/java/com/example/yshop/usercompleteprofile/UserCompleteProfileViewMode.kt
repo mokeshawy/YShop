@@ -92,18 +92,18 @@ class UserCompleteProfileViewMode : ViewModel() {
                         }
 
                         if(etMobileNumber.value!!.isNotEmpty()){
-                            map[Constants.MOBILE] = etMobileNumber.value!!
+                            map[Constants.USER_MOBILE_KEY] = etMobileNumber.value!!
                         }
 
                         if( gender.isNotEmpty()){
 
-                            map[Constants.GENDER]   = gender
+                            map[Constants.USER_GENDER_KEY] = gender
 
                         }
-                        map[Constants.USER_IMAGE_KEY]   = downloadImage.toString()
+                        map[Constants.USER_IMAGE_KEY] = downloadImage.toString()
 
                         // After complete profile will change number 0 to 1 because when user needed log in entry to home page direct
-                        map[Constants.COMPLETE_PROFILE] = 1
+                        map[Constants.USER_COMPLETE_PROFILE] = 1
 
                         // update to data for real time data base
                         userReference.child(Constants.getCurrentUser()).updateChildren(map)

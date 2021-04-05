@@ -13,7 +13,7 @@
         android:id="@+id/progressBarId"
         android:layout_width="@dimen/progress_bar_size"
         android:layout_height="@dimen/progress_bar_size"
-        android:indeterminateTint="#154360"
+        android:indeterminateTint="@color/colorThemeBlue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tv_progress_textId"
         app:layout_constraintLeft_toLeftOf="parent"

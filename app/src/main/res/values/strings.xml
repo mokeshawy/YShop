@@ -3,7 +3,7 @@
 
 
     <string name="content_description">image</string>
-    <string name="title_login">Log In</string>
+    <string name="title_login">Log in</string>
     <string name="et_hint_email_id">Email ID</string>
     <string name="et_hint_password">Password</string>
     <string name="lbl_forget_password">Forget Password?</string>
@@ -91,7 +91,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string name="title_product_details">PRODUCT DETAILS</string>
+    <string name="title_product_details">Product Details</string>
     <string name="lbl_product_description">Product Description</string>
     <string name="lbl_product_details_stock_quantity">Stock Quantity</string>
 

@@ -65,7 +65,7 @@ class AddProductViewModel : ViewModel() {
             // Show progressDialog
             OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait),context)
 
-            var refStorage : StorageReference = productStorage.child("ProductPhoto/"+Constants.PRODUCT_IMAGE+System.currentTimeMillis())
+            var refStorage : StorageReference = productStorage.child("ProductPhoto/"+Constants.PRODUCT_IMAGE_FILE+System.currentTimeMillis())
             refStorage.putFile(imageUri).addOnCompleteListener { saveImage ->
 
                 if(saveImage.isSuccessful){

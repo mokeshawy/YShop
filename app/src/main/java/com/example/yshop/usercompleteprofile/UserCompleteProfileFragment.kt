@@ -82,7 +82,7 @@ class UserCompleteProfileFragment : Fragment() {
         // If the profile is incomplete then user is from login screen and wants to complete the profile.
         CoroutineScope(Dispatchers.Main).async {
 
-            var profileComplete = DataStoreRepository(requireActivity()).showProfileComplete(Constants.COMPLETE_PROFILE).toString()
+            var profileComplete = DataStoreRepository(requireActivity()).showProfileComplete(Constants.USER_COMPLETE_PROFILE).toString()
 
             if( profileComplete.toInt() == 0 ){
                 binding.tvTitleId.text = resources.getString(R.string.title_complete_profile)

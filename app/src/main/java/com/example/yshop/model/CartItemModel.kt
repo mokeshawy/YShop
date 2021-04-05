@@ -2,14 +2,14 @@ package com.example.yshop.model
 
 import java.io.Serializable
 
-data class CartModel(
+data class CartItemModel(
 
-        var userId : String = "",
-        var productId : String = "",
-        var title : String = "",
-        var price : String = "",
-        var image : String = "",
-        var cartQuantity : String = "",
-        var id : String = ""
+        var userId          : String = "",
+        var productId       : String = "",
+        var title           : String = "",
+        var price           : String = "",
+        var image           : String = "",
+        var cartQuantity    : String = "",
+        var id              : String = ""
 
 ) : Serializable
