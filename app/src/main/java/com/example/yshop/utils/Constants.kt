@@ -40,17 +40,19 @@ object Constants {
     const val PRODUCT_DESC : String = "description"
     const val PRODUCT_QUANTITY : String = "stockQuantity"
     const val PRODUCT_IMAGE : String = "productImage"
-    const val PRODUCT_ID: String = "productId"
+
     // Product extra
     const val EXTRA_PRODUCT_ID : String = "extra_product_id"
     const val EXTRA_PRODUCT_OWNER_ID: String = "extra_product_owner_id"
 
-    // CartItem
-    const val DEFAULT_CART_ITEM : String = "1"
+
 
     //CartItem Reference
     const val CART_ITEM : String = "cartItem"
-
+    // CartItem
+    const val DEFAULT_CART_ITEM : String = "1"
+    const val PRODUCT_ID    : String = "productId"
+    const val USER_ID       : String = "userId"
 
 
     // getUserID function

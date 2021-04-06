@@ -1,6 +1,8 @@
 package com.example.yshop.productdetailsfragment
 
 import android.content.Context
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
@@ -53,9 +55,33 @@ class ProductDetailsViewModel : ViewModel() {
         })
     }
 
+    // Add cartItem
     var cartItemReference = fireBaseDatabase.getReference(Constants.CART_ITEM)
-    fun addCartItem( cartItemModel : CartItemModel){
+    fun addCartItem( cartItemModel : CartItemModel ){
         cartItemReference.push().setValue(cartItemModel)
     }
 
+    // Check the item add to cart or no when add to cart will Gone button add to card and show button go to cart page
+    fun checkIfItemExistInCart(productId: String , btn_add_to_card : Button , btn_go_to_card : Button){
+        cartItemReference.orderByChild(Constants.USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for ( ds in snapshot.children ){
+
+                    var proId = ds.child(Constants.PRODUCT_ID).value.toString()
+                    if( proId == productId){
+                        if( snapshot.childrenCount > 0){
+                            btn_add_to_card.visibility = View.GONE
+                            btn_go_to_card.visibility = View.VISIBLE
+                        }
+
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
 }

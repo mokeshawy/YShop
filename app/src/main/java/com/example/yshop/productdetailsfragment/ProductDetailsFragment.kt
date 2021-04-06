@@ -2,6 +2,7 @@ package com.example.yshop.productdetailsfragment
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,11 @@ import com.example.yshop.model.ProductModel
 import com.example.yshop.productsfargment.ProductsFragment
 import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 class ProductDetailsFragment : Fragment() {
@@ -40,7 +46,6 @@ class ProductDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.productVarModel = productDetailsViewModel
 
-
         // Check entry from product fragment to product fragment details by extra product id key pass from product fragment by bundle
         if(arguments?.containsKey(Constants.EXTRA_PRODUCT_ID) == true){
            mProductId = arguments?.getString(Constants.EXTRA_PRODUCT_ID).toString()
@@ -62,7 +67,6 @@ class ProductDetailsFragment : Fragment() {
         }
 
 
-
         // Check entry to product details from dashboard by extra user id key pass from product fragment by bundle
         var productOwnerId : String = ""
         if(arguments?.containsKey(Constants.EXTRA_PRODUCT_OWNER_ID) == true){
@@ -75,12 +79,18 @@ class ProductDetailsFragment : Fragment() {
             binding.btnAddToCart.visibility = View.GONE
             binding.btnGoToCart.visibility = View.GONE
         }else{
-            // Show add to cart button
-            binding.btnAddToCart.visibility = View.VISIBLE
+            // Check user add new product where this user log in no show  button add cart and button go cart
+            if( Constants.getCurrentUser() == product.productItem.userId){
+                binding.btnAddToCart.visibility = View.INVISIBLE
+            }else{
+                // Show add to cart button
+                binding.btnAddToCart.visibility = View.VISIBLE
+            }
+
 
             // Show details for product select from dashboard fragment
             binding.tvProductDetailsTitle.text          = product.productItem.title
-            binding.tvProductDetailsPrice.text          = product.productItem.price
+            binding.tvProductDetailsPrice.text          = "$${product.productItem.price}"
             binding.tvProductDetailsDescription.text    = product.productItem.description
             binding.tvProductDetailsStockQuantity.text  = product.productItem.stockQuantity
             Picasso.get().load(product.productItem.productImage).into(binding.ivProductDetailImage)
@@ -90,6 +100,8 @@ class ProductDetailsFragment : Fragment() {
             binding.toolbarProductDetailsFragment.setNavigationOnClickListener {
                 findNavController().navigate(R.id.action_productDetailsFragment_to_dashBoardFragment)
             }
+            // Check the item add to cart or no when add to cart will Gone button add to card and show button go to cart page
+            productDetailsViewModel.checkIfItemExistInCart( product.productItem.productId , binding.btnAddToCart , binding.btnGoToCart)
         }
 
 
@@ -97,7 +109,7 @@ class ProductDetailsFragment : Fragment() {
         binding.btnAddToCart.setOnClickListener {
             val cartItem = CartItemModel(
                     Constants.getCurrentUser(),
-                    mProductId,
+                    product.productItem.productId,
                     product.productItem.title,
                     product.productItem.price,
                     product.productItem.productImage,
@@ -105,12 +117,10 @@ class ProductDetailsFragment : Fragment() {
             )
             // Show progress dialog
             OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
-            productDetailsViewModel.addCartItem(cartItem)
+            productDetailsViewModel.addCartItem(cartItem )
             // Hide progress dialog
             OptionBuilder.hideProgressDialog()
-            Toast.makeText(requireActivity() , "${product.productItem.title} add to cart",Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity() , resources.getString(R.string.success_message_item_added_to_cart),Toast.LENGTH_SHORT).show()
         }
     }
-
-
 }

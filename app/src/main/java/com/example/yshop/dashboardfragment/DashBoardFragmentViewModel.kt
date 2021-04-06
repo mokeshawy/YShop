@@ -36,15 +36,15 @@ class DashBoardFragmentViewModel : ViewModel() {
                 getProductDetails.value = array
 
                 if(array.size > 0){
-                    rv_dashboard_items.visibility     = View.VISIBLE
-                    tv_no_dashboard_items_found.visibility = View.GONE
+                    rv_dashboard_items.visibility           = View.VISIBLE
+                    tv_no_dashboard_items_found.visibility  = View.GONE
 
                     rv_dashboard_items.setHasFixedSize(true)
 
 
                 }else{
-                    rv_dashboard_items.visibility     = View.GONE
-                    tv_no_dashboard_items_found.visibility = View.VISIBLE
+                    rv_dashboard_items.visibility           = View.GONE
+                    tv_no_dashboard_items_found.visibility  = View.VISIBLE
                 }
             }
             override fun onCancelled(error: DatabaseError) {
