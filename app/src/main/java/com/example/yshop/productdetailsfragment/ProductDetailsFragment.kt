@@ -122,5 +122,10 @@ class ProductDetailsFragment : Fragment() {
             OptionBuilder.hideProgressDialog()
             Toast.makeText(requireActivity() , resources.getString(R.string.success_message_item_added_to_cart),Toast.LENGTH_SHORT).show()
         }
+
+        // Go to cart page
+        binding.btnGoToCart.setOnClickListener {
+            findNavController().navigate(R.id.action_productDetailsFragment_to_cartListFragment)
+        }
     }
 }

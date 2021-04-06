@@ -57,6 +57,9 @@ class DashBoardFragment : Fragment() , RecyclerDashBoardAdapter.OnClickProduct{
             R.id.action_settings ->{
                 findNavController().navigate(R.id.action_dashBoardFragment_to_settingsFragment)
             }
+            R.id.action_cart ->{
+                findNavController().navigate(R.id.action_dashBoardFragment_to_cartListFragment)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

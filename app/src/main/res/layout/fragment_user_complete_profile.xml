@@ -77,7 +77,7 @@
                 android:padding="10dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_user_profile"
-                app:civ_border_color="#384253"
+                app:civ_border_color="@color/colorThemeBlue"
                 app:civ_border_width="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

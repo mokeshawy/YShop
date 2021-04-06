@@ -40,14 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar!!.setBackgroundDrawable(ContextCompat.getDrawable(this,R.drawable.app_gradinet_color_background))
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.logInFragment,
-            R.id.registerFragment,
-            R.id.forgetPasswordFragment,
-            R.id.dashBoardFragment,
+        val appBarConfiguration = AppBarConfiguration(setOf( R.id.dashBoardFragment,
             R.id.productsFragment,
-            R.id.ordersFragment,
-            R.id.settingsFragment,
-            R.id.addProductFragment))
+            R.id.ordersFragment))
 
         setupActionBarWithNavController(navController , appBarConfiguration)
 
@@ -75,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.userCompleteProfileFragment    -> supportActionBar?.hide()
                 R.id.addProductFragment             -> supportActionBar?.hide()
                 R.id.productDetailsFragment         -> supportActionBar?.hide()
+                R.id.cartListFragment               -> supportActionBar?.hide()
 
                 else -> supportActionBar?.show()
 
