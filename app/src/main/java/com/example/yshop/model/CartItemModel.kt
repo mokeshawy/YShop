@@ -10,6 +10,7 @@ data class CartItemModel(
         var price           : String = "",
         var image           : String = "",
         var cartQuantity    : String = "",
+        var stockQuantity   : String = "",
         var id              : String = ""
 
 ) : Serializable

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -51,11 +52,41 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
         OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
         cartListViewModel.cartItemModel.observe(viewLifecycleOwner , Observer {
             binding.rvCartItemsList.adapter = RecyclerCartListAdapter(it , this)
+            OptionBuilder.hideProgressDialog()
         })
-        OptionBuilder.hideProgressDialog()
     }
 
     override fun onClick(viewHolder: RecyclerCartListAdapter.ViewHolder, dataSet: CartItemModel, position: Int) {
+
+        // Check cartQuantity available
+        if( dataSet.cartQuantity == "0"){
+            viewHolder.binding.ibRemoveCartItem.visibility  = View.GONE
+            viewHolder.binding.ibAddCartItem.visibility     = View.GONE
+
+            viewHolder.binding.tvCartQuantity.text = resources.getString(R.string.lbl_out_of_stock)
+            viewHolder.binding.tvCartQuantity.setTextColor(ContextCompat.getColor(requireActivity() , R.color.colorSnackBarError))
+        }else{
+            viewHolder.binding.ibRemoveCartItem.visibility  = View.VISIBLE
+            viewHolder.binding.ibAddCartItem.visibility     = View.VISIBLE
+        }
+
+        // Delete item from cart list
+        viewHolder.binding.ibDeleteCartItem.setOnClickListener {
+            cartListViewModel.removeItemFromCart( requireActivity() , dataSet.id)
+
+        }
+
+        // Add new quantity
+        viewHolder.binding.ibAddCartItem.setOnClickListener {
+            cartListViewModel.plusCartItem(dataSet.id , dataSet.cartQuantity , dataSet.stockQuantity )
+        }
+
+        // Remove Quantity
+        viewHolder.binding.ibRemoveCartItem.setOnClickListener {
+            cartListViewModel.minusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity)
+
+        }
+
 
     }
 }

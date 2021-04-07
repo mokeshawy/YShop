@@ -50,6 +50,7 @@ object Constants {
     //CartItem Reference
     const val CART_ITEM : String = "cartItem"
     // CartItem
+    const val CART_QUANTITY: String = "cartQuantity"
     const val DEFAULT_CART_ITEM : String = "1"
     const val PRODUCT_ID    : String = "productId"
     const val USER_ID       : String = "userId"

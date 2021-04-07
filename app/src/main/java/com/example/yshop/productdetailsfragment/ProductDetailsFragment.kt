@@ -2,28 +2,20 @@ package com.example.yshop.productdetailsfragment
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.yshop.R
-import com.example.yshop.dashboardfragment.DashBoardFragment
 import com.example.yshop.databinding.FragmentProductDetailsBinding
 import com.example.yshop.model.CartItemModel
-import com.example.yshop.model.ProductModel
-import com.example.yshop.productsfargment.ProductsFragment
 import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.squareup.picasso.Picasso
 
 class ProductDetailsFragment : Fragment() {
@@ -79,13 +71,6 @@ class ProductDetailsFragment : Fragment() {
             binding.btnAddToCart.visibility = View.GONE
             binding.btnGoToCart.visibility = View.GONE
         }else{
-            // Check user add new product where this user log in no show  button add cart and button go cart
-            if( Constants.getCurrentUser() == product.productItem.userId){
-                binding.btnAddToCart.visibility = View.INVISIBLE
-            }else{
-                // Show add to cart button
-                binding.btnAddToCart.visibility = View.VISIBLE
-            }
 
 
             // Show details for product select from dashboard fragment
@@ -94,6 +79,21 @@ class ProductDetailsFragment : Fragment() {
             binding.tvProductDetailsDescription.text    = product.productItem.description
             binding.tvProductDetailsStockQuantity.text  = product.productItem.stockQuantity
             Picasso.get().load(product.productItem.productImage).into(binding.ivProductDetailImage)
+
+            // check of stock quantity where quantity of product equal 0 will GONE button for add to cart and show message out of stock
+            if( product.productItem.stockQuantity == "${0}"){
+                binding.btnAddToCart.visibility = View.GONE
+                binding.tvProductDetailsStockQuantity.text = resources.getString(R.string.lbl_out_of_stock)
+                binding.tvProductDetailsStockQuantity.setTextColor(ContextCompat.getColor(requireActivity() , R.color.colorSnackBarError))
+            }else{
+                // Check user add new product where this user log in will GONE  button add cart and button go cart
+                if( Constants.getCurrentUser() == product.productItem.userId){
+                    binding.btnAddToCart.visibility = View.GONE
+                }else{
+                    // Show add to cart button
+                    binding.btnAddToCart.visibility = View.VISIBLE
+                }
+            }
 
             // Navigation back button in tool bar for back to dashboard fragment
             binding.toolbarProductDetailsFragment.setNavigationIcon(R.drawable.ic_white_color_back__24)
