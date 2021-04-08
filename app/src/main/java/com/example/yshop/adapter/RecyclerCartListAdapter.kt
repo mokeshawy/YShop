@@ -29,11 +29,11 @@ class RecyclerCartListAdapter (private val dataSet: ArrayList<CartItemModel>, va
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
+
         viewHolder.binding.tvCartItemTitle.text = dataSet[position].title
         viewHolder.binding.tvCartItemPrice.text = "$ ${dataSet[position].price}"
         viewHolder.binding.tvCartQuantity.text  = dataSet[position].cartQuantity
         Picasso.get().load(dataSet[position].image).into(viewHolder.binding.ivCartItemImage)
-
         viewHolder.initialize( viewHolder , dataSet.get(position) , onClick)
 
 

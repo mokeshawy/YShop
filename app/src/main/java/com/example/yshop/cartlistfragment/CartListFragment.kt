@@ -46,11 +46,11 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
                 binding.tvNoCartItemFound ,
                 binding.tvSubTotal ,
                 binding.tvShippingCharge ,
-                binding.tvTotalAmount)
+                binding.tvTotalAmount )
 
         // call function cart list item
         OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
-        cartListViewModel.cartItemModel.observe(viewLifecycleOwner , Observer {
+        cartListViewModel.cartItemList.observe(viewLifecycleOwner , Observer {
             binding.rvCartItemsList.adapter = RecyclerCartListAdapter(it , this)
             OptionBuilder.hideProgressDialog()
         })
@@ -78,7 +78,7 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
         // Add new quantity
         viewHolder.binding.ibAddCartItem.setOnClickListener {
-            cartListViewModel.plusCartItem(dataSet.id , dataSet.cartQuantity , dataSet.stockQuantity )
+            cartListViewModel.plusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity , dataSet.stockQuantity )
         }
 
         // Remove Quantity

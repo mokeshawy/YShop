@@ -26,7 +26,7 @@ class CartListViewModel : ViewModel() {
     var mProductList        = MutableLiveData<ArrayList<ProductModel>>()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
     var cartItemReference   = firebaseDatabase.getReference(Constants.CART_ITEM)
-    var productReference = firebaseDatabase.getReference(Constants.PRODUCT)
+    var productReference    = firebaseDatabase.getReference(Constants.PRODUCT)
 
     fun getCartItemList( rv_cart_items_list : RecyclerView
                          , ll_checkout : LinearLayout ,
@@ -35,8 +35,10 @@ class CartListViewModel : ViewModel() {
                          tv_shipping_charge : TextView ,
                          tv_total_amount : TextView){
 
-        var cartListArray : ArrayList<CartItemModel> = ArrayList()
+        // Call get all data from product reference
+        getAllProductData()
 
+        var cartListArray : ArrayList<CartItemModel> = ArrayList()
         cartItemReference.orderByChild(Constants.USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 for( ds in snapshot.children ){
@@ -44,6 +46,19 @@ class CartListViewModel : ViewModel() {
                     var cartItem = ds.getValue(CartItemModel::class.java)!!
                     cartItem.id = ds.key.toString()
                     cartListArray.add(cartItem)
+                }
+                // get data form productList
+                for( product in mProductList.value!!){
+                    for( cart in cartListArray){
+                        if( product.productId == cart.productId){
+
+                            cart.stockQuantity = product.stockQuantity
+
+                            if( product.stockQuantity.toInt() == 0 ){
+                                cart.cartQuantity = product.stockQuantity
+                            }
+                        }
+                    }
                 }
                 cartItemList.value = cartListArray
 
@@ -54,11 +69,14 @@ class CartListViewModel : ViewModel() {
 
                     var subTotal : Double = 0.0
                     for( item in cartItemList.value!!){
+                        // Check quantity in cart reference
+                        if( item.stockQuantity.toInt() > 0){
 
                             var price       = item.price.toDouble()
                             var quantity    = item.cartQuantity.toInt()
 
                             subTotal += ( price * quantity)
+                        }
                     }
                     tv_sub_total.text = "$${subTotal}"
                     tv_shipping_charge.text = "$10.0"
@@ -69,26 +87,25 @@ class CartListViewModel : ViewModel() {
                     }else{
                         ll_checkout.visibility = View.GONE
                     }
-                }else {
+                }else{
 
                     rv_cart_items_list.visibility       = View.GONE
                     ll_checkout.visibility              = View.GONE
                     tv_no_cart_item_found.visibility    = View.VISIBLE
                 }
-            }
 
+            }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
 
+    private fun getAllProductData(){
 
-    private fun getAllProductList(){
+        var productList : ArrayList<ProductModel> = ArrayList()
         productReference.addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                var productList : ArrayList<ProductModel> = ArrayList()
                 for ( ds in snapshot.children ){
 
                     var product = ds.getValue(ProductModel::class.java)!!
@@ -99,22 +116,19 @@ class CartListViewModel : ViewModel() {
                 }
                 mProductList.value = productList
             }
-
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         })
     }
+
 
     // fun remove item from cart
     fun removeItemFromCart( context: Context , cartId : String){
         OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
         cartItemReference.child(cartId).removeValue()
         Toast.makeText( context , context.resources.getString(R.string.msg_item_removed_successfully), Toast.LENGTH_SHORT).show()
-
     }
-
 
     // Minus cart item
     fun minusCartItem( context: Context , cartId: String , cartQuantity : String){
@@ -135,32 +149,13 @@ class CartListViewModel : ViewModel() {
 
 
 
-    fun plusCartItem(  cartId : String , cartQuantity: String , cartStockQuantity : String ){
-
+    fun plusCartItem( context: Context , cartId : String , cartQuantity: String , cartStockQuantity : String ){
+        OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
         var cartItemQuantity  = cartQuantity.toInt()
-
-        var map = HashMap<String , Any>()
-        map[Constants.CART_QUANTITY] = ( cartItemQuantity + 1 ).toString()
-        cartItemReference.child(cartId).updateChildren(map)
-
         if( cartItemQuantity < cartStockQuantity.toInt() ){
-
-
+            var map = HashMap<String , Any>()
+            map[Constants.CART_QUANTITY] = ( cartItemQuantity + 1 ).toString()
+            cartItemReference.child(cartId).updateChildren(map)
         }
     }
-
-
-    // get data form product
-//    for( product in mProductList.value!!){
-//        for( cart in cartItemModel.value!!){
-//            if( product.productId == cart.productId){
-//
-//                cart.stockQuantity == product.stockQuantity
-//                if( product.stockQuantity.toInt() == 0 ){
-//                    cart.cartQuantity = product.stockQuantity
-//                }
-//            }
-//        }
-//    }
-//    array = cartItemModel.value!!
 }
