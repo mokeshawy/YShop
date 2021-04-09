@@ -22,6 +22,7 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
     lateinit var binding    : FragmentCartListBinding
     val cartListViewModel   : CartListViewModel by viewModels()
+    lateinit var array      : ArrayList<CartItemModel>
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -35,6 +36,9 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
         binding.lifecycleOwner = this
         binding.cartListVarModel = cartListViewModel
 
+        array = ArrayList()
+
+
         // Back to dash board by back icon in tool bar
         binding.toolbarCartListFragment.setNavigationIcon(R.drawable.ic_white_color_back__24)
         binding.toolbarCartListFragment.setNavigationOnClickListener {
@@ -47,9 +51,9 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
                 binding.tvSubTotal ,
                 binding.tvShippingCharge ,
                 binding.tvTotalAmount )
-
         // call function cart list item
         OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
+
         cartListViewModel.cartItemList.observe(viewLifecycleOwner , Observer {
             binding.rvCartItemsList.adapter = RecyclerCartListAdapter(it , this)
             OptionBuilder.hideProgressDialog()
@@ -72,8 +76,7 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
         // Delete item from cart list
         viewHolder.binding.ibDeleteCartItem.setOnClickListener {
-            cartListViewModel.removeItemFromCart( requireActivity() , dataSet.id)
-
+            cartListViewModel.removeItemFromCart( requireActivity() , dataSet.id )
         }
 
         // Add new quantity
@@ -83,10 +86,8 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
         // Remove Quantity
         viewHolder.binding.ibRemoveCartItem.setOnClickListener {
-            cartListViewModel.minusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity)
+            cartListViewModel.minusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity )
 
         }
-
-
     }
 }

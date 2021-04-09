@@ -23,21 +23,22 @@ class ProductsViewModel : ViewModel() {
     var getProductDetails   = MutableLiveData<ArrayList<ProductModel>>()
     var firebaseDataBase    = FirebaseDatabase.getInstance()
     var productReference    = firebaseDataBase.getReference(Constants.PRODUCT)
-    var array = ArrayList<ProductModel>()
+    var getProductArray     = ArrayList<ProductModel>()
 
     fun getProductDetailsById( rv_product_items : RecyclerView , tv_no_products_found : TextView ){
-     array = ArrayList()
+     getProductArray = ArrayList()
         productReference.orderByChild(Constants.PRODUCT_USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                getProductArray.clear()
                 for (ds in snapshot.children){
 
                     var id = ds.key
                     val product = ds.getValue(ProductModel::class.java)
                     product!!.productId = id.toString()
-                    array.add(product)
+                    getProductArray.add(product)
                 }
-                getProductDetails.value = array
-                if(array.size > 0){
+                getProductDetails.value = getProductArray
+                if(getProductArray.size > 0){
                     rv_product_items.visibility     = View.VISIBLE
                     tv_no_products_found.visibility = View.GONE
 

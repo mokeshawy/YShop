@@ -2,7 +2,6 @@ package com.example.yshop.cartlistfragment
 
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -41,6 +40,7 @@ class CartListViewModel : ViewModel() {
         var cartListArray : ArrayList<CartItemModel> = ArrayList()
         cartItemReference.orderByChild(Constants.USER_ID).equalTo(Constants.getCurrentUser()).addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                cartListArray.clear()
                 for( ds in snapshot.children ){
 
                     var cartItem = ds.getValue(CartItemModel::class.java)!!
@@ -126,16 +126,14 @@ class CartListViewModel : ViewModel() {
     // fun remove item from cart
     fun removeItemFromCart( context: Context , cartId : String){
         OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
-        cartItemReference.child(cartId).removeValue()
+        cartItemReference.child(cartId ).removeValue()
         Toast.makeText( context , context.resources.getString(R.string.msg_item_removed_successfully), Toast.LENGTH_SHORT).show()
     }
 
     // Minus cart item
     fun minusCartItem( context: Context , cartId: String , cartQuantity : String){
         if( cartQuantity == "1"){
-
-            removeItemFromCart( context , cartId)
-
+            removeItemFromCart( context , cartId )
         }else{
 
             OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
@@ -152,7 +150,7 @@ class CartListViewModel : ViewModel() {
     fun plusCartItem( context: Context , cartId : String , cartQuantity: String , cartStockQuantity : String ){
         OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
         var cartItemQuantity  = cartQuantity.toInt()
-        if( cartItemQuantity < cartStockQuantity.toInt() ){
+        if( cartItemQuantity  < cartStockQuantity.toInt() ){
             var map = HashMap<String , Any>()
             map[Constants.CART_QUANTITY] = ( cartItemQuantity + 1 ).toString()
             cartItemReference.child(cartId).updateChildren(map)
