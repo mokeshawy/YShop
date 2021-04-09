@@ -27,11 +27,11 @@ class CartListViewModel : ViewModel() {
     var cartItemReference   = firebaseDatabase.getReference(Constants.CART_ITEM)
     var productReference    = firebaseDatabase.getReference(Constants.PRODUCT)
 
-    fun getCartItemList( rv_cart_items_list : RecyclerView
-                         , ll_checkout : LinearLayout ,
-                         tv_no_cart_item_found : TextView ,
-                         tv_sub_total : TextView ,
-                         tv_shipping_charge : TextView ,
+    fun getCartItemList( rv_cart_items_list : RecyclerView,
+                         ll_checkout : LinearLayout,
+                         tv_no_cart_item_found : TextView,
+                         tv_sub_total : TextView,
+                         tv_shipping_charge : TextView,
                          tv_total_amount : TextView){
 
         // Call get all data from product reference
@@ -122,7 +122,6 @@ class CartListViewModel : ViewModel() {
         })
     }
 
-
     // fun remove item from cart
     fun removeItemFromCart( context: Context , cartId : String){
         OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
@@ -132,11 +131,9 @@ class CartListViewModel : ViewModel() {
 
     // Minus cart item
     fun minusCartItem( context: Context , cartId: String , cartQuantity : String){
-        if( cartQuantity == "1"){
+        if( cartQuantity.toInt() == 1){
             removeItemFromCart( context , cartId )
         }else{
-
-            OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
             var cartItemQuantity : Int = cartQuantity.toInt()
             var map = HashMap<String , Any>()
             map[Constants.CART_QUANTITY] = ( cartItemQuantity - 1).toString()
@@ -145,15 +142,15 @@ class CartListViewModel : ViewModel() {
         }
     }
 
-
-
-    fun plusCartItem( context: Context , cartId : String , cartQuantity: String , cartStockQuantity : String ){
-        OptionBuilder.showProgressDialog( context.resources.getString(R.string.please_wait) , context)
+    // Plus item in cart list
+    fun plusCartItem( context: Context , cartId : String , cartQuantity: String , cartStockQuantity : String  , view: View){
         var cartItemQuantity  = cartQuantity.toInt()
         if( cartItemQuantity  < cartStockQuantity.toInt() ){
             var map = HashMap<String , Any>()
             map[Constants.CART_QUANTITY] = ( cartItemQuantity + 1 ).toString()
             cartItemReference.child(cartId).updateChildren(map)
+        }else{
+            OptionBuilder.showErrorSnackBar( context. resources.getString(R.string.msg_for_available_stock , cartStockQuantity) ,true , context , view )
         }
     }
 }

@@ -63,7 +63,7 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
     override fun onClick(viewHolder: RecyclerCartListAdapter.ViewHolder, dataSet: CartItemModel, position: Int) {
 
         // Check cartQuantity available
-        if( dataSet.cartQuantity == "0"){
+        if( dataSet.cartQuantity.toInt() == 0){
             viewHolder.binding.ibRemoveCartItem.visibility  = View.GONE
             viewHolder.binding.ibAddCartItem.visibility     = View.GONE
 
@@ -72,6 +72,7 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
         }else{
             viewHolder.binding.ibRemoveCartItem.visibility  = View.VISIBLE
             viewHolder.binding.ibAddCartItem.visibility     = View.VISIBLE
+            viewHolder.binding.tvCartQuantity.setTextColor(ContextCompat.getColor(requireActivity() , R.color.colorSecondaryText))
         }
 
         // Delete item from cart list
@@ -81,13 +82,13 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
         // Add new quantity
         viewHolder.binding.ibAddCartItem.setOnClickListener {
-            cartListViewModel.plusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity , dataSet.stockQuantity )
+            cartListViewModel.plusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity , dataSet.stockQuantity , it )
+            OptionBuilder.hideProgressDialog()
         }
 
         // Remove Quantity
         viewHolder.binding.ibRemoveCartItem.setOnClickListener {
             cartListViewModel.minusCartItem( requireActivity() , dataSet.id , dataSet.cartQuantity )
-
         }
     }
 }

@@ -173,4 +173,9 @@
             app:enterAnim="@anim/from_left"
             app:popUpTo="@id/nav_graph" />
     </fragment>
+    <fragment
+        android:id="@+id/addressListFragment"
+        android:name="com.example.yshop.addresslistfragment.AddressListFragment"
+        android:label="fragment_address_list"
+        tools:layout="@layout/fragment_address_list" />
 </navigation>

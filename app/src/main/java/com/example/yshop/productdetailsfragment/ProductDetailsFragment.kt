@@ -81,7 +81,7 @@ class ProductDetailsFragment : Fragment() {
             Picasso.get().load(product.productItem.productImage).into(binding.ivProductDetailImage)
 
             // check of stock quantity where quantity of product equal 0 will GONE button for add to cart and show message out of stock
-            if( product.productItem.stockQuantity == "${0}"){
+            if( product.productItem.stockQuantity.toInt() == 0){
                 binding.btnAddToCart.visibility = View.GONE
                 binding.tvProductDetailsStockQuantity.text = resources.getString(R.string.lbl_out_of_stock)
                 binding.tvProductDetailsStockQuantity.setTextColor(ContextCompat.getColor(requireActivity() , R.color.colorSnackBarError))
