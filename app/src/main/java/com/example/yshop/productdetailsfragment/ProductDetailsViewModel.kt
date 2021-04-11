@@ -1,5 +1,6 @@
 package com.example.yshop.productdetailsfragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.widget.Button
@@ -22,22 +23,27 @@ class ProductDetailsViewModel : ViewModel() {
     var productReference = fireBaseDatabase.getReference(Constants.PRODUCT)
 
     fun getProductDetails( context: Context , productId : String ,
+                           tv_user_name_add_product : TextView,
                           tv_product_title : TextView ,
                           tv_product_price : TextView ,
                           tv_product_description : TextView ,
                           tv_product_stock_quantity : TextView ,
-                          iv_product_image : ImageView){
+                          iv_product_image : ImageView ){
         // Show progress dialog
         OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait) , context)
         productReference.child(productId).addValueEventListener( object : ValueEventListener{
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
 
+                var userName    = snapshot.child(Constants.PRODUCT_USER_NAME).value.toString()
                 var title       = snapshot.child(Constants.PRODUCT_TITLE).value.toString()
                 var price       = snapshot.child(Constants.PRODUCT_PRICE).value.toString()
                 var desc        = snapshot.child(Constants.PRODUCT_DESC).value.toString()
                 var quantity    = snapshot.child(Constants.PRODUCT_QUANTITY).value.toString()
                 var image       = snapshot.child(Constants.PRODUCT_IMAGE).value.toString()
 
+
+                tv_user_name_add_product.text = userName
                 tv_product_title.text = title
                 tv_product_price.text = "$${price}"
                 tv_product_description.text = desc

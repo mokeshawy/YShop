@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentSettingsBinding
+import com.example.yshop.utils.OptionBuilder
 
 class SettingsFragment : Fragment() {
 
@@ -34,7 +35,8 @@ class SettingsFragment : Fragment() {
         binding.toolbarSettingsFragment.setNavigationOnClickListener { view ->
             findNavController().navigate(R.id.action_settingsFragment_to_dashBoardFragment)
         }
-        
+
+
         // Show details for user logIn
         settingsViewModel.showData(requireActivity() , binding.tvName , binding.tvGender , binding.tvEmail , binding.tvMobileNumber , binding.ivUserPhotoId)
 
@@ -45,6 +47,10 @@ class SettingsFragment : Fragment() {
         // user log out
         binding.btnLogout.setOnClickListener {
             settingsViewModel.signOut(requireActivity() , view)
+        }
+
+        binding.llAddress.setOnClickListener {
+            findNavController().navigate(R.id.action_settingsFragment_to_addressListFragment)
         }
 
     }

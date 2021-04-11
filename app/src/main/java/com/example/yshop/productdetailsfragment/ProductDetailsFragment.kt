@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso
 class ProductDetailsFragment : Fragment() {
 
     lateinit var binding        : FragmentProductDetailsBinding
-    val productDetailsViewModel : ProductDetailsViewModel by viewModels()
+    private val productDetailsViewModel : ProductDetailsViewModel by viewModels()
     val product                 : ProductDetailsFragmentArgs by navArgs()
     // A global variable for product id.
     var mProductId : String = ""
@@ -45,6 +45,7 @@ class ProductDetailsFragment : Fragment() {
             // Show details for product select by product id from product fragment
             productDetailsViewModel.getProductDetails( requireActivity() ,
                     mProductId ,
+                    binding.tvNameAddProduct,
                     binding.tvProductDetailsTitle ,
                     binding.tvProductDetailsPrice ,
                     binding.tvProductDetailsDescription ,
@@ -78,6 +79,7 @@ class ProductDetailsFragment : Fragment() {
             binding.tvProductDetailsPrice.text          = "$${product.productItem.price}"
             binding.tvProductDetailsDescription.text    = product.productItem.description
             binding.tvProductDetailsStockQuantity.text  = product.productItem.stockQuantity
+            binding.tvNameAddProduct.text               = product.productItem.userName
             Picasso.get().load(product.productItem.productImage).into(binding.ivProductDetailImage)
 
             // check of stock quantity where quantity of product equal 0 will GONE button for add to cart and show message out of stock

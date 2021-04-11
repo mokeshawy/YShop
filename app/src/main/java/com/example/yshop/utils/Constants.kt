@@ -55,6 +55,15 @@ object Constants {
     const val PRODUCT_ID    : String = "productId"
     const val USER_ID       : String = "userId"
 
+    // Add address Reference
+    const val ADD_ADDRESS : String = "address"
+
+    const val HOME: String = "Home"
+    const val OFFICE: String = "Office"
+    const val OTHER: String = "Other"
+
+    const val EXTRA_ADDRESS_DETAILS : String = "AddressDetails"
+
 
     // getUserID function
     fun getCurrentUser() : String{

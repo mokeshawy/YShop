@@ -35,6 +35,7 @@ class RecyclerCartListAdapter (private var dataSet: ArrayList<CartItemModel>, va
         viewHolder.binding.tvCartItemPrice.text = "$ ${dataSet[position].price}"
         viewHolder.binding.tvCartQuantity.text  = dataSet[position].cartQuantity
         Picasso.get().load(dataSet[position].image).into(viewHolder.binding.ivCartItemImage)
+
         viewHolder.initialize( viewHolder , dataSet.get(position) , onClick)
 
 

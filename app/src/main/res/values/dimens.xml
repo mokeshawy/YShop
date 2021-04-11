@@ -100,13 +100,15 @@
     <dimen name="product_details_title_price_padding">16dp</dimen>
     <dimen name="product_details_title_textSize">16sp</dimen>
     <dimen name="product_details_price_textSize">14sp</dimen>
-    <dimen name="product_details_label_textSize">16sp</dimen>
+    <dimen name="product_details_label_textSize">14sp</dimen>
     <dimen name="product_details_label_margin">16dp</dimen>
     <dimen name="product_details_stock_quantity_paddingStartEnd">5dp</dimen>
     <dimen name="product_details_stock_quantity_paddingTopBottom">1dp</dimen>
     <dimen name="product_details_description_textSize">14sp</dimen>
-    <dimen name="product_details_stock_quantity_textSize">15sp</dimen>
+    <dimen name="product_details_stock_quantity_textSize">13sp</dimen>
 
+    <dimen name="product_details_add_by_paddingStartEnd">5dp</dimen>
+    <dimen name="product_details_add_by_paddingTopBottom">1dp</dimen>
 
     <dimen name="rv_cart_items_marginTop">16dp</dimen>
     <dimen name="ll_checkout_padding">16dp</dimen>
