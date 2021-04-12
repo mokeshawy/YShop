@@ -17,7 +17,7 @@ class AddEditAddressFragment : Fragment() {
 
     lateinit var binding                : FragmentAddEditAddressBinding
     private val addEditAddressViewModel : AddEditAddressViewModel by viewModels()
-     var mAddressDetails         : AddressModel? = null
+    var mAddressDetails                 : AddressModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -32,7 +32,7 @@ class AddEditAddressFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.addEditAddressVarModel = addEditAddressViewModel
 
-        // Check for received  object pass whit account log in
+        // Check for received  object by bundle pass whit account log in
         if( arguments?.containsKey(Constants.EXTRA_ADDRESS_DETAILS) == true){
            mAddressDetails =  arguments?.getSerializable(Constants.EXTRA_ADDRESS_DETAILS) as AddressModel?
         }
@@ -40,21 +40,40 @@ class AddEditAddressFragment : Fragment() {
         // Check object pass not equal null
         if( mAddressDetails != null){
             if( mAddressDetails!!.id.isNotEmpty()){
-
+                // when swipe user on address item will entry to edit address page and change title for toolbar and button
                 binding.tvTitle.text            = resources.getString(R.string.title_edit_address)
                 binding.btnSubmitAddress.text   = resources.getString(R.string.btn_lbl_update)
 
-                binding.etFullName.setText(mAddressDetails!!.name)
+                // Show data from object pass by bundle
+                addEditAddressViewModel.etFullName.value        = mAddressDetails!!.name
+                addEditAddressViewModel.etPhoneNumber.value     = mAddressDetails!!.mobileNumber
+                addEditAddressViewModel.etAddress.value         = mAddressDetails!!.address
+                addEditAddressViewModel.etZipCode.value         = mAddressDetails!!.zipCode
+                addEditAddressViewModel.etAdditionalNote.value  = mAddressDetails!!.additionalNote
+
+                when(mAddressDetails!!.type){
+                    Constants.HOME ->{
+                        binding.rbHome.isChecked = true
+                    }
+                    Constants.OFFICE ->{
+                        binding.rbOffice.isChecked = true
+                    }
+                    Constants.OTHER ->{
+                        binding.rbOther.isChecked = true
+                        binding.tilOtherDetails.visibility              = View.VISIBLE
+                        addEditAddressViewModel.etOtherDetails.value    = mAddressDetails!!.otherDetails
+                    }
+                }
             }
         }
 
-
+        // add address
         binding.btnSubmitAddress.setOnClickListener {
             OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
             addEditAddressViewModel.saveAddress( requireActivity() , view ,  binding.rbHome , binding.rbOffice , binding.rbOther)
             OptionBuilder.hideProgressDialog()
         }
-
+        // Show otherText when click user on other check button
         addEditAddressViewModel.checkedOther( binding.tilOtherDetails , binding.rgType)
     }
 }
