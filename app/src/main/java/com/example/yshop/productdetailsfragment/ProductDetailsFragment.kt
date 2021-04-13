@@ -20,9 +20,9 @@ import com.squareup.picasso.Picasso
 
 class ProductDetailsFragment : Fragment() {
 
-    lateinit var binding        : FragmentProductDetailsBinding
+    lateinit var binding                : FragmentProductDetailsBinding
     private val productDetailsViewModel : ProductDetailsViewModel by viewModels()
-    val product                 : ProductDetailsFragmentArgs by navArgs()
+    val product                         : ProductDetailsFragmentArgs by navArgs()
     // A global variable for product id.
     var mProductId : String = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

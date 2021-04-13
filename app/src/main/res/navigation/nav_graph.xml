@@ -176,6 +176,9 @@
             app:destination="@id/dashBoardFragment"
             app:enterAnim="@anim/from_left"
             app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_cartListFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
     </fragment>
     <fragment
         android:id="@+id/addressListFragment"
@@ -189,6 +192,15 @@
         <action
             android:id="@+id/action_addressListFragment_to_addEditAddressFragment"
             app:destination="@id/addEditAddressFragment" />
+        <action
+            android:id="@+id/action_addressListFragment_to_cartListFragment"
+            app:destination="@id/cartListFragment"
+            app:enterAnim="@anim/from_left"
+            app:popUpTo="@id/dashBoardFragment" />
+        <action
+            android:id="@+id/action_addressListFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
     <fragment
         android:id="@+id/addEditAddressFragment"
@@ -199,4 +211,8 @@
             android:id="@+id/action_addEditAddressFragment_to_addressListFragment"
             app:destination="@id/addressListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/checkOutFragment"
+        android:name="com.example.yshop.checkoutfragment.CheckOutFragment"
+        tools:layout="@layout/fragment_check_out" />
 </navigation>

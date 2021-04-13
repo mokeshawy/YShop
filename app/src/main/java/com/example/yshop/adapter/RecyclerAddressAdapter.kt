@@ -12,8 +12,9 @@ import com.example.yshop.addresslistfragment.AddressListFragment
 import com.example.yshop.databinding.ItemListAddressBinding
 import com.example.yshop.model.AddressModel
 import com.example.yshop.utils.Constants
+import com.example.yshop.utils.OptionBuilder
 
-class RecyclerAddressAdapter (private val dataSet: ArrayList<AddressModel> , var onClickAddressList: OnClickAddressList) : RecyclerView.Adapter<RecyclerAddressAdapter.ViewHolder>() {
+class RecyclerAddressAdapter (private val dataSet: ArrayList<AddressModel> , var onClickAddressList: OnClickAddressList ) : RecyclerView.Adapter<RecyclerAddressAdapter.ViewHolder>() {
 
     class ViewHolder(var binding : ItemListAddressBinding) : RecyclerView.ViewHolder(binding.root) {
 

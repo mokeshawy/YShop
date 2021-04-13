@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
@@ -60,14 +61,16 @@ class AddEditAddressViewModel : ViewModel() {
     }
 
     var firebaseDatabase = FirebaseDatabase.getInstance()
-    var addressReference = firebaseDatabase.getReference(Constants.ADD_ADDRESS)
+    var addressReference = firebaseDatabase.getReference(Constants.ADD_ADDRESS_REF)
     // save information for address
-    fun saveAddress( context: Context ,
+    fun saveAddress( addEditAddressFragment: AddEditAddressFragment ,
+                     context: Context ,
                      view: View ,
                      rb_home : RadioButton ,
                      rb_office : RadioButton ,
                      rb_other : RadioButton ){
 
+        var addressDetails = addEditAddressFragment.arguments?.getSerializable(Constants.EXTRA_ADDRESS_DETAILS) as AddressModel?
         var fullName        = etFullName.value!!.trim { it <=' ' }
         var phoneNumber     = etPhoneNumber.value!!.trim { it <= ' ' }
         var address         = etAddress.value!!.trim { it <= ' ' }
@@ -82,13 +85,13 @@ class AddEditAddressViewModel : ViewModel() {
             var addressType = when{
 
                 rb_home.isChecked ->{
-                    Constants.HOME
+                    Constants.ADDRESS_HOME
                 }
                 rb_office.isChecked ->{
-                    Constants.OFFICE
+                    Constants.ADDRESS_OFFICE
                 }
                 else ->{
-                    Constants.OTHER
+                    Constants.ADDRESS_OTHER
                 }
             }
 
@@ -102,15 +105,28 @@ class AddEditAddressViewModel : ViewModel() {
                     addressType,
                     otherDetails
             )
-            addressReference.push().setValue(addressModel)
+
             Navigation.findNavController(view).navigate(R.id.action_addEditAddressFragment_to_addressListFragment)
-            if( mAddressDetails.value != null && mAddressDetails.value!!.id.isNotEmpty()){
+            if( addressDetails != null && addressDetails!!.id.isNotEmpty()){
 
+                var map = HashMap<String , Any>()
+                map[Constants.ADDRESS_NAME]                 = fullName
+                map[Constants.ADDRESS_MOBILE_NUMBER]        = phoneNumber
+                map[Constants.ADDRESS]                      = address
+                map[Constants.ADDRESS_ZIP_CODE]             = zipCode
+                map[Constants.ADDRESS_ADDITIONAL_NOTE]      = additionalNote
+                map[Constants.ADDRESS_TYPE]                 = addressType
+                map[Constants.ADDRESS_OTHER_DETAILS]        = otherDetails
 
+                addressReference.child( addressDetails!!.id).updateChildren(map)
+
+            }else{
+                addressReference.push().setValue(addressModel)
             }
         }
     }
 
+    // Button for check other
     fun checkedOther(til_other_details : TextInputLayout , rg_type : RadioGroup ){
         rg_type.setOnCheckedChangeListener { _, checkedId ->
             if( checkedId == R.id.rb_other){

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -16,13 +17,13 @@ import com.example.yshop.adapter.RecyclerDashBoardAdapter
 import com.example.yshop.databinding.FragmentCartListBinding
 import com.example.yshop.model.CartItemModel
 import com.example.yshop.model.ProductModel
+import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
 
 class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
-    lateinit var binding    : FragmentCartListBinding
-    val cartListViewModel   : CartListViewModel by viewModels()
-    lateinit var array      : ArrayList<CartItemModel>
+    lateinit var binding            : FragmentCartListBinding
+    private val cartListViewModel   : CartListViewModel by viewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -36,13 +37,16 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
         binding.lifecycleOwner = this
         binding.cartListVarModel = cartListViewModel
 
-        array = ArrayList()
-
 
         // Back to dash board by back icon in tool bar
         binding.toolbarCartListFragment.setNavigationIcon(R.drawable.ic_white_color_back__24)
         binding.toolbarCartListFragment.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_cartListFragment_to_dashBoardFragment)
+        }
+
+        binding.btnCheckout.setOnClickListener {
+            var bundle = bundleOf( Constants.EXTRA_ADDRESS_DETAILS to true)
+            findNavController().navigate(R.id.action_cartListFragment_to_addressListFragment , bundle)
         }
 
         cartListViewModel.getCartItemList( binding.rvCartItemsList ,

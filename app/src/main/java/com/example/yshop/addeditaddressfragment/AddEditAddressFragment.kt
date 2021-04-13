@@ -1,10 +1,12 @@
 package com.example.yshop.addeditaddressfragment
 
+import android.app.Activity.RESULT_OK
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.yshop.R
 import com.example.yshop.databinding.FragmentAddEditAddressBinding
@@ -52,27 +54,37 @@ class AddEditAddressFragment : Fragment() {
                 addEditAddressViewModel.etAdditionalNote.value  = mAddressDetails!!.additionalNote
 
                 when(mAddressDetails!!.type){
-                    Constants.HOME ->{
+                    Constants.ADDRESS_HOME ->{
                         binding.rbHome.isChecked = true
                     }
-                    Constants.OFFICE ->{
+                    Constants.ADDRESS_OFFICE ->{
                         binding.rbOffice.isChecked = true
                     }
-                    Constants.OTHER ->{
+                    Constants.ADDRESS_OTHER ->{
                         binding.rbOther.isChecked = true
                         binding.tilOtherDetails.visibility              = View.VISIBLE
                         addEditAddressViewModel.etOtherDetails.value    = mAddressDetails!!.otherDetails
                     }
                 }
+
             }
         }
 
-        // add address
+        // Button add address
         binding.btnSubmitAddress.setOnClickListener {
             OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
-            addEditAddressViewModel.saveAddress( requireActivity() , view ,  binding.rbHome , binding.rbOffice , binding.rbOther)
+            addEditAddressViewModel.saveAddress( this ,requireActivity() , view ,  binding.rbHome , binding.rbOffice , binding.rbOther)
+
+            // Check when user entry from add new address or edit address after check will show toast update or new add
+           val notifySuccessMessage  =  if( mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()){
+                     resources.getString(R.string.msg_your_address_updated_successfully)
+            }else{
+                    resources.getString(R.string.msg_your_address_added_successfully)
+           }
+            Toast.makeText(requireActivity() , notifySuccessMessage , Toast.LENGTH_SHORT).show()
             OptionBuilder.hideProgressDialog()
         }
+
         // Show otherText when click user on other check button
         addEditAddressViewModel.checkedOther( binding.tilOtherDetails , binding.rgType)
     }

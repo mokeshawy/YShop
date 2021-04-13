@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.cartListFragment               -> supportActionBar?.hide()
                 R.id.addressListFragment            -> supportActionBar?.hide()
                 R.id.addEditAddressFragment         -> supportActionBar?.hide()
+                R.id.checkOutFragment               -> supportActionBar?.hide()
 
                 else -> supportActionBar?.show()
 

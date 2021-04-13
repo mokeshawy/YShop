@@ -33,37 +33,46 @@ object Constants {
     // for product reference
     const val PRODUCT : String ="product"
     // Product Child
-    const val PRODUCT_USER_ID : String = "userId"
-    const val PRODUCT_USER_NAME : String = "userName"
-    const val PRODUCT_TITLE :String = "title"
-    const val PRODUCT_PRICE : String = "price"
-    const val PRODUCT_DESC : String = "description"
-    const val PRODUCT_QUANTITY : String = "stockQuantity"
-    const val PRODUCT_IMAGE : String = "productImage"
+    const val PRODUCT_USER_ID       : String = "userId"
+    const val PRODUCT_USER_NAME     : String = "userName"
+    const val PRODUCT_TITLE         : String = "title"
+    const val PRODUCT_PRICE         : String = "price"
+    const val PRODUCT_DESC          : String = "description"
+    const val PRODUCT_QUANTITY      : String = "stockQuantity"
+    const val PRODUCT_IMAGE         : String = "productImage"
 
     // Product extra
-    const val EXTRA_PRODUCT_ID : String = "extra_product_id"
-    const val EXTRA_PRODUCT_OWNER_ID: String = "extra_product_owner_id"
+    const val EXTRA_PRODUCT_ID          : String = "extra_product_id"
+    const val EXTRA_PRODUCT_OWNER_ID    : String = "extra_product_owner_id"
 
 
 
     //CartItem Reference
-    const val CART_ITEM : String = "cartItem"
+    const val CART_ITEM         : String = "cartItem"
     // CartItem
-    const val CART_QUANTITY: String = "cartQuantity"
+    const val CART_QUANTITY     : String = "cartQuantity"
     const val DEFAULT_CART_ITEM : String = "1"
-    const val PRODUCT_ID    : String = "productId"
-    const val USER_ID       : String = "userId"
+    const val PRODUCT_ID        : String = "productId"
+    const val USER_ID           : String = "userId"
 
     // Add address Reference
-    const val ADD_ADDRESS : String = "address"
+    const val ADD_ADDRESS_REF : String = "address"
 
-    const val HOME: String = "Home"
-    const val OFFICE: String = "Office"
-    const val OTHER: String = "Other"
+    // Address child
+    const val ADDRESS_HOME              : String = "Home"
+    const val ADDRESS_OFFICE            : String = "Office"
+    const val ADDRESS_OTHER             : String = "Other"
+    const val ADDRESS_NAME              : String = "name"
+    const val ADDRESS_MOBILE_NUMBER     : String = "mobileNumber"
+    const val ADDRESS                   : String = "address"
+    const val ADDRESS_ZIP_CODE          : String = "zipCode"
+    const val ADDRESS_ADDITIONAL_NOTE   : String = "additionalNote"
+    const val ADDRESS_TYPE              : String = "type"
+    const val ADDRESS_OTHER_DETAILS     : String = "otherDetails"
 
-    const val EXTRA_ADDRESS_DETAILS : String = "AddressDetails"
-
+    const val EXTRA_ADDRESS_DETAILS     : String = "AddressDetails"
+    const val EXTRA_SELECT_ADDRESS      : String = "extra_select_address"
+    const val ADD_ADDRESS_REQUEST       : Int    = 121
 
     // getUserID function
     fun getCurrentUser() : String{
