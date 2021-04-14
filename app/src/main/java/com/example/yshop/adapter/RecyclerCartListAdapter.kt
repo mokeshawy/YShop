@@ -8,13 +8,13 @@ import com.example.yshop.databinding.ItemListCartBinding
 import com.example.yshop.model.CartItemModel
 import com.squareup.picasso.Picasso
 
-class RecyclerCartListAdapter (private var dataSet: ArrayList<CartItemModel>, var onClick : OnClickCartList) : RecyclerView.Adapter<RecyclerCartListAdapter.ViewHolder>() {
+class RecyclerCartListAdapter (private var dataSet: ArrayList<CartItemModel>, var onClick : OnClickCartList , var updateCartItems : Boolean ) : RecyclerView.Adapter<RecyclerCartListAdapter.ViewHolder>() {
 
 
     class ViewHolder(var binding : ItemListCartBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun initialize(viewHolder: RecyclerView.ViewHolder, dataSet : CartItemModel, action: OnClickCartList ){
-            action.onClick(viewHolder as ViewHolder, dataSet , adapterPosition)
+        fun initialize(updateCartItems : Boolean , viewHolder: RecyclerView.ViewHolder, dataSet : CartItemModel, action: OnClickCartList ){
+            action.onClick(updateCartItems , viewHolder as ViewHolder, dataSet , adapterPosition)
         }
 
     }
@@ -36,7 +36,7 @@ class RecyclerCartListAdapter (private var dataSet: ArrayList<CartItemModel>, va
         viewHolder.binding.tvCartQuantity.text  = dataSet[position].cartQuantity
         Picasso.get().load(dataSet[position].image).into(viewHolder.binding.ivCartItemImage)
 
-        viewHolder.initialize( viewHolder , dataSet.get(position) , onClick)
+        viewHolder.initialize(updateCartItems , viewHolder , dataSet.get(position) , onClick)
 
 
     }
@@ -45,6 +45,6 @@ class RecyclerCartListAdapter (private var dataSet: ArrayList<CartItemModel>, va
 
 
     interface OnClickCartList{
-        fun onClick(viewHolder: ViewHolder, dataSet: CartItemModel , position: Int)
+        fun onClick( updateCartItems : Boolean , viewHolder: ViewHolder, dataSet: CartItemModel , position: Int)
     }
 }

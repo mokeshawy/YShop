@@ -73,6 +73,10 @@ object Constants {
     const val EXTRA_ADDRESS_DETAILS     : String = "AddressDetails"
     const val EXTRA_SELECT_ADDRESS      : String = "extra_select_address"
     const val ADD_ADDRESS_REQUEST       : Int    = 121
+    const val EXTRA_SELECTED_ADDRESS    : String = "extra_selected_address"
+
+    // Orders Reference
+    const val ORDER_REF = "order"
 
     // getUserID function
     fun getCurrentUser() : String{

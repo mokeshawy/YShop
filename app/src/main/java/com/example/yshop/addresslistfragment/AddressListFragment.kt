@@ -76,7 +76,9 @@ class AddressListFragment : Fragment() , RecyclerAddressAdapter.OnClickAddressLi
     override fun onClick(viewHolder: RecyclerAddressAdapter.ViewHolder, dataSet: AddressModel, position: Int) {
         viewHolder.itemView.setOnClickListener {
             if(mSelectedAddress){
-                findNavController().navigate(R.id.action_addressListFragment_to_checkOutFragment)
+                var bundle = Bundle()
+                bundle.putSerializable(Constants.EXTRA_SELECTED_ADDRESS , dataSet)
+                findNavController().navigate(R.id.action_addressListFragment_to_checkOutFragment , bundle)
             }
         }
     }

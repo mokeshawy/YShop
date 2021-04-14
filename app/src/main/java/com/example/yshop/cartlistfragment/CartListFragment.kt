@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
@@ -13,10 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
 import com.example.yshop.adapter.RecyclerCartListAdapter
-import com.example.yshop.adapter.RecyclerDashBoardAdapter
 import com.example.yshop.databinding.FragmentCartListBinding
 import com.example.yshop.model.CartItemModel
-import com.example.yshop.model.ProductModel
 import com.example.yshop.utils.Constants
 import com.example.yshop.utils.OptionBuilder
 
@@ -59,12 +56,12 @@ class CartListFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
         OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
 
         cartListViewModel.cartItemList.observe(viewLifecycleOwner , Observer {
-            binding.rvCartItemsList.adapter = RecyclerCartListAdapter(it , this)
+            binding.rvCartItemsList.adapter = RecyclerCartListAdapter(it , this , true)
             OptionBuilder.hideProgressDialog()
         })
     }
 
-    override fun onClick(viewHolder: RecyclerCartListAdapter.ViewHolder, dataSet: CartItemModel, position: Int) {
+    override fun onClick( updateCartItems : Boolean , viewHolder: RecyclerCartListAdapter.ViewHolder, dataSet: CartItemModel, position: Int) {
 
         // Check cartQuantity available
         if( dataSet.cartQuantity.toInt() == 0){
