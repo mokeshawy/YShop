@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener
 
 class CheckOutViewModel : ViewModel() {
 
-    var cartItemList        = MutableLiveData<ArrayList<CartItemModel>>()
+    var mCartItemList        = MutableLiveData<ArrayList<CartItemModel>>()
     var mProductList        = MutableLiveData<ArrayList<ProductModel>>()
     var firebaseDatabase    = FirebaseDatabase.getInstance()
     var cartItemReference   = firebaseDatabase.getReference(Constants.CART_ITEM)
@@ -36,6 +36,7 @@ class CheckOutViewModel : ViewModel() {
     private var subTotal        : Double = 0.0
     private var mTotalAmount    : Double = 0.0
 
+    // fun get cart list show in check out page
     fun getCartItemList(ll_checkout_place_order : LinearLayout,
                         tv_checkout_sub_total : TextView,
                         tv_checkout_shipping_charge : TextView,
@@ -62,9 +63,9 @@ class CheckOutViewModel : ViewModel() {
                         }
                     }
                 }
-                cartItemList.value = cartListArray
+                mCartItemList.value = cartListArray
 
-                for( item in cartItemList.value!!){
+                for( item in mCartItemList.value!!){
                     // Check quantity in cart reference
                     if( item.stockQuantity.toInt() > 0){
 
@@ -94,8 +95,8 @@ class CheckOutViewModel : ViewModel() {
         })
     }
 
+    // Fun get all product list
     private fun getAllProductData(){
-
 
         productReference.addValueEventListener( object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -115,7 +116,8 @@ class CheckOutViewModel : ViewModel() {
         })
     }
 
-    fun placeAnOrder( checkOutFragment: CheckOutFragment){
+    // Fun place order
+    private fun placeAnOrder( checkOutFragment: CheckOutFragment){
         var mAddressDetails = checkOutFragment.arguments?.getSerializable(Constants.EXTRA_SELECTED_ADDRESS) as AddressModel
         var orderModel      = OrderModel(
                 Constants.getCurrentUser(),
@@ -131,5 +133,25 @@ class CheckOutViewModel : ViewModel() {
         orderReference.push().setValue(orderModel)
         Toast.makeText(checkOutFragment.requireActivity() , "Your order was placed Successfully",Toast.LENGTH_SHORT).show()
         checkOutFragment.findNavController().navigate(R.id.action_checkOutFragment_to_dashBoardFragment)
+    }
+
+    // Fun update all data after click on place order button
+    fun updateAllData( checkOutFragment: CheckOutFragment){
+
+        // Call place an order function
+        placeAnOrder(checkOutFragment)
+
+        for( cartItem in cartListArray){
+
+            var productMap = HashMap<String , Any>()
+
+            productMap[Constants.PRODUCT_QUANTITY] =
+                    ( cartItem.stockQuantity.toInt() - cartItem.cartQuantity.toInt() ).toString()
+            productReference.child(cartItem.productId).updateChildren(productMap)
+        }
+
+        for(cartItem in cartListArray){
+            cartItemReference.child(cartItem.id).removeValue()
+        }
     }
 }

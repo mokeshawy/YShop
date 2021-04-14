@@ -54,12 +54,12 @@ class CheckOutFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList {
         }
 
         checkOutViewModel.getCartItemList(binding.llCheckoutPlaceOrder , binding.tvCheckoutSubTotal , binding.tvCheckoutShippingCharge , binding.tvCheckoutTotalAmount)
-        checkOutViewModel.cartItemList.observe(viewLifecycleOwner , Observer {
+        checkOutViewModel.mCartItemList.observe(viewLifecycleOwner , Observer {
             binding.rvCartListItems.adapter = RecyclerCartListAdapter(it , this , false)
         })
 
         binding.btnPlaceOrder.setOnClickListener {
-            checkOutViewModel.placeAnOrder(this)
+            checkOutViewModel.updateAllData(this)
         }
     }
 

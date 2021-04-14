@@ -78,6 +78,7 @@ object Constants {
     // Orders Reference
     const val ORDER_REF = "order"
 
+
     // getUserID function
     fun getCurrentUser() : String{
         // An Instance of currentUser using FirebaseAuth
