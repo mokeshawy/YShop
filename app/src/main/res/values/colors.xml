@@ -2,13 +2,13 @@
 <resources>
 
     <!-- Bar -->
-    <color name="colorPrimary">#3797a4</color>
-    <color name="colorPrimaryDark">#276678</color>
-    <color name="colorAccent">#3797a4</color>
+    <color name="colorPrimary">#878787</color>
+    <color name="colorPrimaryDark">#878787</color>
+    <color name="colorAccent">#878787</color>
 
 
-    <color name="colorThemeBlue">#3797a4</color>
-    <color name="colorThemeDark">#276678</color>
+    <color name="colorThemeBlue">#878787</color>
+    <color name="colorThemeDark">#878787</color>
 
     <color name="colorPrimaryText">#222934</color>
     <color name="colorSecondaryText">#989898</color>

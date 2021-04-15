@@ -21,11 +21,14 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
-         <FrameLayout
+         <androidx.cardview.widget.CardView
              android:id="@+id/f1_header_image"
              android:layout_width="match_parent"
-             android:background="@drawable/app_gradinet_color_background"
              android:layout_height="@dimen/auth_header_image_height"
+             app:cardBackgroundColor="#878787"
+             app:cardElevation="10dp"
+             app:cardCornerRadius="15dp"
+             android:layout_margin="15dp"
              app:layout_constraintEnd_toEndOf="parent"
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toTopOf="parent">
@@ -45,7 +48,7 @@
                 android:scaleType="center"
                 android:src="@drawable/y_shop_logo" />
 
-         </FrameLayout>
+         </androidx.cardview.widget.CardView>
 
 
          <!-- input text email -->
@@ -54,7 +57,7 @@
              android:id="@+id/tv_title"
              android:layout_width="match_parent"
              android:layout_height="45dp"
-             android:layout_marginTop="316dp"
+             android:layout_marginTop="300dp"
              android:gravity="center"
              android:text="@string/title_login"
              android:textColor="@color/common_google_signin_btn_text_light_focused"

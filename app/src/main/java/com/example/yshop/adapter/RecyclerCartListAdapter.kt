@@ -40,7 +40,7 @@ class RecyclerCartListAdapter (private var dataSet: ArrayList<CartItemModel>, va
 
 
     }
-    // Return the size of your dataset (invoked by the layout manager)
+    // Return the size of your dataSet (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
 

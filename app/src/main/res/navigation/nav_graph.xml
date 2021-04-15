@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/dashBoardFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -112,7 +112,12 @@
         android:id="@+id/ordersFragment"
         android:name="com.example.yshop.ordersfragment.OrdersFragment"
         android:label="Orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_orders" >
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment"
+            app:enterAnim="@anim/from_right" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.yshop.settingsfragment.SettingsFragment"
@@ -220,5 +225,24 @@
             app:destination="@id/dashBoardFragment"
             app:enterAnim="@anim/from_left"
             app:popUpTo="@id/dashBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.example.yshop.orderdetailsfragment.OrderDetailsFragment"
+        tools:layout="@layout/fragment_order_details" />
+    <fragment
+        android:id="@+id/soldProductDetailsFragment"
+        android:name="com.example.yshop.soldproductdetailsfragment.SoldProductDetailsFragment"
+        android:label="Sold Product Details"
+        tools:layout="@layout/fragment_sold_product_details" />
+    <fragment
+        android:id="@+id/soldProductFragment"
+        android:name="com.example.yshop.soldproductfragment.SoldProductFragment"
+        android:label="Sold Product"
+        tools:layout="@layout/fragment_sold_product" >
+        <action
+            android:id="@+id/action_soldProductFragment_to_soldProductDetailsFragment"
+            app:destination="@id/soldProductDetailsFragment"
+            app:enterAnim="@anim/from_right" />
     </fragment>
 </navigation>

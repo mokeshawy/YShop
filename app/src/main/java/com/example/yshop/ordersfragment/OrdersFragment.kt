@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.example.yshop.R
 import com.example.yshop.adapter.RecyclerOrderAdapter
 import com.example.yshop.databinding.FragmentOrdersBinding
 import com.example.yshop.model.CartItemModel
@@ -42,8 +44,11 @@ class OrdersFragment : Fragment() , RecyclerOrderAdapter.OnClickOrder{
     }
 
     override fun onClick(viewHolder: RecyclerOrderAdapter.ViewHolder, dataSet: OrderModel, position: Int) {
+
         viewHolder.itemView.setOnClickListener {
-            Toast.makeText(requireActivity() , dataSet.title , Toast.LENGTH_SHORT).show()
+            var bundle = Bundle()
+            bundle.putSerializable(Constants.EXTRA_MY_ORDER_DETAILS , dataSet)
+            findNavController().navigate(R.id.action_ordersFragment_to_orderDetailsFragment , bundle)
         }
     }
 }

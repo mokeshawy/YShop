@@ -6,25 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yshop.databinding.ItemListProductBinding
-import com.example.yshop.model.OrderModel
+import com.example.yshop.model.SoldProductModel
 import com.squareup.picasso.Picasso
 
-
-class RecyclerOrderAdapter (private val dataSet: ArrayList<OrderModel> ,
-                            var onClick : OnClickOrder) : RecyclerView.Adapter<RecyclerOrderAdapter.ViewHolder>() {
+class RecyclerSoldProductAdapter (private val dataSet: ArrayList<SoldProductModel>,
+                                  var onClick : OnClickSoldProduct ) : RecyclerView.Adapter<RecyclerSoldProductAdapter.ViewHolder>() {
 
     class ViewHolder(var binding : ItemListProductBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun initialize( viewHolder: ViewHolder , dataSet: OrderModel , action : OnClickOrder){
+        fun initialize(viewHolder: ViewHolder, dataSet: SoldProductModel , action : OnClickSoldProduct){
             action.onClick( viewHolder , dataSet , adapterPosition)
         }
     }
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
-        var myViewHolder = ViewHolder(ItemListProductBinding.inflate(LayoutInflater.from(viewGroup.context),viewGroup,false))
-
-        return myViewHolder
+        return ViewHolder(ItemListProductBinding.inflate(LayoutInflater.from(viewGroup.context),viewGroup,false))
     }
     // Replace the contents of a view (invoked by the layout manager)
     @SuppressLint("SetTextI18n")
@@ -34,18 +31,20 @@ class RecyclerOrderAdapter (private val dataSet: ArrayList<OrderModel> ,
         // contents of the view with that element
 
         viewHolder.binding.tvItemName.text  = dataSet[position].title
-        viewHolder.binding.tvItemPrice.text = "$${dataSet[position].totalAmount}"
+        viewHolder.binding.tvItemPrice.text = "$${dataSet[position].price}"
         Picasso.get().load(dataSet[position].image).into(viewHolder.binding.ivItemImage)
+
+        viewHolder.binding.ibDeleteProduct.visibility = View.INVISIBLE
 
         // Invisible delete button
         viewHolder.binding.ibDeleteProduct.visibility = View.INVISIBLE
 
-        viewHolder.initialize( viewHolder , dataSet[position], onClick)
+        viewHolder.initialize( viewHolder ,dataSet[position], onClick)
     }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
-    interface OnClickOrder{
-        fun onClick( viewHolder : ViewHolder , dataSet: OrderModel , position: Int)
+    interface OnClickSoldProduct{
+        fun onClick(viewHolder : ViewHolder, dataSet: SoldProductModel , position: Int)
     }
 }

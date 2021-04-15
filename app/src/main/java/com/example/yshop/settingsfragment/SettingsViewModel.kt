@@ -44,6 +44,7 @@ class SettingsViewModel : ViewModel() {
     var firebaseAuth = FirebaseAuth.getInstance()
     fun signOut( context: Context , view : View){
         var alert = AlertDialog.Builder(context)
+        alert.setIcon(R.drawable.ic_launcher_foreground)
         alert.setTitle("are you want log out")
         alert.setMessage("will you want sign out click on 'Logout'")
         alert.setPositiveButton("yes"){dialog, which ->

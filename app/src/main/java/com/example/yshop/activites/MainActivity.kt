@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(setOf( R.id.dashBoardFragment,
             R.id.productsFragment,
-            R.id.ordersFragment))
+            R.id.ordersFragment ,
+            R.id.soldProductFragment))
 
         setupActionBarWithNavController(navController , appBarConfiguration)
 
@@ -51,9 +52,10 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id){
 
-                R.id.dashBoardFragment  -> binding.bottomNavigation.visibility = View.VISIBLE
-                R.id.productsFragment   -> binding.bottomNavigation.visibility = View.VISIBLE
-                R.id.ordersFragment     -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.dashBoardFragment       -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.productsFragment        -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.ordersFragment          -> binding.bottomNavigation.visibility = View.VISIBLE
+                R.id.soldProductFragment     -> binding.bottomNavigation.visibility = View.VISIBLE
 
                 else -> binding.bottomNavigation.visibility = View.INVISIBLE
             }
@@ -74,6 +76,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.addressListFragment            -> supportActionBar?.hide()
                 R.id.addEditAddressFragment         -> supportActionBar?.hide()
                 R.id.checkOutFragment               -> supportActionBar?.hide()
+                R.id.orderDetailsFragment           -> supportActionBar?.hide()
+                R.id.soldProductDetailsFragment     -> supportActionBar?.hide()
 
                 else -> supportActionBar?.show()
 

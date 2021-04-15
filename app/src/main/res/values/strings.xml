@@ -154,7 +154,7 @@
 
     <string name="no_orders_placed_yet">No orders placed yet!</string>
 
-    <string name="title_my_order_details">MY ORDER DETAILS</string>
+    <string name="title_my_order_details">My Order Details</string>
     <string name="order_details_lbl">Order Details</string>
     <string name="order_details_lbl_order_id">Order ID</string>
     <string name="order_details_lbl_order_date">Order Date</string>

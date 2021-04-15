@@ -4,6 +4,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.createDataStore
@@ -100,8 +101,8 @@ class LogInViewModel : ViewModel() {
                         // Hide the progressDialog
                         OptionBuilder.hideProgressDialog()
 
-                        // Show snackBar for success message
-                        OptionBuilder.showErrorSnackBar(context.getString(R.string.login_successful),false , context, view )
+                        // Show toast for success message
+                        Toast.makeText( context , context.getString(R.string.login_successful) , Toast.LENGTH_SHORT).show()
 
                     userReference.child(firebaseAuth.currentUser?.uid.toString()).addValueEventListener( object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {

@@ -78,6 +78,14 @@ object Constants {
     // Orders Reference
     const val ORDER_REF = "order"
 
+    const val EXTRA_MY_ORDER_DETAILS: String = "extra_my_order_details"
+
+    const val EXTRA_SOLD_PRODUCT_DETAILS: String = "extra_sold_product_details"
+
+
+    // Sold Product Reference
+   const val SOLD_PRODUCT_REF : String = "soldProduct"
+
 
     // getUserID function
     fun getCurrentUser() : String{

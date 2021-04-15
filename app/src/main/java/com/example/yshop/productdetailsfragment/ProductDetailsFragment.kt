@@ -1,6 +1,7 @@
 package com.example.yshop.productdetailsfragment
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,13 +25,15 @@ class ProductDetailsFragment : Fragment() {
     private val productDetailsViewModel : ProductDetailsViewModel by viewModels()
     val product                         : ProductDetailsFragmentArgs by navArgs()
     // A global variable for product id.
-    var mProductId : String = ""
+    private var mProductId      : String = ""
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentProductDetailsBinding.inflate(inflater)
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -61,7 +64,7 @@ class ProductDetailsFragment : Fragment() {
 
 
         // Check entry to product details from dashboard by extra user id key pass from product fragment by bundle
-        var productOwnerId : String = ""
+        var productOwnerId  : String = ""
         if(arguments?.containsKey(Constants.EXTRA_PRODUCT_OWNER_ID) == true){
             productOwnerId = arguments?.getString(Constants.EXTRA_PRODUCT_OWNER_ID).toString()
 
