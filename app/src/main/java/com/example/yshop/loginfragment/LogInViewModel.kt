@@ -2,6 +2,7 @@ package com.example.yshop.loginfragment
 import android.content.Context
 import android.text.TextUtils
 import android.view.View
+import android.view.animation.Animation
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -96,7 +97,7 @@ class LogInViewModel : ViewModel() {
             // Log-In using firebase authentication
             firebaseAuth.signInWithEmailAndPassword(email , password).addOnCompleteListener {
                 if(it.isSuccessful){
-                    if(firebaseAuth.currentUser?.isEmailVerified!!){
+                    //if(firebaseAuth.currentUser?.isEmailVerified!!){
 
                         // Hide the progressDialog
                         OptionBuilder.hideProgressDialog()
@@ -122,6 +123,7 @@ class LogInViewModel : ViewModel() {
 
                             if(profileComplete.toInt() == 0){
                                 Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_userCompleteProfileFragment)
+
                             }else if(profileComplete.toInt() == 1){
                                 try{
                                     Navigation.findNavController(view).navigate(R.id.action_logInFragment_to_dashBoardFragment)
@@ -137,15 +139,15 @@ class LogInViewModel : ViewModel() {
                         }
                     })
 
-                    }else{
-
-                        // Hide the progressDialog
-                        OptionBuilder.hideProgressDialog()
-
-                        // if user not emailVerified   show error message
-                        OptionBuilder.showErrorSnackBar(context.getString(R.string.err_email_not_confirm) , true , context, view )
-
-                    }
+//                    }else{
+//
+//                        // Hide the progressDialog
+//                        OptionBuilder.hideProgressDialog()
+//
+//                        // if user not emailVerified   show error message
+//                        OptionBuilder.showErrorSnackBar(context.getString(R.string.err_email_not_confirm) , true , context, view )
+//
+//                    }
 
                 }else{
 

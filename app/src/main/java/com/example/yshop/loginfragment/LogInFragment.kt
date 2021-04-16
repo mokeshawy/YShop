@@ -1,5 +1,6 @@
 package com.example.yshop.loginfragment
 
+import android.animation.Animator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,6 +46,7 @@ class LogInFragment : Fragment() {
         // go forget password page
         binding.tvForgetPasswordId.setOnClickListener {
             logInViewModel.goForgetPassPage(view)
+
         }
 
         // go register page

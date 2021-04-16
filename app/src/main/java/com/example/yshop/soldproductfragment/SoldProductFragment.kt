@@ -13,6 +13,7 @@ import com.example.yshop.adapter.RecyclerSoldProductAdapter
 import com.example.yshop.databinding.FragmentSoldProductBinding
 import com.example.yshop.model.SoldProductModel
 import com.example.yshop.utils.Constants
+import com.example.yshop.utils.OptionBuilder
 
 class SoldProductFragment : Fragment() , RecyclerSoldProductAdapter.OnClickSoldProduct {
 
@@ -33,9 +34,12 @@ class SoldProductFragment : Fragment() , RecyclerSoldProductAdapter.OnClickSoldP
 
 
 
+        OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
+        // Show data from soldProduct reference
         soldProductViewModel.getSoldProductList( binding.rvSoldProductItems , binding.tvNoSoldProductsFound)
         soldProductViewModel.mSoldProduct.observe(viewLifecycleOwner , Observer {
             binding.rvSoldProductItems.adapter = RecyclerSoldProductAdapter( it , this)
+            OptionBuilder.hideProgressDialog()
         })
 
 
@@ -43,7 +47,6 @@ class SoldProductFragment : Fragment() , RecyclerSoldProductAdapter.OnClickSoldP
 
 
     override fun onClick(viewHolder: RecyclerSoldProductAdapter.ViewHolder, dataSet: SoldProductModel, position: Int) {
-
         viewHolder.itemView.setOnClickListener {
             var bundle = Bundle()
             bundle.putSerializable( Constants.EXTRA_SOLD_PRODUCT_DETAILS , dataSet)

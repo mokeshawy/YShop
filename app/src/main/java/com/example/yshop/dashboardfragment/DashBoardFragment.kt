@@ -18,7 +18,7 @@ import com.example.yshop.utils.OptionBuilder
 class DashBoardFragment : Fragment() , RecyclerDashBoardAdapter.OnClickProduct{
 
     lateinit var binding    : FragmentDashBoardBinding
-    val dashBoardViewModel  : DashBoardFragmentViewModel by viewModels()
+    private val dashBoardViewModel  : DashBoardFragmentViewModel by viewModels()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentDashBoardBinding.inflate(inflater)

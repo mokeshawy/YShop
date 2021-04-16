@@ -15,6 +15,7 @@ import com.example.yshop.databinding.FragmentOrdersBinding
 import com.example.yshop.model.CartItemModel
 import com.example.yshop.model.OrderModel
 import com.example.yshop.utils.Constants
+import com.example.yshop.utils.OptionBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -37,9 +38,11 @@ class OrdersFragment : Fragment() , RecyclerOrderAdapter.OnClickOrder{
         binding.lifecycleOwner    = this
         binding.ordersVarModel    = ordersViewModel
 
+        OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
         ordersViewModel.getMyOrderList( binding.rvMyOrderItems , binding.tvNoOrdersFound)
         ordersViewModel.mOrderList.observe(viewLifecycleOwner , Observer {
             binding.rvMyOrderItems.adapter = RecyclerOrderAdapter(it , this)
+            OptionBuilder.hideProgressDialog()
         })
     }
 

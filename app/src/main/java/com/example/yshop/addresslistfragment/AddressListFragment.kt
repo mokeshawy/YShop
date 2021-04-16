@@ -1,21 +1,15 @@
 package com.example.yshop.addresslistfragment
 
-import android.app.Activity.RESULT_OK
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
-import com.example.yshop.activites.MainActivity
 import com.example.yshop.adapter.RecyclerAddressAdapter
-import com.example.yshop.addeditaddressfragment.AddEditAddressFragment
-import com.example.yshop.addeditaddressfragment.AddEditAddressFragmentDirections
 import com.example.yshop.databinding.FragmentAddressListBinding
 import com.example.yshop.model.AddressModel
 import com.example.yshop.utils.Constants
@@ -25,8 +19,9 @@ class AddressListFragment : Fragment() , RecyclerAddressAdapter.OnClickAddressLi
     lateinit var binding                : FragmentAddressListBinding
     private val addressListViewModel    : AddressListViewModel by viewModels()
     private var mSelectedAddress        : Boolean = false
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentAddressListBinding.inflate(inflater)
         return binding.root
@@ -48,13 +43,25 @@ class AddressListFragment : Fragment() , RecyclerAddressAdapter.OnClickAddressLi
         if( arguments?.containsKey(Constants.EXTRA_ADDRESS_DETAILS) == true){
             mSelectedAddress = arguments?.getBoolean(Constants.EXTRA_ADDRESS_DETAILS , false) as Boolean
         }
+
         // Check entry from add cart list to address list
         if(mSelectedAddress){
             // When entry from add cart will back to cart list again
             binding.toolbarAddressListFragment.setNavigationOnClickListener {
                 findNavController().navigate(R.id.action_addressListFragment_to_cartListFragment)
             }
+
+            // Button for go add new address GONE when user entry select address from add cart fragment
+            binding.tvAddAddress.visibility = View.GONE
             binding.tvTitle.text = resources.getString(R.string.title_select_address)
+
+        }else{
+
+            // Button for go add new address entry from setting page
+            binding.tvAddAddress.setOnClickListener {
+                findNavController().navigate(R.id.action_addressListFragment_to_addEditAddressFragment)
+            }
+
         }
 
         // Show list address from firebase database
@@ -63,11 +70,6 @@ class AddressListFragment : Fragment() , RecyclerAddressAdapter.OnClickAddressLi
             binding.rvAddressList.adapter = RecyclerAddressAdapter(it , this)
 
         })
-
-        // Button for go add new address 
-        binding.tvAddAddress.setOnClickListener {
-           findNavController().navigate(R.id.action_addressListFragment_to_addEditAddressFragment)
-        }
 
 
     }

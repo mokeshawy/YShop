@@ -14,6 +14,7 @@ import com.example.yshop.databinding.FragmentOrderDetailsBinding
 import com.example.yshop.model.CartItemModel
 import com.example.yshop.model.OrderModel
 import com.example.yshop.utils.Constants
+import com.example.yshop.utils.OptionBuilder
 
 class OrderDetailsFragment : Fragment() , RecyclerCartListAdapter.OnClickCartList{
 
@@ -54,9 +55,11 @@ class OrderDetailsFragment : Fragment() , RecyclerCartListAdapter.OnClickCartLis
             binding.tvOrderDetailsShippingCharge ,
             binding.tvOrderDetailsTotalAmount)
 
+        OptionBuilder.showProgressDialog(resources.getString(R.string.please_wait) , requireActivity())
         // Show data from cart items
         orderDetailsViewModel.cartListAdapter.observe(viewLifecycleOwner , Observer {
             binding.rvMyOrderItemsList.adapter = RecyclerCartListAdapter( it , this , false)
+            OptionBuilder.hideProgressDialog()
         })
     }
 
