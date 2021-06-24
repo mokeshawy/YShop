@@ -8,6 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.yshop.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashFragment : Fragment() {
 
@@ -22,19 +26,10 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        // open the main activity after splash fragment
-        @Suppress("DEPRECATION")
-        Handler().postDelayed(
-                {
-                    // Launch the main activity
-                    try{
-                        findNavController().navigate(R.id.action_splashFragment_to_logInFragment)
-                    }catch (e:Exception){
-
-                    }
-                    // Call this when your activity is done and should be closed
-                },2500
-        )
+        // open the main activity after splash fragment.
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(1500)
+            findNavController().navigate(R.id.action_splashFragment_to_logInFragment)
+        }
     }
-
 }

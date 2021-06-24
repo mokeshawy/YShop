@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.Navigation
@@ -39,7 +38,7 @@ class UserCompleteProfileViewMode : ViewModel() {
     }
 
     // fun validate data entry mobileNumber
-    fun validateInput(context: Context, view : View) : Boolean {
+    private fun validateInput(context: Context, view : View) : Boolean {
         return when {
 
             TextUtils.isEmpty(etFirstName.value!!.trim { it <=' ' }) ->{
@@ -70,16 +69,16 @@ class UserCompleteProfileViewMode : ViewModel() {
             // Show progressDialog
             OptionBuilder.showProgressDialog(context.resources.getString(R.string.please_wait),context)
 
-            var refStorage : StorageReference = myStorage.child("Photo/"+Constants.USER_PROFILE_IMAGE+System.currentTimeMillis())
+            val refStorage : StorageReference = myStorage.child("Photo/"+Constants.USER_PROFILE_IMAGE+System.currentTimeMillis())
             refStorage.putFile(imageUri).addOnCompleteListener { saveImage ->
                 if(saveImage.isSuccessful){
                     OptionBuilder.hideProgressDialog()
                     refStorage.downloadUrl.addOnSuccessListener { downloadImage ->
 
-                        var map = HashMap<String , Any>()
+                        val map = HashMap<String , Any>()
 
                         // Check radioButton
-                        var gender = if(radioButton.isChecked){
+                        val gender = if(radioButton.isChecked){
                             Constants.MALE
                         }else{
                             Constants.FEMALE

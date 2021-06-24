@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_splashFragment_to_logInFragment"
             app:destination="@id/logInFragment"
-            app:enterAnim="@anim/from_right"
+            app:enterAnim="@android:anim/fade_in"
             app:popUpTo="@id/nav_graph" />
     </fragment>
 
@@ -79,7 +79,7 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
-            app:enterAnim="@anim/from_right"
+            app:enterAnim="@android:anim/fade_in"
             app:popUpTo="@id/dashBoardFragment" />
         <action
             android:id="@+id/action_dashBoardFragment_to_productDetailsFragment"
@@ -125,7 +125,7 @@
         <action
             android:id="@+id/action_settingsFragment_to_dashBoardFragment"
             app:destination="@id/dashBoardFragment"
-            app:enterAnim="@anim/from_left"
+            app:enterAnim="@android:anim/fade_out"
             app:popUpTo="@id/nav_graph" />
         <action
             android:id="@+id/action_settingsFragment_to_userCompleteProfileFragment"

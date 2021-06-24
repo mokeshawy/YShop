@@ -73,17 +73,12 @@ class LogInViewModel : ViewModel() {
 
     // Connect whit authentication firebase
     var firebaseAuth = FirebaseAuth.getInstance()
-    // Connect whit fireStore
-     val mFireStore = FirebaseFirestore.getInstance()
 
-    var firebaseDatabase = FirebaseDatabase.getInstance()
-    var userReference = firebaseDatabase.getReference(Constants.USERS)
+    var firebaseDatabase    = FirebaseDatabase.getInstance()
+    var userReference       = firebaseDatabase.getReference(Constants.USERS)
 
     // Fun logIn
     fun userLogIn(context: Context , view: View ){
-
-        // get object form UserModel
-        var user = UserModel()
 
         // check validate function if the entries are valid or no
         if(validateInput(context , view)){
@@ -108,13 +103,13 @@ class LogInViewModel : ViewModel() {
                     userReference.child(firebaseAuth.currentUser?.uid.toString()).addValueEventListener( object : ValueEventListener{
                         override fun onDataChange(snapshot: DataSnapshot) {
 
-                            var firstName       = snapshot.child(Constants.FIRST_NAME_KEY).value.toString()
-                            var lastName        = snapshot.child(Constants.LAST_NAME_KEY).value.toString()
-                            var gender          = snapshot.child(Constants.USER_GENDER_KEY).value.toString()
-                            var userEmail       = snapshot.child(Constants.USER_EMAIL_KEY).value.toString()
-                            var mobile          = snapshot.child(Constants.USER_MOBILE_KEY).value.toString()
-                            var image           = snapshot.child(Constants.USER_IMAGE_KEY).value.toString()
-                            var profileComplete = snapshot.child(Constants.USER_COMPLETE_PROFILE).value.toString()
+                            val firstName       = snapshot.child(Constants.FIRST_NAME_KEY).value.toString()
+                            val lastName        = snapshot.child(Constants.LAST_NAME_KEY).value.toString()
+                            val gender          = snapshot.child(Constants.USER_GENDER_KEY).value.toString()
+                            val userEmail       = snapshot.child(Constants.USER_EMAIL_KEY).value.toString()
+                            val mobile          = snapshot.child(Constants.USER_MOBILE_KEY).value.toString()
+                            val image           = snapshot.child(Constants.USER_IMAGE_KEY).value.toString()
+                            val profileComplete = snapshot.child(Constants.USER_COMPLETE_PROFILE).value.toString()
 
                                 dataStore = context.createDataStore(Constants.DATA_STORE_NAME)
                                 viewModelScope.launch {
@@ -130,7 +125,6 @@ class LogInViewModel : ViewModel() {
                                 }catch (e:Exception){
 
                                 }
-
                             }
                         }
 
@@ -182,7 +176,7 @@ class LogInViewModel : ViewModel() {
             dataPref[preferencesKey<String>(Constants.USER_EMAIL_KEY)]      = userEmail
             dataPref[preferencesKey<String>(Constants.USER_MOBILE_KEY)]     = mobile
             dataPref[preferencesKey<String>(Constants.USER_IMAGE_KEY)]      = image
-            dataPref[preferencesKey<String>(Constants.USER_COMPLETE_PROFILE)]    = profileComplete.toString()
+            dataPref[preferencesKey<String>(Constants.USER_COMPLETE_PROFILE)] = profileComplete.toString()
         }
     }
 }

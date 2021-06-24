@@ -32,10 +32,10 @@ class SettingsViewModel : ViewModel() {
                  ivUserImage : ImageView){
 
         viewModelScope.launch {
-            tvFirstLastName.text = "${ DataStoreRepository(context).showFirstName(Constants.FIRST_NAME_KEY)} ${DataStoreRepository(context).showLastName(Constants.LAST_NAME_KEY)}"
-            tvGender.text = DataStoreRepository(context).showGender(Constants.USER_GENDER_KEY)
-            tvEmail.text = DataStoreRepository(context).showUserEmail(Constants.USER_EMAIL_KEY)
-            tvMobile.text = DataStoreRepository(context).showMobile(Constants.USER_MOBILE_KEY).toString()
+            tvFirstLastName.text    = "${ DataStoreRepository(context).showFirstName(Constants.FIRST_NAME_KEY)} ${DataStoreRepository(context).showLastName(Constants.LAST_NAME_KEY)}"
+            tvGender.text           = DataStoreRepository(context).showGender(Constants.USER_GENDER_KEY)
+            tvEmail.text            = DataStoreRepository(context).showUserEmail(Constants.USER_EMAIL_KEY)
+            tvMobile.text           = DataStoreRepository(context).showMobile(Constants.USER_MOBILE_KEY).toString()
             Picasso.get().load(DataStoreRepository(context).showUserImage(Constants.USER_IMAGE_KEY)).into(ivUserImage)
         }
 

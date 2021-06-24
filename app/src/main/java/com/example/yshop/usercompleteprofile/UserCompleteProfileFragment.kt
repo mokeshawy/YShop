@@ -31,7 +31,7 @@ import java.io.IOException
 class UserCompleteProfileFragment : Fragment() {
 
     lateinit var binding            : FragmentUserCompleteProfileBinding
-    val userCompleteProfileViewMode : UserCompleteProfileViewMode by viewModels()
+   private val userCompleteProfileViewMode : UserCompleteProfileViewMode by viewModels()
     lateinit var imageUri           : Uri
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -82,7 +82,7 @@ class UserCompleteProfileFragment : Fragment() {
         // If the profile is incomplete then user is from login screen and wants to complete the profile.
         CoroutineScope(Dispatchers.Main).async {
 
-            var profileComplete = DataStoreRepository(requireActivity()).showProfileComplete(Constants.USER_COMPLETE_PROFILE).toString()
+            val profileComplete = DataStoreRepository(requireActivity()).showProfileComplete(Constants.USER_COMPLETE_PROFILE).toString()
 
             if( profileComplete.toInt() == 0 ){
                 binding.tvTitleId.text = resources.getString(R.string.title_complete_profile)
