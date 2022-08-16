@@ -6,7 +6,7 @@
     <data>
         <variable
             name="productVarModel"
-            type="com.example.yshop.productdetailsfragment.ProductDetailsViewModel" />
+            type="com.example.yshop.feature.productdetailsfragment.domain.viewmodel.ProductDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,7 +75,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/iv_product_detail_image">
 
-                    <com.example.yshop.utils.MSPTextViewBold
+                    <com.example.yshop.core.utils.MSPTextViewBold
                         android:id="@+id/tv_product_details_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
                         android:textSize="@dimen/product_details_title_textSize"
                         tools:text="Product Title" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_product_details_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                         tools:text="$100" />
                 </LinearLayout>
 
-                <com.example.yshop.utils.MSPTextViewBold
+                <com.example.yshop.core.utils.MSPTextViewBold
                     android:id="@+id/tv_product_details_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ll_product_details_title_price" />
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:id="@+id/tv_product_details_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_product_details_description">
 
-                    <com.example.yshop.utils.MSPTextViewBold
+                    <com.example.yshop.core.utils.MSPTextViewBold
                         android:id="@+id/tv_name_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                         android:textColor="@color/item_value_text_color"
                         android:textSize="@dimen/product_details_label_textSize" />
 
-                    <com.example.yshop.utils.MSPTextViewBold
+                    <com.example.yshop.core.utils.MSPTextViewBold
                         android:id="@+id/tv_product_details_stock_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ll_product_details_quantity">
 
-                    <com.example.yshop.utils.MSPTextViewBold
+                    <com.example.yshop.core.utils.MSPTextViewBold
                         android:id="@+id/tv_name_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                         android:textColor="@color/item_value_text_color"
                         android:textSize="@dimen/product_details_label_textSize" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_name_add_product"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
                         tools:text="name" />
                 </LinearLayout>
 
-                <com.example.yshop.utils.MSPButton
+                <com.example.yshop.core.utils.MSPButton
                     android:id="@+id/btn_add_to_cart"
                     android:layout_width="@dimen/button_width_size"
                     android:layout_height="@dimen/button_height_size"
@@ -208,7 +208,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ll_name_add_product"
                     tools:visibility="visible" />
 
-                <com.example.yshop.utils.MSPButton
+                <com.example.yshop.core.utils.MSPButton
                     android:id="@+id/btn_go_to_cart"
                     android:layout_width="@dimen/button_width_size"
                     android:layout_height="@dimen/button_height_size"

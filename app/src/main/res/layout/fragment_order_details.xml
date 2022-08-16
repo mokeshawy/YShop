@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderDetailsVarModel"
-            type="com.example.yshop.orderdetailsfragment.OrderDetailsViewModel" />
+            type="com.example.yshop.feature.orderdetailsfragment.domain.viewmodel.OrderDetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/my_order_details_content_marginStartEnd"
@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -87,7 +87,7 @@
                             android:textColor="@color/colorDarkGrey"
                             android:textSize="@dimen/my_order_details_label_value_textSize" />
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:id="@+id/tv_order_details_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -110,7 +110,7 @@
                             android:textColor="@color/colorDarkGrey"
                             android:textSize="@dimen/my_order_details_label_value_textSize" />
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:id="@+id/tv_order_details_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -133,7 +133,7 @@
                             android:textColor="@color/colorDarkGrey"
                             android:textSize="@dimen/my_order_details_label_value_textSize" />
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:id="@+id/tv_order_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/my_order_details_content_marginStartEnd"
@@ -162,7 +162,7 @@
                     android:layout_height="wrap_content"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/my_order_details_content_marginStartEnd"
@@ -185,7 +185,7 @@
                     android:paddingEnd="@dimen/my_order_details_content_paddingStartEnd"
                     android:paddingBottom="@dimen/my_order_details_content_paddingTopBottom">
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_my_order_details_address_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -196,7 +196,7 @@
                         android:textStyle="bold"
                         tools:text="Home" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_my_order_details_full_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
                         android:textSize="@dimen/item_address_name_textSize"
                         tools:text="Mohamed Keshawy" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_my_order_details_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -213,7 +213,7 @@
                         android:textSize="@dimen/address_details_textSize"
                         tools:text="XYZ" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_my_order_details_additional_note"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                         android:textSize="@dimen/address_details_textSize"
                         tools:text="XYZ" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_my_order_details_other_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
                         android:textSize="@dimen/address_details_textSize"
                         tools:text="XYZ" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_my_order_details_mobile_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -241,7 +241,7 @@
                         tools:text="+2 01007169654" />
                 </LinearLayout>
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/my_order_details_content_marginStartEnd"
@@ -266,7 +266,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -274,7 +274,7 @@
                             android:textColor="@color/colorDarkGrey"
                             android:textSize="@dimen/my_order_details_label_value_textSize" />
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:id="@+id/tv_order_details_sub_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -289,7 +289,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -297,7 +297,7 @@
                             android:textColor="@color/colorDarkGrey"
                             android:textSize="@dimen/my_order_details_label_value_textSize" />
 
-                        <com.example.yshop.utils.MSPTextViewRegular
+                        <com.example.yshop.core.utils.MSPTextViewRegular
                             android:id="@+id/tv_order_details_shipping_charge"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -312,7 +312,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.example.yshop.utils.MSPTextViewBold
+                        <com.example.yshop.core.utils.MSPTextViewBold
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -320,7 +320,7 @@
                             android:textColor="@color/colorDarkGrey"
                             android:textSize="@dimen/my_order_details_label_value_textSize" />
 
-                        <com.example.yshop.utils.MSPTextViewBold
+                        <com.example.yshop.core.utils.MSPTextViewBold
                             android:id="@+id/tv_order_details_total_amount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -342,7 +342,7 @@
                     android:paddingTop="@dimen/my_order_details_content_lbl_padding"
                     android:paddingBottom="@dimen/my_order_details_content_lbl_padding">
 
-                    <com.example.yshop.utils.MSPTextViewBold
+                    <com.example.yshop.core.utils.MSPTextViewBold
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/my_order_details_content_marginStartEnd"
@@ -351,7 +351,7 @@
                         android:textColor="@color/item_value_text_color"
                         android:textSize="@dimen/lbl_order_details_textSize" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/my_order_details_content_marginStartEnd"

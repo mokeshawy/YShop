@@ -6,7 +6,7 @@
     <data>
         <variable
             name="userCompleteProfileVarMode"
-            type="com.example.yshop.usercompleteprofile.UserCompleteProfileViewMode" />
+            type="com.example.yshop.feature.usercompleteprofile.domain.viewmodel.UserCompleteProfileViewMode" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,7 +107,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/iv_user_photoId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_first_nameId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -131,7 +131,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_first_nameId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_last_nameId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/til_last_nameId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_emailId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -178,7 +178,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/til_emailId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_mobile_numberId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -203,7 +203,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/til_mobile_numberId">
 
-                    <com.example.yshop.utils.MSPRadioButton
+                    <com.example.yshop.core.utils.MSPRadioButton
                         android:id="@+id/rb_maleId"
                         android:layout_width="@dimen/profile_radio_button_width"
                         android:layout_height="@dimen/profile_radio_button_height"
@@ -216,7 +216,7 @@
                         android:text="@string/rb_lbl_male"
                         android:textColor="@drawable/drawable_gender_tab_text_color_selector" />
 
-                    <com.example.yshop.utils.MSPRadioButton
+                    <com.example.yshop.core.utils.MSPRadioButton
                         android:id="@+id/rb_femaleId"
                         android:layout_width="@dimen/profile_radio_button_width"
                         android:layout_height="@dimen/profile_radio_button_height"
@@ -228,7 +228,7 @@
                         android:textColor="@drawable/drawable_gender_tab_text_color_selector" />
                 </RadioGroup>
 
-                <com.example.yshop.utils.MSPButton
+                <com.example.yshop.core.utils.MSPButton
                     android:id="@+id/btn_submitId"
                     android:layout_width="@dimen/button_width_size"
                     android:layout_height="@dimen/button_height_size"

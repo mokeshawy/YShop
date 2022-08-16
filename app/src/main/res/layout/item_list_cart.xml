@@ -43,7 +43,7 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_cart_item_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.example.yshop.utils.MSPTextViewBold
+                <com.example.yshop.core.utils.MSPTextViewBold
                     android:id="@+id/tv_cart_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                         android:padding="@dimen/ib_cart_item_padding"
                         android:src="@drawable/ic_vector_remove" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/tv_cart_quantity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

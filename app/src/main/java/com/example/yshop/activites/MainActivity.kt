@@ -22,7 +22,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.yshop.R
 import com.example.yshop.databinding.ActivityMainBinding
-import com.example.yshop.utils.OptionBuilder
+import com.example.yshop.core.utils.OptionBuilder
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.grpc.InternalChannelz.id
 

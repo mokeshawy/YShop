@@ -6,7 +6,7 @@
     <data>
         <variable
             name="registerVarViewModel"
-            type="com.example.yshop.registerfragment.RegisterViewModel" />
+            type="com.example.yshop.feature.registerfragment.domain.viewmodel.RegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.example.yshop.utils.MSPTextViewBold
+            <com.example.yshop.core.utils.MSPTextViewBold
                 android:id="@+id/tv_titleId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -65,7 +65,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_first_nameId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_first_nameId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_last_nameId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/til_last_nameId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_emailId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/til_emailId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_passwordId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/til_passwordId">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_confirm_passwordId"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                         android:layout_width="33dp"
                         android:layout_height="32dp" />
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/txt_terms_condition_marginStart"
@@ -203,7 +203,7 @@
                         android:textSize="@dimen/txt_terms_and_condition_textSize" />
                 </LinearLayout>
 
-                <com.example.yshop.utils.MSPButton
+                <com.example.yshop.core.utils.MSPButton
                     android:id="@+id/btn_registerId"
                     android:layout_width="@dimen/button_width_size"
                     android:layout_height="@dimen/button_height_size"
@@ -232,7 +232,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_registerId">
 
-                    <com.example.yshop.utils.MSPTextViewRegular
+                    <com.example.yshop.core.utils.MSPTextViewRegular
                         android:id="@+id/already_have_an_account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -242,7 +242,7 @@
                         android:textColor="@color/colorSecondaryText"
                         android:textSize="@dimen/lbl_text_view_textSize" />
 
-                    <com.example.yshop.utils.MSPTextViewBold
+                    <com.example.yshop.core.utils.MSPTextViewBold
                         android:id="@+id/tv_loginId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

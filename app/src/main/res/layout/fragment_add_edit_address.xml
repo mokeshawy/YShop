@@ -6,13 +6,13 @@
     <data>
         <variable
             name="addEditAddressVarModel"
-            type="com.example.yshop.addeditaddressfragment.AddEditAddressViewModel" />
+            type="com.example.yshop.feature.addeditaddressfragment.domain.viewmodel.AddEditAddressViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".addeditaddressfragment.AddEditAddressFragment">
+        tools:context=".feature.addeditaddressfragment.presentation.AddEditAddressFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_add_edit_address_fragment"
@@ -66,7 +66,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_full_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_full_name">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_phone_number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_phone_number">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_address">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_zip_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_zip_code">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_additional_note"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/til_additional_note">
 
-                    <com.example.yshop.utils.MSPRadioButton
+                    <com.example.yshop.core.utils.MSPRadioButton
                         android:id="@+id/rb_home"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/add_edit_address_radio_button_height"
@@ -208,7 +208,7 @@
                         android:textColor="@drawable/drawable_gender_tab_text_color_selector"
                         android:textStyle="bold" />
 
-                    <com.example.yshop.utils.MSPRadioButton
+                    <com.example.yshop.core.utils.MSPRadioButton
                         android:id="@+id/rb_office"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/add_edit_address_radio_button_height"
@@ -222,7 +222,7 @@
                         android:textColor="@drawable/drawable_gender_tab_text_color_selector"
                         android:textStyle="bold" />
 
-                    <com.example.yshop.utils.MSPRadioButton
+                    <com.example.yshop.core.utils.MSPRadioButton
                         android:id="@+id/rb_other"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/add_edit_address_radio_button_height"
@@ -251,7 +251,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rg_type">
 
-                    <com.example.yshop.utils.MSPEditText
+                    <com.example.yshop.core.utils.MSPEditText
                         android:id="@+id/et_other_details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -262,7 +262,7 @@
                         android:textSize="@dimen/et_textSize" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.example.yshop.utils.MSPButton
+                <com.example.yshop.core.utils.MSPButton
                     android:id="@+id/btn_submit_address"
                     android:layout_width="@dimen/button_width_size"
                     android:layout_height="@dimen/button_height_size"

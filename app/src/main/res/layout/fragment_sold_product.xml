@@ -6,7 +6,7 @@
     <data>
         <variable
             name="soldProductVarModel"
-            type="com.example.yshop.soldproductfragment.SoldProductViewModel" />
+            type="com.example.yshop.feature.soldproductfragment.domain.viewmodel.SoldProductViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

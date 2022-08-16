@@ -6,7 +6,7 @@
     <data>
         <variable
             name="dashBoardVarModel"
-            type="com.example.yshop.dashboardfragment.DashBoardFragmentViewModel" />
+            type="com.example.yshop.feature.dashboardfragment.domain.viewmodel.DashBoardFragmentViewModel" />
     </data>
 
     <ScrollView

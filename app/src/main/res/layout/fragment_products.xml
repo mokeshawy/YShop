@@ -6,7 +6,7 @@
     <data>
         <variable
             name="productsVarModel"
-            type="com.example.yshop.productsfargment.ProductsViewModel"/>
+            type="com.example.yshop.feature.productfragment.domain.viewmodel.ProductsViewModel"/>
     </data>
 
     <ScrollView

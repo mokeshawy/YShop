@@ -6,7 +6,7 @@
     <data>
         <variable
             name="settingsVarModel"
-            type="com.example.yshop.settingsfragment.SettingsViewModel" />
+            type="com.example.yshop.feature.settingsfragment.domain.viewmodel.SettingsViewModel" />
     </data>
 
     <ScrollView
@@ -78,7 +78,7 @@
 
             </FrameLayout>
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_edit_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/settings_edit_label_textSize"/>
 
-            <com.example.yshop.utils.MSPTextViewBold
+            <com.example.yshop.core.utils.MSPTextViewBold
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
                 android:textSize="@dimen/settings_name_textSize"
                 tools:text="Mohmed Keshwy" />
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                 android:textSize="@dimen/settings_info_textSize"
                 tools:text="Male"/>
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                 android:textSize="@dimen/settings_info_textSize"
                 tools:text="mokeshawy@gmail.com" />
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_mobile_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -150,7 +150,7 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/settings_address_padding">
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/settings_lbl_addresses_margin"
@@ -167,7 +167,7 @@
 
             </LinearLayout>
 
-            <com.example.yshop.utils.MSPButton
+            <com.example.yshop.core.utils.MSPButton
                 android:id="@+id/btn_logout"
                 android:layout_width="@dimen/button_width_size"
                 android:layout_height="@dimen/button_height_size"

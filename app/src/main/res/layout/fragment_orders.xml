@@ -6,7 +6,7 @@
     <data>
         <variable
             name="ordersVarModel"
-            type="com.example.yshop.ordersfragment.OrdersFragmentViewModel" />
+            type="com.example.yshop.feature.ordersfragment.domain.viewmodel.OrdersFragmentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <com.example.yshop.utils.MSPTextViewRegular
+        <com.example.yshop.core.utils.MSPTextViewRegular
             android:id="@+id/tv_no_orders_found"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

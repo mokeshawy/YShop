@@ -46,7 +46,7 @@
                 android:paddingEnd="@dimen/dashboard_item_paddingStartEnd"
                 android:paddingBottom="@dimen/dashboard_item_paddingTopBottom">
 
-                <com.example.yshop.utils.MSPTextViewBold
+                <com.example.yshop.core.utils.MSPTextViewBold
                     android:id="@+id/tv_dashboard_item_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                     android:textStyle="bold"
                     tools:text="Item Name" />
 
-                <com.example.yshop.utils.MSPTextViewRegular
+                <com.example.yshop.core.utils.MSPTextViewRegular
                     android:id="@+id/tv_dashboard_item_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

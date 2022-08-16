@@ -6,7 +6,7 @@
     <data>
         <variable
             name="addressListVarModel"
-            type="com.example.yshop.addresslistfragment.AddressListViewModel" />
+            type="com.example.yshop.feature.addresslistfragment.domain.viewmodel.AddressListViewModel" />
     </data>
 
     <ScrollView
@@ -42,7 +42,7 @@
 
             </androidx.appcompat.widget.Toolbar>
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_add_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_add_address" />
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_no_address_found"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".splashfragment.SplashFragment"
+    tools:context=".feature.splashfragment.presentation.SplashFragment"
     android:fillViewport="true"
     android:background="@drawable/app_gradinet_color_background">
 
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.499" />
 
-        <com.example.yshop.utils.MSPTextViewRegular
+        <com.example.yshop.core.utils.MSPTextViewRegular
             android:id="@+id/tvAppName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.0">
 
-        </com.example.yshop.utils.MSPTextViewRegular>
+        </com.example.yshop.core.utils.MSPTextViewRegular>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

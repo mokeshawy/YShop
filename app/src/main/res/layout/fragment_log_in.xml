@@ -6,7 +6,7 @@
    <data>
       <variable
           name="logInVarViewModel"
-          type="com.example.yshop.loginfragment.LogInViewModel" />
+          type="com.example.yshop.feature.loginfragment.domain.viewmodel.LogInViewModel" />
    </data>
 
    <ScrollView
@@ -53,7 +53,7 @@
 
          <!-- input text email -->
 
-         <com.example.yshop.utils.MSPTextViewRegular
+         <com.example.yshop.core.utils.MSPTextViewRegular
              android:id="@+id/tv_title"
              android:layout_width="match_parent"
              android:layout_height="45dp"
@@ -67,7 +67,7 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toTopOf="@+id/f1_header_image">
 
-         </com.example.yshop.utils.MSPTextViewRegular>
+         </com.example.yshop.core.utils.MSPTextViewRegular>
 
          <com.google.android.material.textfield.TextInputLayout
              android:id="@+id/til_emailId"
@@ -84,7 +84,7 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/tv_title">
 
-            <com.example.yshop.utils.MSPEditText
+            <com.example.yshop.core.utils.MSPEditText
                 android:id="@+id/et_emailId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/til_emailId">
 
-            <com.example.yshop.utils.MSPEditText
+            <com.example.yshop.core.utils.MSPEditText
                 android:id="@+id/et_passwordId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:textSize="@dimen/et_textSize" />
          </com.google.android.material.textfield.TextInputLayout>
 
-         <com.example.yshop.utils.MSPTextViewRegular
+         <com.example.yshop.core.utils.MSPTextViewRegular
              android:id="@+id/tv_forget_passwordId"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
@@ -136,7 +136,7 @@
              app:layout_constraintTop_toBottomOf="@id/til_passwordId" />
 
 
-         <com.example.yshop.utils.MSPButton
+         <com.example.yshop.core.utils.MSPButton
              android:id="@+id/btn_loginId"
              android:layout_width="@dimen/button_width_size"
              android:layout_height="@dimen/button_height_size"
@@ -165,7 +165,7 @@
              app:layout_constraintStart_toStartOf="parent"
              app:layout_constraintTop_toBottomOf="@+id/btn_loginId">
 
-            <com.example.yshop.utils.MSPTextViewRegular
+            <com.example.yshop.core.utils.MSPTextViewRegular
                 android:id="@+id/tv_don_t_have_an_accountId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/lbl_text_view_textSize" />
 
-            <com.example.yshop.utils.MSPTextViewBold
+            <com.example.yshop.core.utils.MSPTextViewBold
                 android:id="@+id/tv_registerId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

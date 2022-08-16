@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.yshop.splashfragment.SplashFragment"
+        android:name="com.example.yshop.feature.splashfragment.presentation.SplashFragment"
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_logInFragment"
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.example.yshop.loginfragment.LogInFragment"
+        android:name="com.example.yshop.feature.loginfragment.presentation.LogInFragment"
         tools:layout="@layout/fragment_log_in" >
         <action
             android:id="@+id/action_logInFragment_to_registerFragment"
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.yshop.registerfragment.RegisterFragment"
+        android:name="com.example.yshop.feature.registerfragment.presentation.RegisterFragment"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_logInFragment"
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordFragment"
-        android:name="com.example.yshop.forgetpasswordfragment.ForgetPasswordFragment"
+        android:name="com.example.yshop.feature.forgetpasswordfragment.presentation.ForgetPasswordFragment"
         tools:layout="@layout/fragment_forget_password" >
         <action
             android:id="@+id/action_forgetPasswordFragment_to_logInFragment"
@@ -62,7 +62,7 @@
     </fragment>
     <fragment
         android:id="@+id/userCompleteProfileFragment"
-        android:name="com.example.yshop.usercompleteprofile.UserCompleteProfileFragment"
+        android:name="com.example.yshop.feature.usercompleteprofile.presentation.UserCompleteProfileFragment"
         tools:layout="@layout/fragment_user_complete_profile" >
         <action
             android:id="@+id/action_userCompleteProfileFragment_to_logInFragment"
@@ -73,7 +73,7 @@
 
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="com.example.yshop.dashboardfragment.DashBoardFragment"
+        android:name="com.example.yshop.feature.dashboardfragment.presentation.DashBoardFragment"
         android:label="Dashboard"
         tools:layout="@layout/fragment_dash_board" >
         <action
@@ -94,7 +94,7 @@
 
     <fragment
         android:id="@+id/productsFragment"
-        android:name="com.example.yshop.productsfargment.ProductsFragment"
+        android:name="com.example.yshop.feature.productfragment.presentation.ProductsFragment"
         android:label="Products"
         tools:layout="@layout/fragment_products" >
         <action
@@ -110,7 +110,7 @@
 
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.example.yshop.ordersfragment.OrdersFragment"
+        android:name="com.example.yshop.feature.ordersfragment.presentation.OrdersFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_orders" >
         <action
@@ -120,7 +120,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.yshop.settingsfragment.SettingsFragment"
+        android:name="com.example.yshop.feature.settingsfragment.presentation.SettingsFragment"
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_dashBoardFragment"
@@ -143,7 +143,7 @@
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
-        android:name="com.example.yshop.addproductfragment.AddProductFragment"
+        android:name="com.example.yshop.feature.addproductfragment.presentation.AddProductFragment"
         tools:layout="@layout/fragment_add_product" >
         <action
             android:id="@+id/action_addProductFragment_to_productsFragment"
@@ -153,11 +153,8 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.example.yshop.productdetailsfragment.ProductDetailsFragment"
+        android:name="com.example.yshop.feature.productdetailsfragment.presentation.ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details" >
-        <argument
-            android:name="productItem"
-            app:argType="com.example.yshop.model.ProductModel" />
         <action
             android:id="@+id/action_productDetailsFragment_to_productsFragment"
             app:destination="@id/productsFragment"
@@ -171,10 +168,13 @@
             android:id="@+id/action_productDetailsFragment_to_cartListFragment"
             app:destination="@id/cartListFragment"
             app:popUpTo="@id/productDetailsFragment" />
+        <argument
+            android:name="productitem"
+            app:argType="com.example.yshop.feature.dashboardfragment.data.model.request.ProductModel" />
     </fragment>
     <fragment
         android:id="@+id/cartListFragment"
-        android:name="com.example.yshop.cartlistfragment.CartListFragment"
+        android:name="com.example.yshop.feature.cartlistfragment.presentation.CartListFragment"
         tools:layout="@layout/fragment_cart_list" >
         <action
             android:id="@+id/action_cartListFragment_to_dashBoardFragment"
@@ -187,7 +187,7 @@
     </fragment>
     <fragment
         android:id="@+id/addressListFragment"
-        android:name="com.example.yshop.addresslistfragment.AddressListFragment"
+        android:name="com.example.yshop.feature.addresslistfragment.presentation.AddressListFragment"
         tools:layout="@layout/fragment_address_list" >
         <action
             android:id="@+id/action_addressListFragment_to_settingsFragment"
@@ -209,7 +209,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEditAddressFragment"
-        android:name="com.example.yshop.addeditaddressfragment.AddEditAddressFragment"
+        android:name="com.example.yshop.feature.addeditaddressfragment.presentation.AddEditAddressFragment"
         android:label="fragment_add_edit_address"
         tools:layout="@layout/fragment_add_edit_address" >
         <action
@@ -218,7 +218,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkOutFragment"
-        android:name="com.example.yshop.checkoutfragment.CheckOutFragment"
+        android:name="com.example.yshop.feature.checkoutfragment.presentation.CheckOutFragment"
         tools:layout="@layout/fragment_check_out" >
         <action
             android:id="@+id/action_checkOutFragment_to_dashBoardFragment"
@@ -228,16 +228,16 @@
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
-        android:name="com.example.yshop.orderdetailsfragment.OrderDetailsFragment"
+        android:name="com.example.yshop.feature.orderdetailsfragment.presentation.OrderDetailsFragment"
         tools:layout="@layout/fragment_order_details" />
     <fragment
         android:id="@+id/soldProductDetailsFragment"
-        android:name="com.example.yshop.soldproductdetailsfragment.SoldProductDetailsFragment"
+        android:name="com.example.yshop.feature.soldproductdetailsfragment.presentation.SoldProductDetailsFragment"
         android:label="Sold Product Details"
         tools:layout="@layout/fragment_sold_product_details" />
     <fragment
         android:id="@+id/soldProductFragment"
-        android:name="com.example.yshop.soldproductfragment.SoldProductFragment"
+        android:name="com.example.yshop.feature.soldproductfragment.presentation.SoldProductFragment"
         android:label="Sold Product"
         tools:layout="@layout/fragment_sold_product" >
         <action
